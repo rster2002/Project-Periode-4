@@ -45,5 +45,11 @@
     <Compile Include="SQLInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{73f5b8ab-3242-473f-b3ef-00ba9b66d39a}</Project>
+      <Name>Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
