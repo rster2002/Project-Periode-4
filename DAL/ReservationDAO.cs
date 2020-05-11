@@ -8,37 +8,37 @@ using Model;
 namespace DAL {
     public class ReservationDAO:SQLInterface<Reservation> {
         private void basicSelect() {
-            line("SELECT *, (");
-                line("SELECT[Customer].CustomerSurname AS CustomerSurname");
-                line("FROM[Customer]");
-                line("WHERE[Reservation].Customer = [Customer].CustomerId");
-            line(") AS CustomerSurname");
-            line("FROM[Reservation]");
-            line("JOIN[Table] ON[Reservation].TableNumber = [Table].TableNumber");
-            line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
-            line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
+            Line("SELECT *, (");
+                Line("SELECT[Customer].CustomerSurname AS CustomerSurname");
+                Line("FROM[Customer]");
+                Line("WHERE[Reservation].Customer = [Customer].CustomerId");
+            Line(") AS CustomerSurname");
+            Line("FROM[Reservation]");
+            Line("JOIN[Table] ON[Reservation].TableNumber = [Table].TableNumber");
+            Line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
+            Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
         }
 
         public List<Reservation> getAll() {
             basicSelect();
 
-            return execute(processJoined);
+            return Execute(processJoined);
         }
 
         public Reservation getById(int id) {
             basicSelect();
-            line("WHERE [ReservationId] = @id");
+            Line("WHERE [ReservationId] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute(processJoined)[0];
+            return Execute(processJoined)[0];
         }
 
         protected List<Reservation> processJoined(List<Record> records) {
             Dictionary<int, Reservation> reservationMap = new Dictionary<int, Reservation>();
 
             foreach (Record record in records) {
-                Reservation reservation = processRecord(record);
+                Reservation reservation = ProcessRecord(record);
 
                 if (!reservationMap.ContainsKey(reservation.id)) {
                     reservation.orders = new List<Order>();
@@ -71,7 +71,7 @@ namespace DAL {
             return reservationMap.Values.ToList();
         }
 
-        protected override Reservation processRecord(Record record) {
+        protected override Reservation ProcessRecord(Record record) {
             return new Reservation() {
                 id = (int) record["ReservationId"],
                 customer = null,

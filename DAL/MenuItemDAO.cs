@@ -9,21 +9,21 @@ namespace DAL {
     public class MenuItemDAO : SQLInterface<MenuItem> {
 
         public List<MenuItem> getAll() {
-            line("SELECT *");
-            line("FROM [MenuItem]");
+            Line("SELECT *");
+            Line("FROM [MenuItem]");
 
-            return execute();
+            return Execute();
         }
         public MenuItem getById(int id) {
-            line("SELECT *");
-            line("FROM [MenuItem]");
-            line("WHERE [MenuItemId] = @id");
+            Line("SELECT *");
+            Line("FROM [MenuItem]");
+            Line("WHERE [MenuItemId] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
-        protected override MenuItem processRecord(Record record) {
+        protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
                 id = (int) record["MenuItemId"],
                 name = (string) record["MenuItemName"],

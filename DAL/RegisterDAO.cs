@@ -10,24 +10,24 @@ namespace DAL {
 
         public List<Register> GetAllRegisters(){
 
-            line("SELECT *");
-            line("FROM [REGISTER]");
+            Line("SELECT *");
+            Line("FROM [REGISTER]");
 
-            return execute();
+            return Execute();
         }
 
         public Register GetRegisterById(int id) {
 
-            line("SELECT *");
-            line("FROM [REGISTER]");
-            line("WHERE RegisterId = @id");
+            Line("SELECT *");
+            Line("FROM [REGISTER]");
+            Line("WHERE RegisterId = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
 
-        protected override Register processRecord(Record record) {
+        protected override Register ProcessRecord(Record record) {
            
             return new Register() {
 
