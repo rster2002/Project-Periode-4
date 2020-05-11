@@ -8,7 +8,7 @@
 # wget --no-check-certificate http://gist.githubusercontent.com/kmorcinek/2710267/raw/.gitignore
 
 # Dont include the App.config for security reasons
-
+App.config
 
 # User-specific files
 *.suo
