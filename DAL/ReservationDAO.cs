@@ -7,18 +7,31 @@ using Model;
 
 namespace DAL {
     public class ReservationDAO:SQLInterface<Reservation> {
-        public List<Reservation> getAll() {
+        private void basicSelect() {
             line("SELECT *, (");
                 line("SELECT[Customer].CustomerSurname AS CustomerSurname");
                 line("FROM[Customer]");
                 line("WHERE[Reservation].Customer = [Customer].CustomerId");
-            line(")");
+            line(") AS CustomerSurname");
             line("FROM[Reservation]");
             line("JOIN[Table] ON[Reservation].TableNumber = [Table].TableNumber");
             line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
             line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
+        }
+
+        public List<Reservation> getAll() {
+            basicSelect();
 
             return execute(processJoined);
+        }
+
+        public Reservation getById(int id) {
+            basicSelect();
+            line("WHERE [ReservationId] = @id");
+
+            param("id", id);
+
+            return execute(processJoined)[0];
         }
 
         protected List<Reservation> processJoined(List<Record> records) {
@@ -39,6 +52,13 @@ namespace DAL {
                             role = (string) record["StaffRole"]
                         }
                     };
+
+                    if (record["Customer"] != DBNull.Value) {
+                        reservation.customer = new Customer() {
+                            id = (int) record["Customer"],
+                            name = (string) record["CustomerSurname"]
+                        };
+                    }
 
                     reservationMap[reservation.id] = reservation;
                 }
