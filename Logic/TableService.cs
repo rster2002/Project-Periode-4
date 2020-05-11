@@ -12,16 +12,60 @@ namespace Logic {
         private tableDAO tableDAO = new tableDAO();
 
         public List<Table> GetAllTables() {
-            List<Table> tables = tableDAO.GetAll();
-            return tables;
+            try {
+                List<Table> tables = tableDAO.GetAll();
+                return tables;
+            }
+            catch {
+                List<Table> tables = new List<Table>();
+                Table table = new Table {
+                    number = 200,
+                    numberOfSeats = 10,
+                    servedBy = new Staff {
+                        id = 200,
+                        name = "StaffTester"
+                    }
+                };
+                tables.Add(table);
+                return tables;
+            }
         }
         public Table GetTableById(int tableId) {
-            Table table = tableDAO.GetById(tableId);
-            return table;
+            try {
+                Table table = tableDAO.GetById(tableId);
+                return table;
+            }
+            catch {
+                Table table = new Table {
+                    number = 200,
+                    numberOfSeats = 10,
+                    servedBy = new Staff {
+                        id = 200,
+                        name = "StaffTester"
+                    }
+                };
+                return table;
+            }
         }
         public List<Table> GetTablesByStaff(int staffId) {
-            List<Table> tables = tableDAO.GetByStaff(staffId);
-            return tables;
+            try {
+                List<Table> tables = tableDAO.GetByStaff(staffId);
+                return tables;
+            }
+            catch {
+                List<Table> tables = new List<Table>();
+                Table table = new Table {
+                    number = 200,
+                    numberOfSeats = 10,
+                    servedBy = new Staff {
+                        id = 200,
+                        name = "StaffTester"
+                    }
+                };
+                tables.Add(table);
+                return tables;
+            }
+            
         }
     }
 }
