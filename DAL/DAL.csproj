@@ -45,6 +45,8 @@
     <Compile Include="ReservationDAO.cs" />
     <Compile Include="ReceiptDAO.cs" />
     <Compile Include="RegisterDAO.cs" />
+    <Compile Include="MenuDAO.cs" />
+    <Compile Include="MenuItemDAO.cs" />
     <Compile Include="SQLInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
