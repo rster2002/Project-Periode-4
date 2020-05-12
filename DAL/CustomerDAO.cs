@@ -7,26 +7,26 @@ using Model;
 
 namespace DAL {
     public class CustomerDAO:SQLInterface<Customer> {
-        protected override Customer processRecord(Record record) {
+        protected override Customer ProcessRecord(Record record) {
             return new Customer() {
-                id = (int) record["CustomerId"],
-                name = (string) record["CustomerSurname"]
+                Id = (int) record["CustomerId"],
+                Name = (string) record["CustomerSurname"]
             };
         }
         public List<Customer> GetAll() {
-            line("SELECT CustomerId, CustomerSurname");
-            line("FROM [Customer]");
+            Line("SELECT CustomerId, CustomerSurname");
+            Line("FROM [Customer]");
 
-            return execute();
+            return Execute();
         }
         public Customer GetBySurname(string name) {
-            line("SELECT CustomerId, CustomerSurname");
-            line("FROM [Customer]");
-            line("WHERE [CustomerSurname] = @name");
+            Line("SELECT CustomerId, CustomerSurname");
+            Line("FROM [Customer]");
+            Line("WHERE [CustomerSurname] = @name");
 
-            param("name", name);
+            Param("name", name);
 
-            return execute()[0];
+            return Execute()[0];
         }
     }
 }

@@ -8,27 +8,27 @@ using System.Threading.Tasks;
 namespace DAL {
     public class MenuDAO : SQLInterface<Menu> {
 
-        public List<Menu> getAll() {
-            line("SELECT *");
-            line("FROM [Menu]");
+        public List<Menu> GetAll() {
+            Line("SELECT *");
+            Line("FROM [Menu]");
 
-            return execute();
+            return Execute();
         }
-        public Menu getById(int id) {
-            line("SELECT *");
-            line("FROM [Menu]");
-            line("WHERE [MenuId] = @id");
+        public Menu GetById(int id) {
+            Line("SELECT *");
+            Line("FROM [Menu]");
+            Line("WHERE [MenuId] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
-        protected override Menu processRecord(Record record) {
+        protected override Menu ProcessRecord(Record record) {
             return new Menu() {
-                id = (int) record["MenuId"],
-                name = (string) record["MenuName"],
-                startTime = (TimeSpan) record["MenuAvailableStartDateTime"],
-                endTime = (TimeSpan) record["MenuAvailableEndDateTime"]
+                Id = (int) record["MenuId"],
+                Name = (string) record["MenuName"],
+                StartTime = (TimeSpan) record["MenuAvailableStartDateTime"],
+                EndTime = (TimeSpan) record["MenuAvailableEndDateTime"]
             };
         }
     }

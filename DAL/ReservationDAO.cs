@@ -7,75 +7,75 @@ using Model;
 
 namespace DAL {
     public class ReservationDAO:SQLInterface<Reservation> {
-        private void basicSelect() {
-            line("SELECT *, (");
-                line("SELECT[Customer].CustomerSurname AS CustomerSurname");
-                line("FROM[Customer]");
-                line("WHERE[Reservation].Customer = [Customer].CustomerId");
-            line(") AS CustomerSurname");
-            line("FROM[Reservation]");
-            line("JOIN[Table] ON[Reservation].TableNumber = [Table].TableNumber");
-            line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
-            line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
+        private void BasicSelect() {
+            Line("SELECT *, (");
+                Line("SELECT[Customer].CustomerSurname AS CustomerSurname");
+                Line("FROM[Customer]");
+                Line("WHERE[Reservation].Customer = [Customer].CustomerId");
+            Line(") AS CustomerSurname");
+            Line("FROM[Reservation]");
+            Line("JOIN[Table] ON[Reservation].TableNumber = [Table].TableNumber");
+            Line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
+            Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
         }
 
-        public List<Reservation> getAll() {
-            basicSelect();
+        public List<Reservation> GetAll() {
+            BasicSelect();
 
-            return execute(processJoined);
+            return Execute(ProcessJoined);
         }
 
-        public Reservation getById(int id) {
-            basicSelect();
-            line("WHERE [ReservationId] = @id");
+        public Reservation GetById(int id) {
+            BasicSelect();
+            Line("WHERE [ReservationId] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute(processJoined)[0];
+            return Execute(ProcessJoined)[0];
         }
 
-        protected List<Reservation> processJoined(List<Record> records) {
+        protected List<Reservation> ProcessJoined(List<Record> records) {
             Dictionary<int, Reservation> reservationMap = new Dictionary<int, Reservation>();
 
             foreach (Record record in records) {
-                Reservation reservation = processRecord(record);
+                Reservation reservation = ProcessRecord(record);
 
-                if (!reservationMap.ContainsKey(reservation.id)) {
-                    reservation.orders = new List<Order>();
-                    reservation.table = new Table() {
-                        number = (int) record["TableNumber"],
-                        numberOfSeats = (int) record["TableSeats"],
-                        servedBy = new Staff() {
-                            id = (int) record["StaffNumber"],
-                            name = (string) record["StaffName"],
-                            salt = (int) record["StaffSalt"],
-                            role = (string) record["StaffRole"]
+                if (!reservationMap.ContainsKey(reservation.Id)) {
+                    reservation.Orders = new List<Order>();
+                    reservation.Table = new Table() {
+                        Number = (int) record["TableNumber"],
+                        NumberOfSeats = (int) record["TableSeats"],
+                        ServedBy = new Staff() {
+                            Id = (int) record["StaffNumber"],
+                            Name = (string) record["StaffName"],
+                            Salt = (int) record["StaffSalt"],
+                            Role = (string) record["StaffRole"]
                         }
                     };
 
                     if (record["Customer"] != DBNull.Value) {
-                        reservation.customer = new Customer() {
-                            id = (int) record["Customer"],
-                            name = (string) record["CustomerSurname"]
+                        reservation.Customer = new Customer() {
+                            Id = (int) record["Customer"],
+                            Name = (string) record["CustomerSurname"]
                         };
                     }
 
-                    reservationMap[reservation.id] = reservation;
+                    reservationMap[reservation.Id] = reservation;
                 }
 
-                reservationMap[reservation.id].orders.Add(new Order() {
-                    id = (int) record["OrderId"]
+                reservationMap[reservation.Id].Orders.Add(new Order() {
+                    Id = (int) record["OrderId"]
                 });
             }
 
             return reservationMap.Values.ToList();
         }
 
-        protected override Reservation processRecord(Record record) {
+        protected override Reservation ProcessRecord(Record record) {
             return new Reservation() {
-                id = (int) record["ReservationId"],
-                customer = null,
-                table = null
+                Id = (int) record["ReservationId"],
+                Customer = null,
+                Table = null
             };
         }
     }

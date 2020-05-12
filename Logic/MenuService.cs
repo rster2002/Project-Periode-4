@@ -13,7 +13,7 @@ namespace Logic {
 
         public List<Menu> GetMenus() {
             try {
-                List<Menu> menus = menuDAO.getAll();
+                List<Menu> menus = menuDAO.GetAll();
                 return menus;
             }
 
@@ -21,16 +21,16 @@ namespace Logic {
                 List<Menu> menus = new List<Menu>();
 
                 Menu menu1 = new Menu() {
-                    id = 1,
-                    name = "Special Menu",
-                    startTime = new TimeSpan(12, 0, 0),
-                    endTime = new TimeSpan(22,30,0)
+                    Id = 1,
+                    Name = "Special Menu",
+                    StartTime = new TimeSpan(12, 0, 0),
+                    EndTime = new TimeSpan(22,30,0)
                 };
                 Menu menu2 = new Menu() {
-                    id = 2,
-                    name = "Party Menu",
-                    startTime = new TimeSpan(9, 30, 0),
-                    endTime = new TimeSpan(22, 15, 0)
+                    Id = 2,
+                    Name = "Party Menu",
+                    StartTime = new TimeSpan(9, 30, 0),
+                    EndTime = new TimeSpan(22, 15, 0)
                 };
                 menus.AddRange(new Menu[] { menu1, menu2 });
                 return menus;

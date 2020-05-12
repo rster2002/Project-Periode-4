@@ -2,8 +2,8 @@
 
 namespace Model {
     public class Receipt {
-        public int id { get; set; }
-        public Register register { get; set; }
-        public List<Order> orders { get; set; }
+        public int Id { get; set; }
+        public Register Register { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

@@ -8,28 +8,28 @@ using Model;
 
 namespace DAL {
     public class OrderDAO:SQLInterface<Order> {
-        public List<Order> getAll() {
-            line("SELECT *");
-            line("FROM [Order]");
+        public List<Order> GetAll() {
+            Line("SELECT *");
+            Line("FROM [Order]");
 
-            return execute();
+            return Execute();
         }
 
-        public Order getById(int id) {
-            line("SELECT *");
-            line("FROM [Order]");
-            line("WHERE [OrderId] = @id");
+        public Order GetById(int id) {
+            Line("SELECT *");
+            Line("FROM [Order]");
+            Line("WHERE [OrderId] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
 
-        protected override Order processRecord(Record record) {
+        protected override Order ProcessRecord(Record record) {
             return new Order() {
-                id = (int) record["OrderId"],
-                placedBy = null, // TODO: Reference StaffDAO
-                table = null, // TODO: Reference TableDAO
+                Id = (int) record["OrderId"],
+                PlacedBy = null, // TODO: Reference StaffDAO
+                Table = null, // TODO: Reference TableDAO
             };
         }
     }

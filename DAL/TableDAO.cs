@@ -7,37 +7,37 @@ using Model;
 
 
 namespace DAL {
-    public class tableDAO:SQLInterface<Table> {
-        protected override Table processRecord(Record record) {
+    public class TableDAO:SQLInterface<Table> {
+        protected override Table ProcessRecord(Record record) {
             return new Table() {
-                number = (int) record["TableNumber"],
-                numberOfSeats = (int) record["TableSeats"],
-                servedBy = (Staff) record["ServedBy"]
+                Number = (int) record["TableNumber"],
+                NumberOfSeats = (int) record["TableSeats"],
+                ServedBy = (Staff) record["ServedBy"]
             };
         }
         public List<Table> GetAll() {
-            line("SELECT TableNumber, TableSeats, ServedBy");
-            line("FROM [Table]");
+            Line("SELECT TableNumber, TableSeats, ServedBy");
+            Line("FROM [Table]");
 
-            return execute();
+            return Execute();
         }
         public Table GetById(int id) {
-            line("SELECT TableNumber, TableSeats, ServedBy");
-            line("FROM [Table]");
-            line("WHERE [TableNumber] = @id");
+            Line("SELECT TableNumber, TableSeats, ServedBy");
+            Line("FROM [Table]");
+            Line("WHERE [TableNumber] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
         public List<Table> GetByStaff(int id) {
-            line("SELECT TableNumber, TableSeats, ServedBy");
-            line("FROM [Table]");
-            line("WHERE [ServedBy] = @id");
+            Line("SELECT TableNumber, TableSeats, ServedBy");
+            Line("FROM [Table]");
+            Line("WHERE [ServedBy] = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute();
+            return Execute();
         }
     }
 }

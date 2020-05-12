@@ -10,13 +10,13 @@ namespace Test_Console {
     class Program {
         static void Main(string[] args) {
             Program program = new Program();
-            program.start();
+            program.Start();
         }
 
-        void start() {
+        void Start() {
             OrderDAO OrderDAO = new OrderDAO();
 
-            Console.WriteLine("{0}", OrderDAO.getById(3).id);
+            Console.WriteLine("{0}", OrderDAO.GetById(3).Id);
             
 
             Console.ReadKey();

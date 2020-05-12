@@ -14,24 +14,24 @@ namespace Logic
 
         public List<MenuItem> GetMenuItems() {
             try {
-                List<MenuItem> menuItems = menuItemDAO.getAll();
+                List<MenuItem> menuItems = menuItemDAO.GetAll();
                 return menuItems;
             }
             catch(Exception) {
                 List<MenuItem> menuItems = new List<MenuItem>();
                 MenuItem menuItem1 = new MenuItem() {
-                    id = 1,
-                    name = "Patat",
-                    price = 2.50m,
+                    Id = 1,
+                    Name = "Patat",
+                    Price = 2.50m,
                     VAT = 9,
-                    amountInStock = 26
+                    AmountInStock = 26
                 };
                 MenuItem menuItem2 = new MenuItem() {
-                    id = 2,
-                    name = "pizza",
-                    price = 13.75m,
+                    Id = 2,
+                    Name = "pizza",
+                    Price = 13.75m,
                     VAT = 9,
-                    amountInStock = 19
+                    AmountInStock = 19
                 };
                 menuItems.AddRange(new MenuItem[] { menuItem1, menuItem2 });
                 return menuItems;

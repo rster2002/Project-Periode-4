@@ -10,28 +10,28 @@ namespace DAL {
 
         public List<Receipt> GetAllReceipts() {
 
-            line("SELECT *");
-            line("FROM [RECEIPT]");
+            Line("SELECT *");
+            Line("FROM [RECEIPT]");
 
-            return execute();
+            return Execute();
         }
 
         public Receipt GetReceiptById(int id) {
 
-            line("SELECT *");
-            line("FROM [RECEIPT]");
-            line("WHERE ReceiptId = @id");
+            Line("SELECT *");
+            Line("FROM [RECEIPT]");
+            Line("WHERE ReceiptId = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
 
-        protected override Receipt processRecord(Record record) {
+        protected override Receipt ProcessRecord(Record record) {
 
             return new Receipt() {
 
-                id = (int) record["ReceiptId"],
+                Id = (int) record["ReceiptId"],
                 //register
                 //orders
             };

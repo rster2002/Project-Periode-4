@@ -1,7 +1,7 @@
 ﻿namespace Model {
     public class Order {
-        public int id { get; set; }
-        public Table table { get; set; }
-        public Staff placedBy { get; set; }
+        public int Id { get; set; }
+        public Table Table { get; set; }
+        public Staff PlacedBy { get; set; }
     }
 }
