@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic
-{
-    public class Class1
-    {
+namespace DAL {
+    class ReceiptDAO {
+
+
     }
 }
