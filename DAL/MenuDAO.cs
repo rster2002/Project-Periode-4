@@ -25,10 +25,10 @@ namespace DAL {
         }
         protected override Menu ProcessRecord(Record record) {
             return new Menu() {
-                id = (int) record["MenuId"],
-                name = (string) record["MenuName"],
-                startTime = (TimeSpan) record["MenuAvailableStartDateTime"],
-                endTime = (TimeSpan) record["MenuAvailableEndDateTime"]
+                Id = (int) record["MenuId"],
+                Name = (string) record["MenuName"],
+                StartTime = (TimeSpan) record["MenuAvailableStartDateTime"],
+                EndTime = (TimeSpan) record["MenuAvailableEndDateTime"]
             };
         }
     }

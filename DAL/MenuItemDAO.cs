@@ -25,11 +25,11 @@ namespace DAL {
         }
         protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
-                id = (int) record["MenuItemId"],
-                name = (string) record["MenuItemName"],
-                price = (decimal) record["price"],
+                Id = (int) record["MenuItemId"],
+                Name = (string) record["MenuItemName"],
+                Price = (decimal) record["price"],
                 VAT = (int) record["VAT"],
-                amountInStock = (int) record["InStock"]
+                AmountInStock = (int) record["InStock"]
             };
         }
     }

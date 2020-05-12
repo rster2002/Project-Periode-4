@@ -31,9 +31,9 @@ namespace DAL {
            
             return new Register() {
 
-                id = (int)record["RegisterId"],
-                name = (string)record["RegisterName"],
-                cashBalance = (decimal)record["CashBalance"]
+                Id = (int)record["RegisterId"],
+                Name = (string)record["RegisterName"],
+                CashBalance = (decimal)record["CashBalance"]
             };
         }
     }

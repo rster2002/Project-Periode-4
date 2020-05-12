@@ -40,31 +40,31 @@ namespace DAL {
             foreach (Record record in records) {
                 Reservation reservation = ProcessRecord(record);
 
-                if (!reservationMap.ContainsKey(reservation.id)) {
-                    reservation.orders = new List<Order>();
-                    reservation.table = new Table() {
-                        number = (int) record["TableNumber"],
-                        numberOfSeats = (int) record["TableSeats"],
-                        servedBy = new Staff() {
-                            id = (int) record["StaffNumber"],
-                            name = (string) record["StaffName"],
-                            salt = (int) record["StaffSalt"],
-                            role = (string) record["StaffRole"]
+                if (!reservationMap.ContainsKey(reservation.Id)) {
+                    reservation.Orders = new List<Order>();
+                    reservation.Table = new Table() {
+                        Number = (int) record["TableNumber"],
+                        NumberOfSeats = (int) record["TableSeats"],
+                        ServedBy = new Staff() {
+                            Id = (int) record["StaffNumber"],
+                            Name = (string) record["StaffName"],
+                            Salt = (int) record["StaffSalt"],
+                            Role = (string) record["StaffRole"]
                         }
                     };
 
                     if (record["Customer"] != DBNull.Value) {
-                        reservation.customer = new Customer() {
-                            id = (int) record["Customer"],
-                            name = (string) record["CustomerSurname"]
+                        reservation.Customer = new Customer() {
+                            Id = (int) record["Customer"],
+                            Name = (string) record["CustomerSurname"]
                         };
                     }
 
-                    reservationMap[reservation.id] = reservation;
+                    reservationMap[reservation.Id] = reservation;
                 }
 
-                reservationMap[reservation.id].orders.Add(new Order() {
-                    id = (int) record["OrderId"]
+                reservationMap[reservation.Id].Orders.Add(new Order() {
+                    Id = (int) record["OrderId"]
                 });
             }
 
@@ -73,9 +73,9 @@ namespace DAL {
 
         protected override Reservation ProcessRecord(Record record) {
             return new Reservation() {
-                id = (int) record["ReservationId"],
-                customer = null,
-                table = null
+                Id = (int) record["ReservationId"],
+                Customer = null,
+                Table = null
             };
         }
     }
