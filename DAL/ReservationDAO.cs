@@ -7,7 +7,7 @@ using Model;
 
 namespace DAL {
     public class ReservationDAO:SQLInterface<Reservation> {
-        private void basicSelect() {
+        private void BasicSelect() {
             Line("SELECT *, (");
                 Line("SELECT[Customer].CustomerSurname AS CustomerSurname");
                 Line("FROM[Customer]");
@@ -20,21 +20,21 @@ namespace DAL {
         }
 
         public List<Reservation> getAll() {
-            basicSelect();
+            BasicSelect();
 
-            return Execute(processJoined);
+            return Execute(ProcessJoined);
         }
 
-        public Reservation getById(int id) {
-            basicSelect();
+        public Reservation GetById(int id) {
+            BasicSelect();
             Line("WHERE [ReservationId] = @id");
 
             Param("id", id);
 
-            return Execute(processJoined)[0];
+            return Execute(ProcessJoined)[0];
         }
 
-        protected List<Reservation> processJoined(List<Record> records) {
+        protected List<Reservation> ProcessJoined(List<Record> records) {
             Dictionary<int, Reservation> reservationMap = new Dictionary<int, Reservation>();
 
             foreach (Record record in records) {
