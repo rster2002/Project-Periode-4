@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderDAO.cs" />
+    <Compile Include="CustomerDAO.cs" />
     <Compile Include="ReservationDAO.cs" />
     <Compile Include="ReceiptDAO.cs" />
     <Compile Include="RegisterDAO.cs" />
@@ -49,6 +51,7 @@
     <Compile Include="MenuItemDAO.cs" />
     <Compile Include="SQLInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TableDAO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Model\Model.csproj">
