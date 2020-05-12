@@ -19,8 +19,8 @@ namespace Logic {
             catch {
                 List<Customer> customers = new List<Customer>();
                 Customer customer = new Customer {
-                    id = 100,
-                    name = "De Test"
+                    Id = 100,
+                    Name = "De Test"
                 };
                 customers.Add(customer);
 
@@ -33,8 +33,8 @@ namespace Logic {
                 return customer;
             } catch {
                 Customer customer = new Customer {
-                    id = 101,
-                    name = "Tester"
+                    Id = 101,
+                    Name = "Tester"
                 };
 
                 return customer;

@@ -9,7 +9,6 @@ namespace DAL {
     public class RegisterDAO : SQLInterface<Register>{
 
         public List<Register> GetAllRegisters(){
-
             Line("SELECT *");
             Line("FROM [REGISTER]");
 
@@ -17,7 +16,6 @@ namespace DAL {
         }
 
         public Register GetRegisterById(int id) {
-
             Line("SELECT *");
             Line("FROM [REGISTER]");
             Line("WHERE RegisterId = @id");

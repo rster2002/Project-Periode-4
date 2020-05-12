@@ -13,7 +13,7 @@ namespace Logic {
 
         public List<Menu> GetMenus() {
             try {
-                List<Menu> menus = menuDAO.getAll();
+                List<Menu> menus = menuDAO.GetAll();
                 return menus;
             }
 

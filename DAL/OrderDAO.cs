@@ -12,7 +12,7 @@ namespace DAL {
             Line("SELECT *");
             Line("FROM [Order]");
 
-            return execute();
+            return Execute();
         }
 
         public Order GetById(int id) {

@@ -14,7 +14,7 @@ namespace Logic
 
         public List<MenuItem> GetMenuItems() {
             try {
-                List<MenuItem> menuItems = menuItemDAO.getAll();
+                List<MenuItem> menuItems = menuItemDAO.GetAll();
                 return menuItems;
             }
             catch(Exception) {

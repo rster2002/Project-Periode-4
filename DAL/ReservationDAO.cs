@@ -19,7 +19,7 @@ namespace DAL {
             Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
         }
 
-        public List<Reservation> getAll() {
+        public List<Reservation> GetAll() {
             BasicSelect();
 
             return Execute(ProcessJoined);
