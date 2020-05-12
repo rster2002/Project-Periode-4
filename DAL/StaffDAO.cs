@@ -7,41 +7,40 @@ using Model;
 
 namespace DAL {
     public class StaffDAO : SQLInterface<Staff> {
-        public List<Staff> GetAllStaff() {
-            line("SELECT *");
-            line("FROM [STAFF]");
+        public override List<Staff> GetAll() {
+            Line("SELECT *");
+            Line("FROM [STAFF]");
 
-            return execute();
+            return Execute();
         }
 
-        public Staff GetStaffById(int id) {
-            line("SELECT *");
-            line("FROM [STAFF]");
-            line("WHERE StaffNumber = @id");
+        public override Staff GetById(int id) {
+            Line("SELECT *");
+            Line("FROM [STAFF]");
+            Line("WHERE StaffNumber = @id");
 
-            param("id", id);
+            Param("id", id);
 
-            return execute()[0];
+            return Execute()[0];
         }
 
         public List<Staff> GetStaffByRole(string role) {
-            line("SELECT *");
-            line("FROM [STAFF]");
-            line("WHERE StaffRole IS @role");
+            Line("SELECT *");
+            Line("FROM [STAFF]");
+            Line("WHERE StaffRole IS @role");
 
-            param("role", role);
+            Param("role", role);
 
-            return execute();
+            return Execute();
         }
 
-        protected override Staff processRecord(Record record) {
+        protected override Staff ProcessRecord(Record record) {
             return new Staff() {
-                name = (string) record["StaffName"],
-                salt = (int) record["StaffSalt"],
-                role = (string) record["StaffRole"],
-                id = (int) record["StaffNumber"]
+                Name = (string) record["StaffName"],
+                Salt = (int) record["StaffSalt"],
+                Role = (string) record["StaffRole"],
+                Id = (int) record["StaffNumber"]
             };
         }
-        
     }
 }

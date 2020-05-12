@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Model;
 
 namespace DAL {
-    public class ReservationDAO:SQLInterface<Reservation> {
+    public class ReservationDAO: SQLInterface<Reservation> {
         private void BasicSelect() {
             Line("SELECT *, (");
                 Line("SELECT[Customer].CustomerSurname AS CustomerSurname");
@@ -19,13 +19,13 @@ namespace DAL {
             Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
         }
 
-        public List<Reservation> GetAll() {
+        public override List<Reservation> GetAll() {
             BasicSelect();
 
             return Execute(ProcessJoined);
         }
 
-        public Reservation GetById(int id) {
+        public override Reservation GetById(int id) {
             BasicSelect();
             Line("WHERE [ReservationId] = @id");
 

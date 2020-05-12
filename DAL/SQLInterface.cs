@@ -116,6 +116,8 @@ namespace DAL {
         }
 
         protected abstract T ProcessRecord(Record record);
+        public abstract List<T> GetAll();
+        public abstract T GetById(int id);
     }
 
     public class Record:Dictionary<string, object> {

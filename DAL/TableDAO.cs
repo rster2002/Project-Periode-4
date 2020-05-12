@@ -7,7 +7,7 @@ using Model;
 
 
 namespace DAL {
-    public class TableDAO:SQLInterface<Table> {
+    public class TableDAO: SQLInterface<Table> {
         protected override Table ProcessRecord(Record record) {
             return new Table() {
                 Number = (int) record["TableNumber"],
@@ -15,13 +15,13 @@ namespace DAL {
                 ServedBy = (Staff) record["ServedBy"]
             };
         }
-        public List<Table> GetAll() {
+        public override List<Table> GetAll() {
             Line("SELECT TableNumber, TableSeats, ServedBy");
             Line("FROM [Table]");
 
             return Execute();
         }
-        public Table GetById(int id) {
+        public override Table GetById(int id) {
             Line("SELECT TableNumber, TableSeats, ServedBy");
             Line("FROM [Table]");
             Line("WHERE [TableNumber] = @id");

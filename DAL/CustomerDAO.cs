@@ -13,12 +13,24 @@ namespace DAL {
                 Name = (string) record["CustomerSurname"]
             };
         }
-        public List<Customer> GetAll() {
+        
+        public override List<Customer> GetAll() {
             Line("SELECT CustomerId, CustomerSurname");
             Line("FROM [Customer]");
 
             return Execute();
         }
+
+        public override Customer GetById(int id) {
+            Line("SELECT CustomerId, CustomerSurname");
+            Line("FROM [Customer]");
+            Line("WHERE [CustomerId] = @id");
+
+            Param("id", id);
+
+            return Execute()[0];
+        }
+
         public Customer GetBySurname(string name) {
             Line("SELECT CustomerId, CustomerSurname");
             Line("FROM [Customer]");

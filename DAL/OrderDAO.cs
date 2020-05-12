@@ -8,14 +8,14 @@ using Model;
 
 namespace DAL {
     public class OrderDAO:SQLInterface<Order> {
-        public List<Order> GetAll() {
+        public override List<Order> GetAll() {
             Line("SELECT *");
             Line("FROM [Order]");
 
             return Execute();
         }
 
-        public Order GetById(int id) {
+        public override Order GetById(int id) {
             Line("SELECT *");
             Line("FROM [Order]");
             Line("WHERE [OrderId] = @id");

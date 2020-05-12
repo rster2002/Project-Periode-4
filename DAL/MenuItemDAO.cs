@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace DAL {
     public class MenuItemDAO : SQLInterface<MenuItem> {
 
-        public List<MenuItem> GetAll() {
+        public override List<MenuItem> GetAll() {
             Line("SELECT *");
             Line("FROM [MenuItem]");
 
             return Execute();
         }
-        public MenuItem GetById(int id) {
+        public override MenuItem GetById(int id) {
             Line("SELECT *");
             Line("FROM [MenuItem]");
             Line("WHERE [MenuItemId] = @id");
