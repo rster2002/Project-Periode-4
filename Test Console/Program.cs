@@ -14,9 +14,10 @@ namespace Test_Console {
         }
 
         void start() {
-            ReservationDAO reservationDAO = new ReservationDAO();
+            OrderDAO OrderDAO = new OrderDAO();
 
-            reservationDAO.getAll().ForEach(Console.WriteLine);
+            Console.WriteLine("{0}", OrderDAO.getById(3).id);
+            
 
             Console.ReadKey();
         }
