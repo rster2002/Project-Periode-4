@@ -8,21 +8,42 @@ using Model;
 
 namespace DAL {
     public class OrderDAO:SQLInterface<Order> {
-        public override List<Order> GetAll() {
+        private void BasicSelect() {
             Line("SELECT *");
             Line("FROM [Order]");
+        }
+
+        public override List<Order> GetAll() {
+            BasicSelect();
 
             return Execute();
         }
 
         public override Order GetById(int id) {
-            Line("SELECT *");
-            Line("FROM [Order]");
+            BasicSelect();
             Line("WHERE [OrderId] = @id");
 
             Param("id", id);
 
             return Execute()[0];
+        }
+
+        public List<Order> GetByReservationId(int id) {
+            BasicSelect();
+            Line("WHERE [ReservationId] = @id");
+
+            Param("id", id);
+
+            return Execute();
+        }
+
+        public List<Order> GetByReceiptId(int id) {
+            BasicSelect();
+            Line("WHERE [ReceiptId] = @id");
+
+            Param("id", id);
+
+            return Execute();
         }
 
         protected override Order ProcessRecord(Record record) {

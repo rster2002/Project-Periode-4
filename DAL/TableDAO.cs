@@ -9,6 +9,8 @@ using Model;
 namespace DAL {
     public class TableDAO: SQLInterface<Table> {
         protected override Table ProcessRecord(Record record) {
+            
+
             return new Table() {
                 Number = (int) record["TableNumber"],
                 NumberOfSeats = (int) record["TableSeats"],

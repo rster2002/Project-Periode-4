@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using Model;
 
 namespace Test_Console {
     class Program {
@@ -14,10 +15,13 @@ namespace Test_Console {
         }
 
         void Start() {
-            OrderDAO OrderDAO = new OrderDAO();
+            ReservationDAO reservationDAO = new ReservationDAO();
 
-            Console.WriteLine("{0}", OrderDAO.GetById(3).Id);
-            
+            reservationDAO.GetAll().ForEach(reservation => {
+                reservation.Orders.ForEach(order => {
+                    Console.WriteLine("{0}: {1}", reservation.Id, order.Id);
+                });
+            });
 
             Console.ReadKey();
         }
