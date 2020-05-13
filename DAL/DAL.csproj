@@ -51,6 +51,7 @@
     <Compile Include="MenuItemDAO.cs" />
     <Compile Include="SQLInterface.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaffDAO.cs" />
     <Compile Include="TableDAO.cs" />
   </ItemGroup>
   <ItemGroup>
