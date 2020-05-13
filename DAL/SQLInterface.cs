@@ -97,21 +97,20 @@ namespace DAL {
         }
 
 
-        protected List<T> Execute() => Execute(queryString, ProcessRecord);
-        protected List<T> Execute(string query) => Execute(query, ProcessRecord);
-        protected List<T> Execute(Func<Record, T> processFunction) => Execute(queryString, processFunction);
-        protected List<T> Execute(string query, Func<Record, T> processFunction) {
-            return ProcessRecords(ExecuteUnprocessed(query), processFunction);
-        }
-
-        protected List<T> Execute(Func<List<Record>, List<T>> recordsProcessor) => Execute(queryString, recordsProcessor);
-        protected List<T> Execute(string query, Func<List<Record>, List<T>> recordsProcessor) {
-            return recordsProcessor(ExecuteUnprocessed(query));
-        }
-
-        protected virtual List<T> ProcessRecords (List<Record> records, Func<Record, T> processFunction) {
-            return records
+        protected List<T> Execute() => ProcessRecords(ExecuteUnprocessed(queryString));
+        protected List<T> ExecuteQuery(string query) => ProcessRecords(ExecuteUnprocessed(query));
+        protected List<T> ExecuteUsing(Func<Record, T> processFunction) {
+            return ExecuteUnprocessed(queryString)
                 .Select(processFunction)
+                .ToList();
+        }
+        protected List<T> ExecuteUsing(Func<List<Record>, List<T>> recordsFunction) {
+            return recordsFunction(ExecuteUnprocessed());
+        }
+
+        protected List<T> ProcessRecords(List<Record> records) {
+            return records
+                .Select(ProcessRecord)
                 .ToList();
         }
 

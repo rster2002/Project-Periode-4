@@ -22,7 +22,7 @@ namespace DAL {
         public override List<Reservation> GetAll() {
             BasicSelect();
 
-            return Execute(ProcessJoined);
+            return ExecuteUsing(ProcessJoined);
         }
 
         public override Reservation GetById(int id) {
@@ -31,7 +31,7 @@ namespace DAL {
 
             Param("id", id);
 
-            return Execute(ProcessJoined)[0];
+            return ExecuteUsing(ProcessJoined)[0];
         }
 
         protected List<Reservation> ProcessJoined(List<Record> records) {
