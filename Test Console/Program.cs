@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using Model;
+using System.Diagnostics;
 
 namespace Test_Console {
     class Program {
@@ -16,12 +17,30 @@ namespace Test_Console {
 
         void Start() {
             ReservationDAO reservationDAO = new ReservationDAO();
+            Stopwatch stopwatch = new Stopwatch();
+
+            Console.WriteLine("Start");
+            stopwatch.Start();
 
             reservationDAO.GetAll().ForEach(reservation => {
                 reservation.Orders.ForEach(order => {
                     Console.WriteLine("{0}: {1}", reservation.Id, order.Id);
                 });
             });
+
+            stopwatch.Stop();
+            Console.WriteLine("End first: {0}ms", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
+            stopwatch.Start();
+
+            reservationDAO.GetAll().ForEach(reservation => {
+                reservation.Orders.ForEach(order => {
+                    Console.WriteLine("{0}: {1}", reservation.Id, order.Id);
+                });
+            });
+
+            stopwatch.Stop();
+            Console.WriteLine("End second: {0}ms", stopwatch.ElapsedMilliseconds);
 
             Console.ReadKey();
         }

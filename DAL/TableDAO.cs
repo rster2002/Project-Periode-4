@@ -9,12 +9,12 @@ using Model;
 namespace DAL {
     public class TableDAO: SQLInterface<Table> {
         protected override Table ProcessRecord(Record record) {
-            
+            StaffDAO staffDAO = new StaffDAO();
 
             return new Table() {
                 Number = (int) record["TableNumber"],
                 NumberOfSeats = (int) record["TableSeats"],
-                ServedBy = (Staff) record["ServedBy"]
+                ServedBy = staffDAO.GetById((int) record["ServedBy"])
             };
         }
         public override List<Table> GetAll() {
