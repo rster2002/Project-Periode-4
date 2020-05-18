@@ -19,16 +19,6 @@ namespace Test_Console {
             ReservationDAO reservationDAO = new ReservationDAO();
             Stopwatch stopwatch = new Stopwatch();
 
-            reservationDAO.Insert(new Reservation() {
-                Table = new Table() {
-                    Number = 10,
-                },
-                Customer = new Customer() {
-                    Id = 10,
-                    Name = "Someone"
-                }
-            });
-
             Console.ReadKey();
         }
     }
