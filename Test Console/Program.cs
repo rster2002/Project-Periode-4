@@ -5,6 +5,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using Model;
+using System.Diagnostics;
 
 namespace Test_Console {
     class Program {
@@ -14,10 +16,18 @@ namespace Test_Console {
         }
 
         void Start() {
-            OrderDAO OrderDAO = new OrderDAO();
+            ReservationDAO reservationDAO = new ReservationDAO();
+            Stopwatch stopwatch = new Stopwatch();
 
-            Console.WriteLine("{0}", OrderDAO.GetById(3).Id);
-            
+            reservationDAO.Insert(new Reservation() {
+                Table = new Table() {
+                    Number = 10,
+                },
+                Customer = new Customer() {
+                    Id = 10,
+                    Name = "Someone"
+                }
+            });
 
             Console.ReadKey();
         }

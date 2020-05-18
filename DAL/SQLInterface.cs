@@ -13,7 +13,7 @@ namespace DAL {
         private Dictionary<string, object> sqlParams = new Dictionary<string, object>();
 
         protected Dictionary<string, object> Param(string key, object value) {
-            sqlParams.Add(key, value.ToString());
+            sqlParams.Add(key, value);
             return sqlParams;
         }
 
@@ -108,7 +108,7 @@ namespace DAL {
             return recordsFunction(ExecuteUnprocessed());
         }
 
-        protected List<T> ProcessRecords(List<Record> records) {
+        protected virtual List<T> ProcessRecords(List<Record> records) {
             return records
                 .Select(ProcessRecord)
                 .ToList();
