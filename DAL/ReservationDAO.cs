@@ -38,7 +38,7 @@ namespace DAL {
             return Execute()[0];
         }
 
-        protected void DeleteById(int id) {
+        public void DeleteById(int id) {
             Line("DELETE [Reservation]");
             Line("WHERE [ReservationId] = @id");
 
