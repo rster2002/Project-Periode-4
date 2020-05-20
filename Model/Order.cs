@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Model {
     public class Order {
@@ -6,6 +7,7 @@ namespace Model {
         public Table Table { get; set; }
         public Staff PlacedBy { get; set; }
         public List<MenuItem> MenuItems { get; set; }
+        public DateTime PlacedAt { get; set; }
 
         public Order() {
             MenuItems = new List<MenuItem>();

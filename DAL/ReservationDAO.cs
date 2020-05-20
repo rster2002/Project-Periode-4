@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,12 +24,39 @@ namespace DAL {
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
+        #region Create
+        /// <summary>
+        /// Inserts a new record in the reservations table with the given values
+        /// </summary>
+        /// <param name="tableNumber">Foreign key to the table of which the new reservation is part of</param>
+        /// <param name="customerId">Foreign key to the customer of which the reservation is from (can be null)</param>
+        public void Insert(int tableNumber, object customerId) {
+            Line("INSERT INTO [Reservation]");
+            Line("VALUES (@tableNumber, @customerId)");
+
+            Param("tableNumber", tableNumber);
+            Param("customerId", customerId);
+
+            Execute();
+        }
+        #endregion Create
+
+        #region Read
+        /// <summary>
+        /// Returns all reservations from the database
+        /// </summary>
+        /// <returns>List of records</returns>
         public override List<Reservation> GetAll() {
             BasicSelect();
 
             return Execute();
         }
 
+        /// <summary>
+        /// Returns the reservation with the given id
+        /// </summary>
+        /// <param name="id">The id of the reservation that should be returned</param>
+        /// <returns>Reservation</returns>
         public override Reservation GetById(int id) {
             BasicSelect();
             Line("WHERE [ReservationId] = @id");
@@ -38,6 +66,93 @@ namespace DAL {
             return Execute()[0];
         }
 
+        /// <summary>
+        /// Returns all reservations that belongs to the given customer
+        /// </summary>
+        /// <param name="id">The id of the customer of whom the reservation should be</param>
+        /// <returns>List of reservations</returns>
+        public List<Reservation> GetByCustomerId(int id) {
+            BasicSelect();
+            Line("WHERE [Customer] = @id");
+
+            Param("id", id);
+
+            return Execute();
+        }
+
+        /// <summary>
+        /// Returns the reservation for the given table
+        /// </summary>
+        /// <param name="number">The number of the table of which the reservation is part of</param>
+        /// <returns>Reservation</returns>
+        public Reservation GetByTableNumber(int number) {
+            BasicSelect();
+            Line("WHERE [TableNumber] = @number");
+
+            Param("id", number);
+
+            return Execute()[0];
+        }
+        #endregion Read
+
+        #region Update
+        /// <summary>
+        /// Updates the reservation with the given values
+        /// </summary>
+        /// <param name="id">Id of the reservation that should be updated</param>
+        /// <param name="tableNumber">The number of the table of which the reservation is part of</param>
+        /// <param name="customerId">Foreign key to the customer of which the reservation is from (can be null)</param>
+        public void UpdateById(int id, int tableNumber, object customerId) {
+            Line("UPDATE [Reservation]");
+            Line("SET [TableNumber] = @tableNumber");
+            Line("SET [Customer] = @customerId");
+            Line("WHERE [ReservationId] = @id");
+
+            Param("tableNumber", tableNumber);
+            Param("tableNumber", customerId);
+            Param("id", id);
+
+            Execute();
+        }
+
+        /// <summary>
+        /// Updates the reservation with the given values
+        /// </summary>
+        /// <param name="id">Id of the reservation that should be updated</param>
+        /// <param name="tableNumber">The number of the table of which the reservation is part of</param>
+        public void UpdateTableNumberById(int id, int tableNumber) {
+            Line("UPDATE [Reservation]");
+            Line("SET [TableNumber] = @tableNumber");
+            Line("WHERE [ReservationId] = @id");
+
+            Param("tableNumber", tableNumber);
+            Param("id", id);
+
+            Execute();
+        }
+
+        /// <summary>
+        /// Updates the reservation with the given values
+        /// </summary>
+        /// <param name="id">Id of the reservation that should be updated</param>
+        /// <param name="customerId">Foreign key to the customer of which the reservation is from (can be null)</param>
+        public void UpdateCustomerById(int id, object customerId) {
+            Line("UPDATE [Reservation]");
+            Line("SET [Customer] = @customerId");
+            Line("WHERE [ReservationId] = @id");
+
+            Param("customerId", customerId);
+            Param("id", id);
+
+            Execute();
+        }
+        #endregion Update
+
+        #region Delete
+        /// <summary>
+        /// Deletes the reservation from the database
+        /// </summary>
+        /// <param name="id">Id of the reservation that should be deleted</param>
         public void DeleteById(int id) {
             Line("DELETE [Reservation]");
             Line("WHERE [ReservationId] = @id");
@@ -47,13 +162,25 @@ namespace DAL {
             Execute();
         }
 
+        /// <summary>
+        /// Deletes the reservation from the database using the tablenumber
+        /// </summary>
+        /// <param name="tableNumber">Number of the table where the reservation is part of</param>
+        public void DeleteByTableNumber(int tableNumber) {
+            Line("DELETE [Reservation]");
+            Line("WHERE [TableNumber] = @tableNumber");
+
+            Param("tableNumber", tableNumber);
+
+            Execute();
+        }
+        #endregion Delete
+
         protected override Reservation ProcessRecord(Record record) {
             return new Reservation() {
                 Id = (int) record["ReservationId"],
                 Customer = null,
-                Table = new Table() {
-
-                },
+                Table = null,
                 Orders = null
             };
         }
