@@ -96,7 +96,6 @@ namespace DAL {
                     // Adds order to orders map
                     reservationOrderMap[orderId] = new Order() {
                         Id = orderId,
-                        Table = GetTableFromRecord(record),
                         PlacedBy = GetStaffFromRecord(record)
                     };
                 }
@@ -107,7 +106,8 @@ namespace DAL {
                     Name = (string) record["MenuItemName"],
                     Price = (decimal) record["Price"],
                     VAT = (int) record["VAT"],
-                    AmountInStock = (int) record["InStock"]
+                    AmountInStock = (int) record["InStock"],
+                    Comment = (string) record["Comment"]
                 });
             }
 
