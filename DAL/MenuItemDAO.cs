@@ -14,6 +14,7 @@ namespace DAL {
 
             return Execute();
         }
+
         public override MenuItem GetById(int id) {
             Line("SELECT *");
             Line("FROM [MenuItem]");
@@ -23,11 +24,12 @@ namespace DAL {
 
             return Execute()[0];
         }
-        protected override MenuItem ProcessRecord(Record record) {
+
+        public override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
                 Id = (int) record["MenuItemId"],
                 Name = (string) record["MenuItemName"],
-                Price = (decimal) record["price"],
+                Price = (decimal) record["Price"],
                 VAT = (int) record["VAT"],
                 AmountInStock = (int) record["InStock"]
             };

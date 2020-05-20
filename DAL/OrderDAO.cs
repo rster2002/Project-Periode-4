@@ -50,30 +50,53 @@ namespace DAL {
             return Execute();
         }
 
-        protected override List<Order> ProcessRecords(List<Record> records) {
+        public override List<Order> ProcessRecords(List<Record> records) {
             Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
+            MenuItemDAO menuItemDAO = new MenuItemDAO();
 
             foreach (Record record in records) {
                 int orderId = (int) record["OrderId"];
 
                 if (!ordersMap.ContainsKey(orderId)) {
-                    ordersMap[orderId] = ProcessRecord(record);
-                }
+                    Order order = ProcessRecord(record);
 
-                ordersMap[orderId].MenuItems.Add(new MenuItem() {
-                    Id = (int) record["MenuItemId"],
-                    Name = (string) record["MenuItemName"],
-                    Price = (decimal) record["Price"],
-                    VAT = (int) record["VAT"],
-                    AmountInStock = (int) record["InStock"],
-                    Comment = (string) record["Comment"]
-                });
+                    order.MenuItems = menuItemDAO.ProcessRecords(
+                        records
+                            .Where(r => (int) r["OrderId"] == orderId)
+                            .ToList()
+                    );
+
+                    ordersMap[orderId] = order;
+                }
             }
 
             return ordersMap.Values.ToList();
         }
 
-        protected override Order ProcessRecord(Record record) {
+        //public override List<Order> ProcessRecords(List<Record> records) {
+        //    Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
+
+        //    foreach (Record record in records) {
+        //        int orderId = (int) record["OrderId"];
+
+        //        if (!ordersMap.ContainsKey(orderId)) {
+        //            ordersMap[orderId] = ProcessRecord(record);
+        //        }
+
+        //        ordersMap[orderId].MenuItems.Add(new MenuItem() {
+        //            Id = (int) record["MenuItemId"],
+        //            Name = (string) record["MenuItemName"],
+        //            Price = (decimal) record["Price"],
+        //            VAT = (int) record["VAT"],
+        //            AmountInStock = (int) record["InStock"],
+        //            Comment = (string) record["Comment"]
+        //        });
+        //    }
+
+        //    return ordersMap.Values.ToList();
+        //}
+
+        public override Order ProcessRecord(Record record) {
             return new Order() {
                 Id = (int) record["OrderId"],
                 PlacedBy = new Staff() {

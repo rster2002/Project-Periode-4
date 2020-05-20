@@ -108,13 +108,13 @@ namespace DAL {
             return recordsFunction(ExecuteUnprocessed());
         }
 
-        protected virtual List<T> ProcessRecords(List<Record> records) {
+        public virtual List<T> ProcessRecords(List<Record> records) {
             return records
                 .Select(ProcessRecord)
                 .ToList();
         }
 
-        protected abstract T ProcessRecord(Record record);
+        public abstract T ProcessRecord(Record record);
         public abstract List<T> GetAll();
         public abstract T GetById(int id);
     }

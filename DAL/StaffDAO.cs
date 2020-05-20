@@ -34,7 +34,7 @@ namespace DAL {
             return Execute();
         }
 
-        protected override Staff ProcessRecord(Record record) {
+        public override Staff ProcessRecord(Record record) {
             return new Staff() {
                 Name = (string) record["StaffName"],
                 Salt = (int) record["StaffSalt"],

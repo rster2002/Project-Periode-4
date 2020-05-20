@@ -19,6 +19,31 @@ namespace Test_Console {
             ReservationDAO reservationDAO = new ReservationDAO();
             Stopwatch stopwatch = new Stopwatch();
 
+            Console.WriteLine("Started cold");
+            stopwatch.Start();
+
+            reservationDAO.GetAll();
+
+            stopwatch.Stop();
+            Console.WriteLine("Completed cold: {0}", stopwatch.ElapsedMilliseconds);
+            stopwatch.Reset();
+
+            Console.WriteLine("Started hot");
+            stopwatch.Start();
+
+            List<Reservation> reservations = reservationDAO.GetAll();
+
+            stopwatch.Stop();
+            Console.WriteLine("Completed hot: {0}", stopwatch.ElapsedMilliseconds);
+
+            reservations.ForEach(reservation => {
+                reservation.Orders.ForEach(order => {
+                    order.MenuItems.ForEach(menuItem => {
+                        Console.WriteLine("{0}: {1}: {2}", reservation.Id, order.Id, menuItem.Id);
+                    });
+                });
+            });
+
             Console.ReadKey();
         }
     }
