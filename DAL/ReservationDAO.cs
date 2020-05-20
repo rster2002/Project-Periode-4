@@ -52,8 +52,15 @@ namespace DAL {
                 Id = (int) record["ReservationId"],
                 Customer = null,
                 Table = new Table() {
-
-                },
+                    Number = (int) record["TableNumber"],
+                    NumberOfSeats = (int) record["TableSeats"],
+                    ServedBy = new Staff() {
+                        Id = (int) record["StaffNumber"],
+                        Name = (string) record["StaffName"],
+                        Salt = (int) record["StaffSalt"],
+                        Role = (string) record["StaffRole"]
+                    }
+        },
                 Orders = null
             };
         }
@@ -67,6 +74,13 @@ namespace DAL {
 
                 if (!reservationMap.ContainsKey(reservationId)) {
                     Reservation reservation = ProcessRecord(record);
+
+                    if (record["Customer"] != DBNull.Value) {
+                        reservation.Customer = new Customer() {
+                            Id = (int) record["Customer"],
+                            Name = (string) record["CustomerSurname"]
+                        };
+                    }
 
                     reservation.Orders = orderDAO.ProcessRecords(
                         records
@@ -143,23 +157,6 @@ namespace DAL {
         //    // Returns all values from the reservations map
         //    return reservationMap.Values.ToList();
         //}
-
-        private Table GetTableFromRecord(Record record) {
-            return new Table() {
-                Number = (int) record["TableNumber"],
-                NumberOfSeats = (int) record["TableSeats"],
-                ServedBy = GetStaffFromRecord(record)
-            };
-        }
-
-        private Staff GetStaffFromRecord(Record record) {
-            return new Staff() {
-                Id = (int) record["StaffNumber"],
-                Name = (string) record["StaffName"],
-                Salt = (int) record["StaffSalt"],
-                Role = (string) record["StaffRole"]
-            };
-        }
 
         //protected override Reservation ProcessRecord(Record record) {
         //    OrderDAO orderDAO = new OrderDAO();
