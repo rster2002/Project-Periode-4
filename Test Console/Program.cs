@@ -17,10 +17,10 @@ namespace Test_Console {
         }
 
         void Start() {
-            ReservationService reservationService = new ReservationService();
+            OrderDAO orderDAO = new OrderDAO();
             Stopwatch stopwatch = new Stopwatch();
 
-            reservationService.AddReservation(tableNumber: 2, customerId: null);
+            orderDAO.DeleteByDateTimeRange(new DateTime(2020, 5, 1, 9, 0, 0), new DateTime(2020, 5, 1, 23, 0, 0));
 
             Console.ReadKey();
         }
