@@ -174,9 +174,11 @@ namespace DAL {
             foreach (Record record in records) {
                 int reservationId = (int) record["ReservationId"];
 
+                // Check whether or not reservation has been processed yet
                 if (!reservationMap.ContainsKey(reservationId)) {
                     Reservation reservation = ProcessRecord(record);
 
+                    // Don't mind this
                     if (record["Customer"] != DBNull.Value) {
                         reservation.Customer = new Customer() {
                             Id = (int) record["Customer"],
@@ -184,7 +186,10 @@ namespace DAL {
                         };
                     }
 
+                    // Because 'ProcessRecords' is public, we can ask other DAO's to process certain records for us
                     reservation.Orders = orderDAO.ProcessRecords(
+                        // We only want to process the records that apply to the current reservation, so we filter out any that don't
+                        // match the current reservation id
                         records
                             .Where(r => (int) r["ReservationId"] == reservationId)
                             .ToList()

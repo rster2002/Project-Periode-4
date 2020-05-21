@@ -78,6 +78,8 @@ namespace DAL {
                 if (!ordersMap.ContainsKey(orderId)) {
                     Order order = ProcessRecord(record);
 
+                    // 'ProcessRecords' is always available, even when it's not overriden.
+                    // In that case, it takes the records and parses them through 'ProcessRecord'
                     order.MenuItems = menuItemDAO.ProcessRecords(
                         records
                             .Where(r => (int) r["OrderId"] == orderId)
