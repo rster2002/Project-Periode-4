@@ -25,7 +25,7 @@ namespace DAL {
             return Execute()[0];
         }
 
-        public override Receipt ProcessRecord(Record record) {
+        protected override Receipt ProcessRecord(Record record) {
 
             return new Receipt() {
 

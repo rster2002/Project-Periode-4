@@ -25,7 +25,7 @@ namespace DAL {
             return Execute()[0];
         }
 
-        public override MenuItem ProcessRecord(Record record) {
+        protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
                 Id = (int) record["MenuItemId"],
                 Name = (string) record["MenuItemName"],

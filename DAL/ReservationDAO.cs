@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -23,6 +24,21 @@ namespace DAL {
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
+        public void Insert(int tableNumber, object customerId) {
+            Line("INSERT INTO [Reservation]");
+
+            if (customerId != null) {
+                Line("VALUES (@tableNumber, @customerId)");
+                Param("customerId", customerId);
+            } else {
+                Line("VALUES (@tableNumber, NULL)");
+            }
+
+            Param("tableNumber", tableNumber);
+
+            Execute();
+        }
+
         public override List<Reservation> GetAll() {
             BasicSelect();
 
@@ -38,6 +54,71 @@ namespace DAL {
             return Execute()[0];
         }
 
+        public List<Reservation> GetByCustomerId(int id) {
+            BasicSelect();
+            Line("WHERE [Customer] = @id");
+
+            Param("id", id);
+
+            return Execute();
+        }
+
+        public Reservation GetByTableNumber(int number) {
+            BasicSelect();
+            Line("WHERE [TableNumber] = @number");
+
+            Param("id", number);
+
+            return Execute()[0];
+        }
+
+        public void UpdateById(int id, int tableNumber, object customerId) {
+            Line("UPDATE [Reservation]");
+            Line("SET [TableNumber] = @tableNumber");
+
+            if (customerId != null) {
+                Line("SET [Customer] = @customerId");
+                Param("customerId", customerId);
+            } else {
+                Line("SET [Customer] = NULL");
+            }
+
+            Line("WHERE [ReservationId] = @id");
+
+            Param("tableNumber", tableNumber);
+            Param("id", id);
+
+            Execute();
+        }
+
+        public void UpdateTableNumberById(int id, int tableNumber) {
+            Line("UPDATE [Reservation]");
+            Line("SET [TableNumber] = @tableNumber");
+            Line("WHERE [ReservationId] = @id");
+
+            Param("tableNumber", tableNumber);
+            Param("id", id);
+
+            Execute();
+        }
+
+        public void UpdateCustomerById(int id, object customerId) {
+            Line("UPDATE [Reservation]");
+
+            if (customerId != null) {
+                Line("SET [Customer] = @customerId");
+                Param("customerId", customerId);
+            } else {
+                Line("SET [Customer] = NULL");
+            }
+
+            Line("WHERE [ReservationId] = @id");
+
+            Param("id", id);
+
+            Execute();
+        }
+
         public void DeleteById(int id) {
             Line("DELETE [Reservation]");
             Line("WHERE [ReservationId] = @id");
@@ -47,21 +128,42 @@ namespace DAL {
             Execute();
         }
 
-        public override Reservation ProcessRecord(Record record) {
-            return new Reservation() {
-                Id = (int) record["ReservationId"],
+        public void DeleteByTableNumber(int tableNumber) {
+            Line("DELETE [Reservation]");
+            Line("WHERE [TableNumber] = @tableNumber");
+
+            Param("tableNumber", tableNumber);
+
+            Execute();
+        }
+
+        public void DeleteByCustomerId(int customerId) {
+            Line("DELETE [Reservation]");
+            Line("WHERE [Customer] = @customerId");
+
+            Param("customerId", customerId);
+
+            Execute();
+        }
+
+        protected override Reservation ProcessRecord(Record record)
+        {
+            return new Reservation()
+            {
+                Id = (int)record["ReservationId"],
                 Customer = null,
-                Table = new Table() {
-                    Number = (int) record["TableNumber"],
-                    NumberOfSeats = (int) record["TableSeats"],
-                    ServedBy = new Staff() {
-                        Id = (int) record["StaffNumber"],
-                        Name = (string) record["StaffName"],
-                        Salt = (int) record["StaffSalt"],
-                        Role = (string) record["StaffRole"]
+                Table = new Table()
+                {
+                    Number = (int)record["TableNumber"],
+                    NumberOfSeats = (int)record["TableSeats"],
+                    ServedBy = new Staff()
+                    {
+                        Id = (int)record["StaffNumber"],
+                        Name = (string)record["StaffName"],
+                        Salt = (int)record["StaffSalt"],
+                        Role = (string)record["StaffRole"]
                     }
-        },
-                Orders = null
+                }
             };
         }
 

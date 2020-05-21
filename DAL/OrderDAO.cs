@@ -8,13 +8,18 @@ using System.Threading.Tasks;
 using Model;
 
 namespace DAL {
-    public class OrderDAO:SQLInterface<Order> {
+    public class OrderDAO: SQLInterface<Order> {
         private void BasicSelect() {
             Line("SELECT *");
             Line("FROM [Order]");
             Line("JOIN [Staff] ON [Order].OrderPlacedBy = [Staff].StaffNumber");
             Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
+        }
+
+        public void Insert() {
+            Line("INSERT INTO [Order]");
+            Line("VALUES ()");
         }
 
         public override List<Order> GetAll() {
@@ -41,13 +46,26 @@ namespace DAL {
             return Execute();
         }
 
-        public List<Order> GetByReceiptId(int id) {
+        public List<Order> GetByReceiptId(int receiptId) {
             BasicSelect();
-            Line("WHERE [ReceiptId] = @id");
+            Line("WHERE [ReceiptId] = @receiptId");
+
+            Param("receiptId", receiptId);
+
+            return Execute();
+        }
+
+        public void DeleteById(int id) {
+            Line("DELETE [Reservation]");
+            Line("WHERE [ReservationId] = @id");
 
             Param("id", id);
 
-            return Execute();
+            Execute();
+        }
+
+        public void DeleteByReceiptId(int receiptId) {
+
         }
 
         public override List<Order> ProcessRecords(List<Record> records) {
@@ -96,7 +114,7 @@ namespace DAL {
         //    return ordersMap.Values.ToList();
         //}
 
-        public override Order ProcessRecord(Record record) {
+        protected override Order ProcessRecord(Record record) {
             return new Order() {
                 Id = (int) record["OrderId"],
                 PlacedBy = new Staff() {

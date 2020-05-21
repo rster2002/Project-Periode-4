@@ -7,7 +7,7 @@ using Model;
 
 namespace DAL {
     public class CustomerDAO:SQLInterface<Customer> {
-        public override Customer ProcessRecord(Record record) {
+        protected override Customer ProcessRecord(Record record) {
             return new Customer() {
                 Id = (int) record["CustomerId"],
                 Name = (string) record["CustomerSurname"]

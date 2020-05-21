@@ -114,7 +114,7 @@ namespace DAL {
                 .ToList();
         }
 
-        public abstract T ProcessRecord(Record record);
+        protected abstract T ProcessRecord(Record record);
         public abstract List<T> GetAll();
         public abstract T GetById(int id);
     }

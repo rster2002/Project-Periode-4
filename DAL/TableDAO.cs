@@ -8,7 +8,7 @@ using Model;
 
 namespace DAL {
     public class TableDAO: SQLInterface<Table> {
-        public override Table ProcessRecord(Record record) {
+        protected override Table ProcessRecord(Record record) {
             StaffDAO staffDAO = new StaffDAO();
 
             return new Table() {

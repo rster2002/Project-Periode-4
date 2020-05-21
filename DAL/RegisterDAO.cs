@@ -25,7 +25,7 @@ namespace DAL {
             return Execute()[0];
         }
 
-        public override Register ProcessRecord(Record record) {
+        protected override Register ProcessRecord(Record record) {
            
             return new Register() {
 
