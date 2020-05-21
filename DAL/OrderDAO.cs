@@ -17,6 +17,11 @@ namespace DAL {
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
+        public void Insert() {
+            Line("INSERT INTO [Order]");
+            Line("VALUES ()");
+        }
+
         public override List<Order> GetAll() {
             BasicSelect();
 
@@ -41,11 +46,11 @@ namespace DAL {
             return Execute();
         }
 
-        public List<Order> GetByReceiptId(int id) {
+        public List<Order> GetByReceiptId(int receiptId) {
             BasicSelect();
-            Line("WHERE [ReceiptId] = @id");
+            Line("WHERE [ReceiptId] = @receiptId");
 
-            Param("id", id);
+            Param("receiptId", receiptId);
 
             return Execute();
         }
@@ -57,6 +62,10 @@ namespace DAL {
             Param("id", id);
 
             Execute();
+        }
+
+        public void DeleteByReceiptId(int receiptId) {
+
         }
 
         protected override List<Order> ProcessRecords(List<Record> records) {
