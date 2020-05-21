@@ -5,6 +5,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using Logic;
 using Model;
 using System.Diagnostics;
 
@@ -16,10 +17,8 @@ namespace Test_Console {
         }
 
         void Start() {
-            ReservationDAO reservationDAO = new ReservationDAO();
+            OrderDAO orderDAO = new OrderDAO();
             Stopwatch stopwatch = new Stopwatch();
-
-            Console.ReadKey();
         }
     }
 }
