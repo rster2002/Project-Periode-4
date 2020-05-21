@@ -275,6 +275,29 @@ namespace DAL {
             return ordersMap.Values.ToList();
         }
 
+        protected override List<Order> ProcessRecords(List<Record> records) {
+            Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
+
+            foreach (Record record in records) {
+                int orderId = (int) record["OrderId"];
+
+                if (!ordersMap.ContainsKey(orderId)) {
+                    ordersMap[orderId] = ProcessRecord(record);
+                }
+
+                ordersMap[orderId].MenuItems.Add(new MenuItem() {
+                    Id = (int) record["MenuItemId"],
+                    Name = (string) record["MenuItemName"],
+                    Price = (decimal) record["Price"],
+                    VAT = (int) record["VAT"],
+                    AmountInStock = (int) record["InStock"],
+                    Comment = (string) record["Comment"]
+                });
+            }
+
+            return ordersMap.Values.ToList();
+        }
+
         protected override Order ProcessRecord(Record record) {
             return new Order() {
                 Id = (int) record["OrderId"],

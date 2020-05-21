@@ -19,10 +19,6 @@ namespace Test_Console {
         void Start() {
             OrderDAO orderDAO = new OrderDAO();
             Stopwatch stopwatch = new Stopwatch();
-
-            orderDAO.DeleteByDateTimeRange(new DateTime(2020, 5, 1, 9, 0, 0), new DateTime(2020, 5, 1, 23, 0, 0));
-
-            Console.ReadKey();
         }
     }
 }
