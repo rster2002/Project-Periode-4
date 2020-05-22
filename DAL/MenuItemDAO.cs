@@ -8,29 +8,47 @@ using System.Threading.Tasks;
 namespace DAL {
     public class MenuItemDAO : SQLInterface<MenuItem> {
 
-        public List<MenuItem> getAll() {
-            line("SELECT *");
-            line("FROM [MenuItem]");
+        public override List<MenuItem> GetAll() {
+            Line("SELECT *");
+            Line("FROM [MenuItem]");
 
-            return execute();
+            return Execute();
         }
-        public MenuItem getById(int id) {
-            line("SELECT *");
-            line("FROM [MenuItem]");
-            line("WHERE [MenuItemId] = @id");
 
-            param("id", id);
+        public override MenuItem GetById(int id) {
+            Line("SELECT *");
+            Line("FROM [MenuItem]");
+            Line("WHERE [MenuItemId] = @id");
 
-            return execute()[0];
+            Param("id", id);
+
+            return Execute()[0];
         }
-        protected override MenuItem processRecord(Record record) {
+
+        protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
-                id = (int) record["MenuItemId"],
-                name = (string) record["MenuItemName"],
-                price = (decimal) record["price"],
+                Id = (int) record["MenuItemId"],
+                Name = (string) record["MenuItemName"],
+                Price = (decimal) record["Price"],
                 VAT = (int) record["VAT"],
-                amountInStock = (int) record["InStock"]
+                AmountInStock = (int) record["InStock"]
             };
+        }
+        public override List<MenuItem> ProcessRecords(List<Record> records) {
+            Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
+
+            foreach (Record record in records) {
+
+                int menuItemId = (int) record["MenuItemId"];
+
+                if (!menuItemMap.ContainsKey(menuItemId)) {
+                    MenuItem menuItem = ProcessRecord(record);
+
+                    menuItemMap[menuItemId] = menuItem;
+                }
+            }
+
+            return menuItemMap.Values.ToList();
         }
     }
 }

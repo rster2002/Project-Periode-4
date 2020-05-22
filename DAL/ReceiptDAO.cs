@@ -8,30 +8,28 @@ using System.Threading.Tasks;
 namespace DAL {
     public class ReceiptDAO : SQLInterface<Receipt> {
 
-        public List<Receipt> GetAllReceipts() {
+        public override List<Receipt> GetAll() {
+            Line("SELECT *");
+            Line("FROM [RECEIPT]");
 
-            line("SELECT *");
-            line("FROM [RECEIPT]");
-
-            return execute();
+            return Execute();
         }
 
-        public Receipt GetReceiptById(int id) {
+        public override Receipt GetById(int id) {
+            Line("SELECT *");
+            Line("FROM [RECEIPT]");
+            Line("WHERE ReceiptId = @id");
 
-            line("SELECT *");
-            line("FROM [RECEIPT]");
-            line("WHERE ReceiptId = @id");
+            Param("id", id);
 
-            param("id", id);
-
-            return execute()[0];
+            return Execute()[0];
         }
 
-        protected override Receipt processRecord(Record record) {
+        protected override Receipt ProcessRecord(Record record) {
 
             return new Receipt() {
 
-                id = (int) record["ReceiptId"],
+                Id = (int) record["ReceiptId"],
                 //register
                 //orders
             };

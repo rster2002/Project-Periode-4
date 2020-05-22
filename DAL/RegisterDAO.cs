@@ -8,32 +8,30 @@ using System.Threading.Tasks;
 namespace DAL {
     public class RegisterDAO : SQLInterface<Register>{
 
-        public List<Register> GetAllRegisters(){
+        public override List<Register> GetAll(){
+            Line("SELECT *");
+            Line("FROM [REGISTER]");
 
-            line("SELECT *");
-            line("FROM [REGISTER]");
-
-            return execute();
+            return Execute();
         }
 
-        public Register GetRegisterById(int id) {
+        public override Register GetById(int id) {
+            Line("SELECT *");
+            Line("FROM [REGISTER]");
+            Line("WHERE RegisterId = @id");
 
-            line("SELECT *");
-            line("FROM [REGISTER]");
-            line("WHERE RegisterId = @id");
+            Param("id", id);
 
-            param("id", id);
-
-            return execute()[0];
+            return Execute()[0];
         }
 
-        protected override Register processRecord(Record record) {
+        protected override Register ProcessRecord(Record record) {
            
             return new Register() {
 
-                id = (int)record["RegisterId"],
-                name = (string)record["RegisterName"],
-                cashBalance = (decimal)record["CashBalance"]
+                Id = (int)record["RegisterId"],
+                Name = (string)record["RegisterName"],
+                CashBalance = (decimal)record["CashBalance"]
             };
         }
     }

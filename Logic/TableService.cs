@@ -9,7 +9,7 @@ using DAL;
 namespace Logic {
     public class TableService {
 
-        private tableDAO tableDAO = new tableDAO();
+        private TableDAO tableDAO = new TableDAO();
 
         public List<Table> GetAllTables() {
             try {
@@ -19,11 +19,11 @@ namespace Logic {
             catch {
                 List<Table> tables = new List<Table>();
                 Table table = new Table {
-                    number = 200,
-                    numberOfSeats = 10,
-                    servedBy = new Staff {
-                        id = 200,
-                        name = "StaffTester"
+                    Number = 200,
+                    NumberOfSeats = 10,
+                    ServedBy = new Staff {
+                        Id = 200,
+                        Name = "StaffTester"
                     }
                 };
                 tables.Add(table);
@@ -37,11 +37,11 @@ namespace Logic {
             }
             catch {
                 Table table = new Table {
-                    number = 200,
-                    numberOfSeats = 10,
-                    servedBy = new Staff {
-                        id = 200,
-                        name = "StaffTester"
+                    Number = 200,
+                    NumberOfSeats = 10,
+                    ServedBy = new Staff {
+                        Id = 200,
+                        Name = "StaffTester"
                     }
                 };
                 return table;
@@ -55,11 +55,11 @@ namespace Logic {
             catch {
                 List<Table> tables = new List<Table>();
                 Table table = new Table {
-                    number = 200,
-                    numberOfSeats = 10,
-                    servedBy = new Staff {
-                        id = 200,
-                        name = "StaffTester"
+                    Number = 200,
+                    NumberOfSeats = 10,
+                    ServedBy = new Staff {
+                        Id = 200,
+                        Name = "StaffTester"
                     }
                 };
                 tables.Add(table);

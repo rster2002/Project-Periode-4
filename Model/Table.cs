@@ -1,7 +1,7 @@
 ﻿namespace Model {
     public class Table {
-        public int number { get; set; }
-        public int numberOfSeats { get; set; }
-        public Staff servedBy { get; set; }
+        public int Number { get; set; }
+        public int NumberOfSeats { get; set; }
+        public Staff ServedBy { get; set; }
     }
 }

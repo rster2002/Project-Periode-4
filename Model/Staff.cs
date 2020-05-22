@@ -1,8 +1,8 @@
 ﻿namespace Model {
     public class Staff {
-        public int id { get; set; }
-        public string name { get; set; }
-        public string role { get; set; }
-        public int salt { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Role { get; set; }
+        public int Salt { get; set; }
     }
 }

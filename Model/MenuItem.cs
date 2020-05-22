@@ -1,9 +1,11 @@
 ﻿namespace Model {
     public class MenuItem {
-        public int id { get; set; }
-        public string name { get; set; }
-        public decimal price { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
         public int VAT { get; set; }
-        public int amountInStock { get; set; }
+        public int AmountInStock { get; set; }
+        public string Comment { get; set; }
+        public string Type { get; set; }
     }
 }
