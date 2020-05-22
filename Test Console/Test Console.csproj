@@ -47,9 +47,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{cf06d7bf-b4dc-4124-ab6e-9fe94dde6896}</Project>
       <Name>DAL</Name>
@@ -66,6 +63,9 @@
       <Project>{7fe83cd4-7804-4f24-87d8-615d772bae18}</Project>
       <Name>UI</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
