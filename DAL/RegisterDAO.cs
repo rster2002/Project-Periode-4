@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 namespace DAL {
     public class RegisterDAO : SQLInterface<Register>{
 
-        public List<Register> GetAllRegisters(){
+        public override List<Register> GetAll(){
             Line("SELECT *");
             Line("FROM [REGISTER]");
 
             return Execute();
         }
 
-        public Register GetRegisterById(int id) {
+        public override Register GetById(int id) {
             Line("SELECT *");
             Line("FROM [REGISTER]");
             Line("WHERE RegisterId = @id");

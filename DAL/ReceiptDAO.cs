@@ -8,16 +8,14 @@ using System.Threading.Tasks;
 namespace DAL {
     public class ReceiptDAO : SQLInterface<Receipt> {
 
-        public List<Receipt> GetAllReceipts() {
-
+        public override List<Receipt> GetAll() {
             Line("SELECT *");
             Line("FROM [RECEIPT]");
 
             return Execute();
         }
 
-        public Receipt GetReceiptById(int id) {
-
+        public override Receipt GetById(int id) {
             Line("SELECT *");
             Line("FROM [RECEIPT]");
             Line("WHERE ReceiptId = @id");
