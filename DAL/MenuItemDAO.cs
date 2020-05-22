@@ -34,5 +34,21 @@ namespace DAL {
                 AmountInStock = (int) record["InStock"]
             };
         }
+        public override List<MenuItem> ProcessRecords(List<Record> records) {
+            Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
+
+            foreach (Record record in records) {
+
+                int menuItemId = (int) record["MenuItemId"];
+
+                if (!menuItemMap.ContainsKey(menuItemId)) {
+                    MenuItem menuItem = ProcessRecord(record);
+
+                    menuItemMap[menuItemId] = menuItem;
+                }
+            }
+
+            return menuItemMap.Values.ToList();
+        }
     }
 }
