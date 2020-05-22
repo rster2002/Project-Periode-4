@@ -7,30 +7,36 @@ using System.Threading.Tasks;
 
 namespace DAL {
     public class MenuDAO : SQLInterface<Menu> {
+        private void BasicSelect() {
+            Line("SELECT *");
+            Line("FROM [Menu]");
+            Line("JOIN [ItemOnMenu] ON [Menu].MenuId = [ItemOnMenu].MenuId");
+            Line("JOIN [MenuItem] ON [ItemOnMenu].MenuItemId = [MenuItem].MenuItemId");
+        }
 
         public override List<Menu> GetAll() {
-            Line("SELECT *");
-            Line("FROM [Menu]");
-
+            BasicSelect();
             return Execute();
         }
+
         public override Menu GetById(int id) {
-            Line("SELECT *");
-            Line("FROM [Menu]");
+            BasicSelect();
             Line("WHERE [MenuId] = @id");
 
             Param("id", id);
 
             return Execute()[0];
         }
+
         protected override Menu ProcessRecord(Record record) {
             return new Menu() {
                 Id = (int) record["MenuId"],
                 Name = (string) record["MenuName"],
-                StartTime = (TimeSpan) record["MenuAvailableStartDateTime"],
-                EndTime = (TimeSpan) record["MenuAvailableEndDateTime"]
+                StartTime = ((DateTime) record["MenuAvailableStartDateTime"]).TimeOfDay,
+                EndTime = ((DateTime) record["MenuAvailableEndDateTime"]).TimeOfDay
             };
         }
+
         public override List<Menu> ProcessRecords(List<Record> records) {
             Dictionary<int, Menu> menuMap = new Dictionary<int, Menu>();
             MenuItemDAO menuItemDAO = new MenuItemDAO();
