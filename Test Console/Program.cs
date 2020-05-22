@@ -17,10 +17,12 @@ namespace Test_Console {
         }
 
         void Start() {
-            StaffService staffService = new StaffService();
+            ReceiptDAO receiptDAO = new ReceiptDAO();
 
-            staffService.GetAllStaff().ForEach(staff => {
-                Console.WriteLine("{0}: {1}", staff.Id, staff.Name);
+            List<Receipt> receipts = receiptDAO.GetAll();
+
+            receipts.ForEach(receipt => {
+                Console.WriteLine("{0}", receipt.Id);
             });
 
             Console.ReadKey();
