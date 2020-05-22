@@ -108,7 +108,7 @@ namespace DAL {
             return recordsFunction(ExecuteUnprocessed());
         }
 
-        protected virtual List<T> ProcessRecords(List<Record> records) {
+        public virtual List<T> ProcessRecords(List<Record> records) {
             return records
                 .Select(ProcessRecord)
                 .ToList();

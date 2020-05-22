@@ -245,8 +245,9 @@ namespace DAL {
         }
         #endregion Delete
 
-        protected override List<Order> ProcessRecords(List<Record> records) {
+        public override List<Order> ProcessRecords(List<Record> records) {
             Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
+            MenuItemDAO menuItemDAO = new MenuItemDAO();
 
             foreach (Record record in records) {
                 int orderId = (int) record["OrderId"];
@@ -254,26 +255,43 @@ namespace DAL {
                 if (!ordersMap.ContainsKey(orderId)) {
                     Order order = ProcessRecord(record);
 
-                    if (record["Tag"] != DBNull.Value) {
-                        order.Tag = (string) record["Tag"];
-                    }
+                    // 'ProcessRecords' is always available, even when it's not overriden.
+                    // In that case, it takes the records and parses them through 'ProcessRecord'
+                    order.MenuItems = menuItemDAO.ProcessRecords(
+                        records
+                            .Where(r => (int) r["OrderId"] == orderId)
+                            .ToList()
+                    );
 
                     ordersMap[orderId] = order;
                 }
-
-                ordersMap[orderId].MenuItems.Add(new MenuItem() {
-                    Id = (int) record["MenuItemId"],
-                    Name = (string) record["MenuItemName"],
-                    Price = (decimal) record["Price"],
-                    VAT = (int) record["VAT"],
-                    AmountInStock = (int) record["InStock"],
-                    Comment = (string) record["Comment"],
-                    Type = (string) record["Type"],
-                });
             }
 
             return ordersMap.Values.ToList();
         }
+
+        //public override List<Order> ProcessRecords(List<Record> records) {
+        //    Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
+
+        //    foreach (Record record in records) {
+        //        int orderId = (int) record["OrderId"];
+
+        //        if (!ordersMap.ContainsKey(orderId)) {
+        //            ordersMap[orderId] = ProcessRecord(record);
+        //        }
+
+        //        ordersMap[orderId].MenuItems.Add(new MenuItem() {
+        //            Id = (int) record["MenuItemId"],
+        //            Name = (string) record["MenuItemName"],
+        //            Price = (decimal) record["Price"],
+        //            VAT = (int) record["VAT"],
+        //            AmountInStock = (int) record["InStock"],
+        //            Comment = (string) record["Comment"]
+        //        });
+        //    }
+
+        //    return ordersMap.Values.ToList();
+        //}
 
         protected override Order ProcessRecord(Record record) {
             return new Order() {

@@ -17,8 +17,25 @@ namespace Test_Console {
         }
 
         void Start() {
+            ReservationDAO reservationDAO = new ReservationDAO();
             OrderDAO orderDAO = new OrderDAO();
             Stopwatch stopwatch = new Stopwatch();
+
+            //orderDAO.GetAll().ForEach(order => {
+            //    order.MenuItems.ForEach(menuItem => {
+            //        Console.WriteLine("{0}: {1}", order.Id, menuItem.Id);
+            //    });
+            //});
+
+            reservationDAO.GetAll().ForEach(reservation => {
+                reservation.Orders.ForEach(order => {
+                    order.MenuItems.ForEach(menuItem => {
+                        Console.WriteLine("{0}: {1}: {2}", reservation.Id, order.Id, menuItem.Id);
+                    });
+                });
+            });
+
+            Console.ReadKey();
         }
     }
 }
