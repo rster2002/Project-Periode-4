@@ -7,7 +7,7 @@ using DAL;
 using Model;
 
 namespace Logic {
-    class StaffService {
+    public class StaffService {
         private StaffDAO staffDAO = new StaffDAO();
 
         public List<Staff> GetAllStaff() {
