@@ -60,16 +60,16 @@ namespace UI {
             this.testViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.testViewToolStripMenuItem.Name = "testViewToolStripMenuItem";
             this.testViewToolStripMenuItem.Size = new System.Drawing.Size(158, 55);
-            this.testViewToolStripMenuItem.Tag = "chef";
+            this.testViewToolStripMenuItem.Tag = "chef, owner";
             this.testViewToolStripMenuItem.Text = "Keuken";
-            this.testViewToolStripMenuItem.Click += new System.EventHandler(this.keukenToolStripMenuItem_Click);
+            this.testViewToolStripMenuItem.Click += new System.EventHandler(this.KitchenToolBarClick);
             // 
             // barToolStripMenuItem
             // 
             this.barToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.barToolStripMenuItem.Name = "barToolStripMenuItem";
             this.barToolStripMenuItem.Size = new System.Drawing.Size(88, 55);
-            this.barToolStripMenuItem.Tag = "bartender";
+            this.barToolStripMenuItem.Tag = "bartender, owner";
             this.barToolStripMenuItem.Text = "Bar";
             // 
             // DesktopView

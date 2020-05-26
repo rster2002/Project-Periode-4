@@ -14,10 +14,15 @@ namespace UI {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            DesktopView desktopView = DesktopView.GetInstance();
-            desktopView.LoadView(new LoginView());
+            try {
+                DesktopView desktopView = DesktopView.GetInstance();
+                desktopView.LoadView(new LoginView());
 
-            Application.Run(desktopView);
+                Application.Run(desktopView);
+            } catch(Exception error) {
+                ErrorView errorView = new ErrorView(error.Message);
+                errorView.ShowDialog();
+            }
         }
     }
 }

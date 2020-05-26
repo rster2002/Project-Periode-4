@@ -12,16 +12,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI {
-    public partial class DesktopView:Form {
+    public partial class DesktopView: Form {
         public static DesktopView instance;
         public UserControl loadedView;
+
+        // Handiger als apparte class vanwege Seperation of Consern?
         public Staff loggedIn = new Staff() {
-            Role = "chef"
+            Role = "unautherized"
         };
 
         public static DesktopView GetInstance() {
             if (instance == null) instance = new DesktopView();
-
             return instance;
         }
 
@@ -35,7 +36,7 @@ namespace UI {
 
                 item.Visible = ((string) item.Tag).Contains(loggedIn.Role);
 
-                // Maybe
+                // Checken op naam is een beetje, eh...
                 //if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
                 //    item.BackColor = Color.FromArgb(255, 255, 255);
                 //} else {
@@ -54,7 +55,7 @@ namespace UI {
             mainPanel.Controls.Add(userControl);
         }
 
-        private void keukenToolStripMenuItem_Click(object sender, EventArgs e) {
+        private void KitchenToolBarClick(object sender, EventArgs e) {
             LoadView(new TestView());
         }
     }
