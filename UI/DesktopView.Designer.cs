@@ -88,6 +88,7 @@ namespace UI {
             this.voorraadToolStripMenuItem.Name = "voorraadToolStripMenuItem";
             this.voorraadToolStripMenuItem.Size = new System.Drawing.Size(186, 55);
             this.voorraadToolStripMenuItem.Text = "Voorraad";
+            this.voorraadToolStripMenuItem.Tag = "bartender, chef, owner";
             // 
             // tafelsToolStripMenuItem
             // 
@@ -95,6 +96,7 @@ namespace UI {
             this.tafelsToolStripMenuItem.Name = "tafelsToolStripMenuItem";
             this.tafelsToolStripMenuItem.Size = new System.Drawing.Size(126, 55);
             this.tafelsToolStripMenuItem.Text = "Tafels";
+            this.tafelsToolStripMenuItem.Tag = "owner";
             // 
             // personeelToolStripMenuItem
             // 
@@ -102,6 +104,7 @@ namespace UI {
             this.personeelToolStripMenuItem.Name = "personeelToolStripMenuItem";
             this.personeelToolStripMenuItem.Size = new System.Drawing.Size(196, 55);
             this.personeelToolStripMenuItem.Text = "Personeel";
+            this.personeelToolStripMenuItem.Tag = "owner";
             // 
             // omzetToolStripMenuItem
             // 
@@ -109,6 +112,7 @@ namespace UI {
             this.omzetToolStripMenuItem.Name = "omzetToolStripMenuItem";
             this.omzetToolStripMenuItem.Size = new System.Drawing.Size(146, 55);
             this.omzetToolStripMenuItem.Text = "Omzet";
+            this.omzetToolStripMenuItem.Tag = "owner";
             // 
             // menuToolStripMenuItem
             // 
@@ -116,6 +120,7 @@ namespace UI {
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
             this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Tag = "owner";
             // 
             // DesktopView
             // 
