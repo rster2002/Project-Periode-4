@@ -13,7 +13,11 @@ namespace UI {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            DesktopView desktopView = DesktopView.GetInstance();
+            desktopView.LoadView(new LoginView());
+
+            Application.Run(desktopView);
         }
     }
 }
