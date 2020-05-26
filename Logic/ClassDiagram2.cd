@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Logic.CustomerService">
+    <Position X="0.5" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>CustomerService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="customerDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.MenuItemService">
+    <Position X="11.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuItemService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="menuItemDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.MenuService">
+    <Position X="5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="menuDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.StaffService">
+    <Position X="9.5" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAIAACAIAAA=</HashCode>
+      <FileName>StaffService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="staffDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.TableService">
+    <Position X="16.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>TableService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="tableDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DAL.CustomerDAO">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.MenuDAO">
+    <Position X="5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.MenuItemDAO">
+    <Position X="11.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.OrderDAO">
+    <Position X="18.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.ReceiptDAO">
+    <Position X="2.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.RegisterDAO">
+    <Position X="7.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.ReservationDAO">
+    <Position X="14" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.SQLInterface&lt;T&gt;">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.Record">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.StaffDAO">
+    <Position X="9.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="DAL.TableDAO">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Model.Customer">
+    <Position X="0.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Model.Menu">
+    <Position X="9.5" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsCollectionAssociation>
+      <Property Name="Items" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Model.MenuItem">
+    <Position X="7.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Model.Order">
+    <Position X="5" Y="12.5" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="PlacedBy" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="MenuItems" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Model.Receipt">
+    <Position X="2.75" Y="11.25" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Register" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Orders" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Model.Register">
+    <Position X="7.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Model.Reservation">
+    <Position X="0.5" Y="14" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="Table" />
+      <Property Name="Customer" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Orders" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="Model.Staff">
+    <Position X="5" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="Model.Table">
+    <Position X="2.75" Y="14" Width="1.5" />
+    <TypeIdentifier />
+    <ShowAsAssociation>
+      <Property Name="ServedBy" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.ReceiptService">
+    <Position X="2.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAABAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>ReceiptService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="receiptDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.RegisterService">
+    <Position X="7.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAAAAAACAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RegisterService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="registerDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.OrderService">
+    <Position X="18.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwAAAAgAAgAAAAAAQAiAAACCCAEIAAAAAEADAAAAAg=</HashCode>
+      <FileName>OrderService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="orderDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Logic.ReservationService">
+    <Position X="14" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAEQAAAAAAAAAAABQEAKAAAAAAAAAAAgEAAQg=</HashCode>
+      <FileName>ReservationService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="reservationDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
