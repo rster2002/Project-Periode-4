@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Model;
 using DAL;
 
-namespace Logic {
+namespace Model {
     public class ReceiptService {
         ReceiptDAO receiptDAO = new ReceiptDAO();
 

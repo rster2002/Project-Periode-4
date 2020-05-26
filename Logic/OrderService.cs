@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DAL;
 using Model;
 
-namespace Logic {
+namespace Model {
     public class OrderService {
         private OrderDAO orderDAO = new OrderDAO();
 

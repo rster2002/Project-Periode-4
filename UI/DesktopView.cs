@@ -15,6 +15,7 @@ namespace UI {
     public partial class DesktopView: Form {
         public static DesktopView instance;
         public UserControl loadedView;
+        private UserSession session = UserSession.GetInstance();
 
         // Handiger als apparte class vanwege Seperation of Consern?
         public Staff loggedIn = new Staff() {
@@ -34,14 +35,14 @@ namespace UI {
             for (int i = 0; i < menuStrip.Items.Count; i++) {
                 ToolStripItem item = menuStrip.Items[i];
 
-                item.Visible = ((string) item.Tag).Contains(loggedIn.Role);
+                item.Visible = ((string) item.Tag).Contains(session.LoggedInStaff.Role);
 
                 // Checken op naam is een beetje, eh...
-                //if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
-                //    item.BackColor = Color.FromArgb(255, 255, 255);
-                //} else {
-                //    item.BackColor = Color.FromArgb(33, 33, 33);
-                //}
+                if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
+                    item.BackColor = Color.FromArgb(255, 10, 10);
+                } else {
+                    item.BackColor = Color.FromArgb(33, 33, 33);
+                }
             }
         }
 

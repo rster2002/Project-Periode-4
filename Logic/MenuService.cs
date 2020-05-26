@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic {
+namespace Model {
     public class MenuService {
 
         MenuDAO menuDAO = new MenuDAO();
