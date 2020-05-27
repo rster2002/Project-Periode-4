@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using Model;
-using Model;
 using System.Diagnostics;
 
 namespace Test_Console {
@@ -17,12 +16,12 @@ namespace Test_Console {
         }
 
         void Start() {
-            ReceiptDAO receiptDAO = new ReceiptDAO();
+            OrderDAO orderDAO = new OrderDAO();
 
-            List<Receipt> receipts = receiptDAO.GetAll();
-
-            receipts.ForEach(receipt => {
-                Console.WriteLine("{0}", receipt.Id);
+            orderDAO.GetByTableNumber(4).ForEach(order => {
+                order.MenuItems.ForEach(menuItem => {
+                    Console.WriteLine("{0}: {1}", order.Id, menuItem.Name);
+                });
             });
 
             Console.ReadKey();
