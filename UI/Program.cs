@@ -15,10 +15,7 @@ namespace UI {
             Application.SetCompatibleTextRenderingDefault(false);
 
             try {
-                DesktopView desktopView = DesktopView.GetInstance();
-                desktopView.LoadView(new LoginView());
-
-                Application.Run(desktopView);
+                Application.Run(new ViewPicker());
             } catch(Exception error) {
                 ErrorView errorView = new ErrorView(error.Message);
                 errorView.ShowDialog();
