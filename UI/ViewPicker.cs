@@ -15,7 +15,7 @@ namespace UI {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            MobileView mobileView = new MobileView();
+            MobileView mobileView = MobileView.GetInstance();
             mobileView.ShowDialog();
         }
 
