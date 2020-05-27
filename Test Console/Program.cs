@@ -18,11 +18,11 @@ namespace Test_Console {
         void Start() {
             OrderDAO orderDAO = new OrderDAO();
 
-            orderDAO.GetByTableNumber(4).ForEach(order => {
-                order.MenuItems.ForEach(menuItem => {
-                    Console.WriteLine("{0}: {1}", order.Id, menuItem.Name);
-                });
-            });
+            //orderDAO.GetByTableNumber(4).ForEach(order => {
+            //    order.MenuItems.ForEach(menuItem => {
+            //        Console.WriteLine("{0}: {1}", order.Id, menuItem.Name);
+            //    });
+            //});
 
             Console.ReadKey();
         }

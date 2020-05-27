@@ -8,6 +8,7 @@ using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.DesktopViews;
 
 namespace UI {
     public partial class MobileView: Form {
@@ -15,6 +16,9 @@ namespace UI {
 
         private MobileView() {
             InitializeComponent();
+            LoadView(new CheckoutView(new Model.Table() {
+                Number = 4,
+            }));
         }
 
         public static MobileView GetInstance() {
