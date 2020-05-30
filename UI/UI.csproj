@@ -53,10 +53,10 @@
     <Compile Include="DesktopView.Designer.cs">
       <DependentUpon>DesktopView.cs</DependentUpon>
     </Compile>
-    <Compile Include="MobileView\CheckoutView.cs">
+    <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="MobileView\CheckoutView.Designer.cs">
+    <Compile Include="MobileViews\CheckoutView.Designer.cs">
       <DependentUpon>CheckoutView.cs</DependentUpon>
     </Compile>
     <Compile Include="ErrorView.cs">
@@ -77,6 +77,24 @@
     <Compile Include="MobileView.Designer.cs">
       <DependentUpon>MobileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MobileViews\TableControlsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\TableControlsView.Designer.cs">
+      <DependentUpon>TableControlsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\TableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\TableView.Designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\TakeOrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\TakeOrderView.Designer.cs">
+      <DependentUpon>TakeOrderView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DesktopViews\TestView.cs">
@@ -94,7 +112,7 @@
     <EmbeddedResource Include="DesktopView.resx">
       <DependentUpon>DesktopView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MobileView\CheckoutView.resx">
+    <EmbeddedResource Include="MobileViews\CheckoutView.resx">
       <DependentUpon>CheckoutView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ErrorView.resx">
@@ -106,6 +124,15 @@
     <EmbeddedResource Include="MobileView.resx">
       <DependentUpon>MobileView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\TableControlsView.resx">
+      <DependentUpon>TableControlsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\TableView.resx">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\TakeOrderView.resx">
+      <DependentUpon>TakeOrderView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -114,6 +141,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="DesktopViews\TestView.resx">
       <DependentUpon>TestView.cs</DependentUpon>
@@ -144,6 +172,11 @@
       <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\chapoo logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table %282%29.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
