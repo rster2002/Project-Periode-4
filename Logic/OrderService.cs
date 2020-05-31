@@ -25,6 +25,8 @@ namespace Model {
         public List<Order> GetOrdersByReceiptId(int receiptId) => orderDAO.GetByReceiptId(receiptId);
         public List<Order> GetOrdersByDateTimeRange(DateTime startDateTime, DateTime endDateTime) => orderDAO.GetByDateTimeRange(startDateTime, endDateTime);
         public List<Order> GetOrderByTableId(int tableNumber) => orderDAO.GetByTableNumber(tableNumber);
+        public List<Order> GetAllOrdersWithDrinks() => orderDAO.GetAllOrdersContainingDrinks();
+        public List<Order> GetAllOrdersContainingDishes() => orderDAO.GetAllOrdersContainingDishes();
         #endregion Read
 
         #region Update

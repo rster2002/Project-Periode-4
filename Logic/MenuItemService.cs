@@ -37,5 +37,6 @@ namespace Model
                 return menuItems;
             }
         }
+        public List<MenuItem> GetDrinks() => menuItemDAO.GetDrinks();
     }
 }

@@ -121,6 +121,20 @@ namespace DAL {
 
             return Execute();
         }
+
+        public List<Order> GetAllOrdersContainingDrinks() {
+            BasicSelect();
+            Line("WHERE [Type] = 'drink'");
+
+            return Execute();
+        }
+
+        public List<Order> GetAllOrdersContainingDishes() {
+            BasicSelect();
+            Line("WHERE [Type] = 'food'");
+
+            return Execute();
+        }
         #endregion Read
 
         #region Update

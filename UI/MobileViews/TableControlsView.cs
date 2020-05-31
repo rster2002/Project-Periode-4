@@ -49,7 +49,7 @@ namespace UI.MobileViews {
             checkoutButton.Text = "Afrekenen";
             checkoutButton.BackColor = Color.FromArgb(39, 194, 65);
             checkoutButton.Font = new Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
-            checkoutButton.Click += new EventHandler(CheckoutButtonOnClick);
+            checkoutButton.Click += CheckoutButtonOnClick;
 
             buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
             buttonLayout.RowCount++;
@@ -65,7 +65,7 @@ namespace UI.MobileViews {
             button.BackColor = Color.White;
             button.Font = new Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
             button.Tag = menu;
-            button.Click += new EventHandler(MenuButtonOnClick);
+            button.Click += MenuButtonOnClick;
 
             return button;
         }

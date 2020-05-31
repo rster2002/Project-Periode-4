@@ -55,7 +55,7 @@ namespace UI.MobileViews {
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Location = new Point(4, 3);
             pictureBox.Tag = table;
-            pictureBox.Click += new EventHandler(TablePanelOnClick);
+            pictureBox.Click += TablePanelOnClick;
 
             // Prepare label
             label.Text = "Table " + table.Number;
