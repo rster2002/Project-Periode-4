@@ -111,6 +111,16 @@ namespace DAL {
 
             return Execute();
         }
+
+        public List<Order> GetByTableNumber(int tableNumber) {
+            BasicSelect();
+            Line("JOIN [Reservation] ON [Order].ReservationId = [Reservation].ReservationId");
+            Line("WHERE [TableNumber] = @tableNumber");
+
+            Param("tableNumber", tableNumber);
+
+            return Execute();
+        }
         #endregion Read
 
         #region Update
@@ -138,13 +148,19 @@ namespace DAL {
             Execute();
         }
 
-        public void UpdateReservationId(int id, int reservationId) {
+        public void UpdateReservationId(int id, object reservationId) {
             Line("UPDATE [Order]");
-            Line("SET [ReservationId] = @reservationId");
+
+            if (reservationId != null) {
+                Line("SET [ReservationId] = @reservationId");
+                Param("reservationId", reservationId);
+            } else {
+                Line("SET [ReservationId] = NULL");
+            }
+            
             Line("WHERE [OrderId] = @id");
 
             Param("id", id);
-            Param("reservationId", reservationId);
 
             Execute();
         }

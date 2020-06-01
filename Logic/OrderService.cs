@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DAL;
 using Model;
 
-namespace Logic {
+namespace Model {
     public class OrderService {
         private OrderDAO orderDAO = new OrderDAO();
 
@@ -24,6 +24,7 @@ namespace Logic {
         public List<Order> GetOrdersByReservationId(int reservationId) => orderDAO.GetByReservationId(reservationId);
         public List<Order> GetOrdersByReceiptId(int receiptId) => orderDAO.GetByReceiptId(receiptId);
         public List<Order> GetOrdersByDateTimeRange(DateTime startDateTime, DateTime endDateTime) => orderDAO.GetByDateTimeRange(startDateTime, endDateTime);
+        public List<Order> GetOrderByTableId(int tableNumber) => orderDAO.GetByTableNumber(tableNumber);
         #endregion Read
 
         #region Update

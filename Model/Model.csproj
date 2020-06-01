@@ -49,6 +49,7 @@
     <Compile Include="Receipt.cs" />
     <Compile Include="Register.cs" />
     <Compile Include="Reservation.cs" />
+    <Compile Include="UserSession.cs" />
     <Compile Include="Staff.cs" />
     <Compile Include="Table.cs" />
   </ItemGroup>

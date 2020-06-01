@@ -13,7 +13,13 @@ namespace UI {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+
+            try {
+                Application.Run(new ViewPicker());
+            } catch(Exception error) {
+                ErrorView errorView = new ErrorView(error.Message);
+                errorView.ShowDialog();
+            }
         }
     }
 }

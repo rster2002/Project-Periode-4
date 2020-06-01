@@ -5,7 +5,6 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
-using Logic;
 using Model;
 using System.Diagnostics;
 
@@ -17,11 +16,13 @@ namespace Test_Console {
         }
 
         void Start() {
-            StaffService staffService = new StaffService();
+            OrderDAO orderDAO = new OrderDAO();
 
-            staffService.GetAllStaff().ForEach(staff => {
-                Console.WriteLine("{0}: {1}", staff.Id, staff.Name);
-            });
+            //orderDAO.GetByTableNumber(4).ForEach(order => {
+            //    order.MenuItems.ForEach(menuItem => {
+            //        Console.WriteLine("{0}: {1}", order.Id, menuItem.Name);
+            //    });
+            //});
 
             Console.ReadKey();
         }

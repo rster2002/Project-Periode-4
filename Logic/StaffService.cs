@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 using Model;
 
-namespace Logic {
+namespace Model {
     public class StaffService {
         private StaffDAO staffDAO = new StaffDAO();
 

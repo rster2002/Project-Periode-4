@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="DAL.CustomerDAO">
+    <Position X="0.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>CustomerDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.MenuDAO">
+    <Position X="5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAACAAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>MenuDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.MenuItemDAO">
+    <Position X="11.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>MenuItemDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.OrderDAO">
+    <Position X="18.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAEAAAAgAACAAgCAGAAAAACAAIAIAAgEIDACAAIA=</HashCode>
+      <FileName>OrderDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.ReceiptDAO">
+    <Position X="2.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>ReceiptDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.RegisterDAO">
+    <Position X="7.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>RegisterDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.ReservationDAO">
+    <Position X="14" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAEAAAQAAAAAAEhABAACAAAAAAAgAIAACAAYA=</HashCode>
+      <FileName>ReservationDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.SQLInterface&lt;T&gt;">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIACAALAAAAAAAQAAAAEAEIAAAAAARoAAgAIAABBAIA=</HashCode>
+      <FileName>SQLInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.Record">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAAA=</HashCode>
+      <FileName>SQLInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.StaffDAO">
+    <Position X="9.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAIACAAAIA=</HashCode>
+      <FileName>StaffDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DAL.TableDAO">
+    <Position X="16.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAgAIAAAAAIA=</HashCode>
+      <FileName>TableDAO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

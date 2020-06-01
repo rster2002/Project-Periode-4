@@ -24,6 +24,7 @@ namespace DAL {
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
+        #region Create
         public void Insert(int tableNumber, object customerId) {
             Line("INSERT INTO [Reservation]");
 
@@ -38,7 +39,9 @@ namespace DAL {
 
             Execute();
         }
+        #endregion Create
 
+        #region Read
         public override List<Reservation> GetAll() {
             BasicSelect();
 
@@ -71,7 +74,9 @@ namespace DAL {
 
             return Execute()[0];
         }
+        #endregion Read
 
+        #region Update
         public void UpdateById(int id, int tableNumber, object customerId) {
             Line("UPDATE [Reservation]");
             Line("SET [TableNumber] = @tableNumber");
@@ -118,7 +123,9 @@ namespace DAL {
 
             Execute();
         }
+        #endregion Update
 
+        #region Delete
         public void DeleteById(int id) {
             Line("DELETE [Reservation]");
             Line("WHERE [ReservationId] = @id");
@@ -145,6 +152,7 @@ namespace DAL {
 
             Execute();
         }
+        #endregion Delete
 
         protected override Reservation ProcessRecord(Record record)
         {
