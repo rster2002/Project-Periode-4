@@ -87,7 +87,7 @@ namespace DAL {
         protected List<Record> ExecuteUnprocessed(string query) {
             List<Record> returnValue = new List<Record>();
 
-            if (queryString.Contains("SELECT") && queryString.Contains("FROM")) {
+            if (query.Contains("SELECT") && query.Contains("FROM")) {
                 returnValue = ExecuteSelect(query);
             } else {
                 ExecuteCommand(query);

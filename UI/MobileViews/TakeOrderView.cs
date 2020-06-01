@@ -189,16 +189,20 @@ namespace UI.MobileViews {
             OrderService orderService = new OrderService();
             ReservationService reservationService = new ReservationService();
             Random random = new Random();
-            int id = random.Next(0, 999999);
+            int orderId = random.Next(0, 999999);
 
-            order.Id = id;
+            order.Id = orderId;
             order.PlacedAt = DateTime.Now;
             order.PlacedBy = userSession.LoggedInStaff;
 
             Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
+            if (reservation == null) {
+                int reservationId = random.Next(0, 999999);
+                reservationService.AddReservation(reservationId, table.Number);
+            }
+
             orderService.AddOrder(order.Id, reservation.Id, order.PlacedAt, order.PlacedBy.Id);
-
-
+            orderService.AddOrderItems(order, order.MenuItems);
         }
     }
 }

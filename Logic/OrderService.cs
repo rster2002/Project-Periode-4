@@ -20,6 +20,7 @@ namespace Model {
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, receiptId);
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, tag);
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, receiptId, tag);
+        public void AddOrderItems(Order order, List<MenuItem> menuItems) => orderDAO.InsertMenuItems(order, menuItems);
         #endregion Create
 
         #region Read

@@ -14,12 +14,13 @@ namespace UI {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            try {
-                Application.Run(new ViewPicker());
-            } catch(Exception error) {
-                ErrorView errorView = new ErrorView(error.Message);
-                errorView.ShowDialog();
-            }
+            Application.Run(new ViewPicker());
+            //try {
+            //    Application.Run(new ViewPicker());
+            //} catch(Exception error) {
+            //    ErrorView errorView = new ErrorView(error.Message);
+            //    errorView.ShowDialog();
+            //}
         }
     }
 }

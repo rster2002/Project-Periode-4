@@ -20,6 +20,8 @@ namespace DAL {
 
         #region Create
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy) {
+            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
+
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, NULL)");
 
@@ -29,9 +31,12 @@ namespace DAL {
             Param("placedBy", placedBy);
 
             Execute();
+            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) {
+            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
+
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, NULL)");
 
@@ -42,9 +47,12 @@ namespace DAL {
             Param("receiptId", receiptId);
 
             Execute();
+            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) {
+            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
+
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, @tag)");
 
@@ -55,9 +63,12 @@ namespace DAL {
             Param("tag", tag);
 
             Execute();
+            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
+            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
+
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, @tag)");
 
@@ -69,6 +80,7 @@ namespace DAL {
             Param("tag", tag);
 
             Execute();
+            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int reservationId, DateTime placedAt, int placedBy) {
@@ -115,6 +127,26 @@ namespace DAL {
             Param("placedBy", placedBy);
             Param("receiptId", receiptId);
             Param("tag", tag);
+
+            Execute();
+        }
+
+        public void InsertMenuItems(Order order, List<MenuItem> menuItems) {
+            List<string> values = new List<string>();
+
+            for (int i = 0; i < menuItems.Count; i++) {
+                MenuItem item = menuItems[i];
+
+                Param("menuItemId" + i, item.Id);
+                Param("comment" + 1, item.Comment);
+
+                values.Add($"(@orderId, @menuItemId{i}, @comment{i})");
+            }
+
+            Param("orderId", order.Id);
+
+            Line("INSERT INTO [OrderItem]");
+            Line($"VALUES {String.Join(", ", values)}");
 
             Execute();
         }

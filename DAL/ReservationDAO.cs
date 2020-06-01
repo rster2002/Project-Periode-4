@@ -39,6 +39,22 @@ namespace DAL {
 
             Execute();
         }
+
+        public void Insert(int reservationId, int tableNumber, object customerId) {
+            Line("INSERT INTO [Reservation]");
+
+            if (customerId != null) {
+                Line("VALUES (@reservationId, @tableNumber, @customerId)");
+                Param("customerId", customerId);
+            } else {
+                Line("VALUES (@reservationId, @tableNumber, NULL)");
+            }
+
+            Param("reservationId", reservationId);
+            Param("tableNumber", tableNumber);
+
+            Execute();
+        }
         #endregion Create
 
         #region Read
@@ -68,11 +84,12 @@ namespace DAL {
 
         public Reservation GetByTableNumber(int number) {
             BasicSelect();
-            Line("WHERE [TableNumber] = @number");
+            Line("WHERE [Table].[TableNumber] = @number");
 
-            Param("id", number);
+            Param("number", number);
 
-            return Execute()[0];
+            List<Reservation> reservations = Execute();
+            return reservations.Count == 1 ? reservations[0] : null;
         }
         #endregion Read
 
