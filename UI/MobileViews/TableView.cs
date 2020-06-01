@@ -11,6 +11,7 @@ using Model;
 
 namespace UI.MobileViews {
     public partial class TableView: UserControl {
+        System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableView));
         private TableService tableSerivce = new TableService();
         private List<Table> tables;
 
@@ -48,13 +49,13 @@ namespace UI.MobileViews {
             panel.Size = new Size(193, 141);
 
             // Prepare pictureBox
+            pictureBox.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
             pictureBox.Dock = DockStyle.Top;
             pictureBox.Size = new Size(186, 100);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Location = new Point(4, 3);
-            pictureBox.Image = global::UI.Properties.Resources.table__2_;
             pictureBox.Tag = table;
-            pictureBox.Click += new EventHandler(TablePanelOnClick);
+            pictureBox.Click += TablePanelOnClick;
 
             // Prepare label
             label.Text = "Table " + table.Number;

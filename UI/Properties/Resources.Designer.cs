@@ -63,9 +63,9 @@ namespace UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap chapoo_logo {
+        internal static System.Drawing.Bitmap Table {
             get {
-                object obj = ResourceManager.GetObject("chapoo logo", resourceCulture);
+                object obj = ResourceManager.GetObject("Table", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace UI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap table__2_ {
+        internal static System.Drawing.Bitmap Table1 {
             get {
-                object obj = ResourceManager.GetObject("table (2)", resourceCulture);
+                object obj = ResourceManager.GetObject("Table1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
