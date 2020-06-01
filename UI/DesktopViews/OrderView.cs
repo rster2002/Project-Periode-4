@@ -34,10 +34,6 @@ namespace UI.DesktopViews {
                 orders.AddRange(
                     reservation
                         .Orders
-                        // Filter out any orders that do not contain food items
-                        .Where(order => order.MenuItems.All(item => item.Type == foodType))
-
-                        // Filter out any non-food menu items from all orders
                         .Select(order => {
                             order.MenuItems = order.MenuItems
                                 .Where(item => item.Type == foodType)
@@ -45,11 +41,19 @@ namespace UI.DesktopViews {
 
                             return order;
                         })
+                        // Filter out any orders that do not contain food items
+                        .Where(order => order.MenuItems.Count > 0)
+
+                        // Filter out any non-food menu items from all orders
+                        
                         .ToList()
                 );
             }
 
             int requiredNumberOfRows = (int) Math.Ceiling((decimal) orders.Count / 4);
+
+            // Minimal one row
+            requiredNumberOfRows = requiredNumberOfRows > 0 ? requiredNumberOfRows : 1;
             decimal rowHeight = 100 / requiredNumberOfRows;
 
             for(int i = 0; i < requiredNumberOfRows; i++) {
