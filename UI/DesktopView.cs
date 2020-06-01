@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.DesktopViews;
 
 namespace UI {
     public partial class DesktopView: Form {
@@ -57,7 +58,7 @@ namespace UI {
         }
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
-            LoadView(new TestView());
+            LoadView(new OrderView("food"));
         }
     }
 }
