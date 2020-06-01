@@ -74,7 +74,7 @@ namespace UI.MobileViews {
             Button button = (Button) sender;
             Model.Menu menu = (Model.Menu) button.Tag;
 
-            mobileView.LoadView(new TakeOrderView(menu));
+            mobileView.LoadView(new TakeOrderView(menu, table));
         }
 
         private void CheckoutButtonOnClick(object sender, EventArgs args) {

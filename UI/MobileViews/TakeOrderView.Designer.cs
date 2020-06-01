@@ -33,11 +33,12 @@
             this.buttonConfirmOrder = new System.Windows.Forms.Button();
             this.popupDialog = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.dialogTitleLbl = new System.Windows.Forms.Label();
-            this.commentTextbox = new System.Windows.Forms.TextBox();
-            this.removeFromOrderButton = new System.Windows.Forms.Button();
-            this.addCommentToOrderButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.addCommentToOrderButton = new System.Windows.Forms.Button();
+            this.removeFromOrderButton = new System.Windows.Forms.Button();
+            this.commentTextbox = new System.Windows.Forms.TextBox();
+            this.dialogTitleLbl = new System.Windows.Forms.Label();
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuItemTypeButtons.SuspendLayout();
             this.popupDialog.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -47,6 +48,7 @@
             // 
             this.orderList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
+            this.columnHeader3,
             this.columnHeader2});
             this.orderList.FullRowSelect = true;
             this.orderList.HideSelection = false;
@@ -61,10 +63,11 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Gerecht";
-            this.columnHeader1.Width = 323;
+            this.columnHeader1.Width = 253;
             // 
             // columnHeader2
             // 
+            this.columnHeader2.DisplayIndex = 1;
             this.columnHeader2.Text = "Aantal";
             // 
             // menuItemTypeButtons
@@ -122,13 +125,15 @@
             // 
             // buttonConfirmOrder
             // 
+            this.buttonConfirmOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
             this.buttonConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonConfirmOrder.Location = new System.Drawing.Point(6, 605);
             this.buttonConfirmOrder.Name = "buttonConfirmOrder";
             this.buttonConfirmOrder.Size = new System.Drawing.Size(389, 41);
             this.buttonConfirmOrder.TabIndex = 4;
             this.buttonConfirmOrder.Text = "Plaats bestelling";
-            this.buttonConfirmOrder.UseVisualStyleBackColor = true;
+            this.buttonConfirmOrder.UseVisualStyleBackColor = false;
+            this.buttonConfirmOrder.Click += new System.EventHandler(this.ConfirmOrderButtonOnClick);
             // 
             // popupDialog
             // 
@@ -153,15 +158,37 @@
             this.panel2.Size = new System.Drawing.Size(287, 301);
             this.panel2.TabIndex = 0;
             // 
-            // dialogTitleLbl
+            // label1
             // 
-            this.dialogTitleLbl.AutoSize = true;
-            this.dialogTitleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dialogTitleLbl.Location = new System.Drawing.Point(14, 13);
-            this.dialogTitleLbl.Name = "dialogTitleLbl";
-            this.dialogTitleLbl.Size = new System.Drawing.Size(60, 24);
-            this.dialogTitleLbl.TabIndex = 0;
-            this.dialogTitleLbl.Text = "label1";
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(15, 52);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(77, 17);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Opmerking";
+            // 
+            // addCommentToOrderButton
+            // 
+            this.addCommentToOrderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
+            this.addCommentToOrderButton.Location = new System.Drawing.Point(150, 251);
+            this.addCommentToOrderButton.Name = "addCommentToOrderButton";
+            this.addCommentToOrderButton.Size = new System.Drawing.Size(122, 40);
+            this.addCommentToOrderButton.TabIndex = 3;
+            this.addCommentToOrderButton.Text = "Sla opmerking op";
+            this.addCommentToOrderButton.UseVisualStyleBackColor = false;
+            this.addCommentToOrderButton.Click += new System.EventHandler(this.AddCommentToMenuItemButtonOnClick);
+            // 
+            // removeFromOrderButton
+            // 
+            this.removeFromOrderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.removeFromOrderButton.ForeColor = System.Drawing.Color.White;
+            this.removeFromOrderButton.Location = new System.Drawing.Point(18, 251);
+            this.removeFromOrderButton.Name = "removeFromOrderButton";
+            this.removeFromOrderButton.Size = new System.Drawing.Size(126, 40);
+            this.removeFromOrderButton.TabIndex = 2;
+            this.removeFromOrderButton.Text = "Verwijder van bestelling";
+            this.removeFromOrderButton.UseVisualStyleBackColor = false;
             // 
             // commentTextbox
             // 
@@ -172,33 +199,20 @@
             this.commentTextbox.Size = new System.Drawing.Size(254, 173);
             this.commentTextbox.TabIndex = 1;
             // 
-            // removeFromOrderButton
+            // dialogTitleLbl
             // 
-            this.removeFromOrderButton.Location = new System.Drawing.Point(18, 251);
-            this.removeFromOrderButton.Name = "removeFromOrderButton";
-            this.removeFromOrderButton.Size = new System.Drawing.Size(126, 40);
-            this.removeFromOrderButton.TabIndex = 2;
-            this.removeFromOrderButton.Text = "Verwijder van bestelling";
-            this.removeFromOrderButton.UseVisualStyleBackColor = true;
+            this.dialogTitleLbl.AutoSize = true;
+            this.dialogTitleLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dialogTitleLbl.Location = new System.Drawing.Point(14, 13);
+            this.dialogTitleLbl.Name = "dialogTitleLbl";
+            this.dialogTitleLbl.Size = new System.Drawing.Size(60, 24);
+            this.dialogTitleLbl.TabIndex = 0;
+            this.dialogTitleLbl.Text = "label1";
             // 
-            // addCommentToOrderButton
+            // columnHeader3
             // 
-            this.addCommentToOrderButton.Location = new System.Drawing.Point(150, 251);
-            this.addCommentToOrderButton.Name = "addCommentToOrderButton";
-            this.addCommentToOrderButton.Size = new System.Drawing.Size(122, 40);
-            this.addCommentToOrderButton.TabIndex = 3;
-            this.addCommentToOrderButton.Text = "Sla opmerking op";
-            this.addCommentToOrderButton.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(77, 17);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Opmerking";
+            this.columnHeader3.DisplayIndex = 2;
+            this.columnHeader3.Text = "Opmerking";
             // 
             // TakeOrderView
             // 
@@ -238,5 +252,6 @@
         private System.Windows.Forms.Button addCommentToOrderButton;
         private System.Windows.Forms.Button removeFromOrderButton;
         private System.Windows.Forms.TextBox commentTextbox;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
     }
 }

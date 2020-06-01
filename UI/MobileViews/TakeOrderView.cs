@@ -17,12 +17,12 @@ namespace UI.MobileViews {
         private Order order;
         private UserSession userSession = UserSession.GetInstance();
         private Model.MenuItem loadedMenuItem;
+        private Table table;
 
-        public TakeOrderView(Model.Menu menu) {
+        public TakeOrderView(Model.Menu menu, Table table) {
             this.menu = menu;
-            order = new Order() {
-                PlacedBy = userSession.LoggedInStaff,
-            };
+            this.table = table;
+            order = new Order();
 
             InitializeComponent();
             PopulateMenuItemTypes();
@@ -177,7 +177,28 @@ namespace UI.MobileViews {
         }
 
         private void HidePopupDialog() {
-            popupDialog.Visible = true;
+            popupDialog.Visible = false;
+        }
+
+        private void AddCommentToMenuItemButtonOnClick(object sender, EventArgs e) {
+            loadedMenuItem.Comment = commentTextbox.Text;
+            HidePopupDialog();
+        }
+
+        private void ConfirmOrderButtonOnClick(object sender, EventArgs e) {
+            OrderService orderService = new OrderService();
+            ReservationService reservationService = new ReservationService();
+            Random random = new Random();
+            int id = random.Next(0, 999999);
+
+            order.Id = id;
+            order.PlacedAt = DateTime.Now;
+            order.PlacedBy = userSession.LoggedInStaff;
+
+            Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
+            orderService.AddOrder(order.Id, reservation.Id, order.PlacedAt, order.PlacedBy.Id);
+
+
         }
     }
 }

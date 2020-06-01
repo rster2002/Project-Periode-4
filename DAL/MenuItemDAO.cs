@@ -31,6 +31,10 @@ namespace DAL {
             return Execute();
         }
 
+        public void InsertMultiple(List<MenuItem> menuItems) {
+
+        }
+
         protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
                 Id = (int) record["MenuItemId"],

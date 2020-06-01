@@ -19,6 +19,58 @@ namespace DAL {
         }
 
         #region Create
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy) {
+            Line("INSERT INTO [Order]");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, NULL)");
+
+            Param("orderId", orderId);
+            Param("reservationId", reservationId);
+            Param("placedAt", placedAt);
+            Param("placedBy", placedBy);
+
+            Execute();
+        }
+
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) {
+            Line("INSERT INTO [Order]");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, NULL)");
+
+            Param("orderId", orderId);
+            Param("reservationId", reservationId);
+            Param("placedAt", placedAt);
+            Param("placedBy", placedBy);
+            Param("receiptId", receiptId);
+
+            Execute();
+        }
+
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) {
+            Line("INSERT INTO [Order]");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, @tag)");
+
+            Param("orderId", orderId);
+            Param("reservationId", reservationId);
+            Param("placedAt", placedAt);
+            Param("placedBy", placedBy);
+            Param("tag", tag);
+
+            Execute();
+        }
+
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
+            Line("INSERT INTO [Order]");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, @tag)");
+
+            Param("orderId", orderId);
+            Param("reservationId", reservationId);
+            Param("placedAt", placedAt);
+            Param("placedBy", placedBy);
+            Param("receiptId", receiptId);
+            Param("tag", tag);
+
+            Execute();
+        }
+
         public void Insert(int reservationId, DateTime placedAt, int placedBy) {
             Line("INSERT INTO [Order]");
             Line("VALUES (@reservationId, @placedAt, @placedBy, NULL, NULL)");
