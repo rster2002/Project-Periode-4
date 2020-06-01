@@ -31,7 +31,7 @@ namespace UI {
             this.barToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.voorraadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tafelsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.personeelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.personeelViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.omzetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
@@ -55,7 +55,7 @@ namespace UI {
             this.barToolStripMenuItem,
             this.voorraadToolStripMenuItem,
             this.tafelsToolStripMenuItem,
-            this.personeelToolStripMenuItem,
+            this.personeelViewToolStripMenuItem,
             this.omzetToolStripMenuItem,
             this.menuToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
@@ -69,7 +69,7 @@ namespace UI {
             this.testViewToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.testViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.testViewToolStripMenuItem.Name = "testViewToolStripMenuItem";
-            this.testViewToolStripMenuItem.Size = new System.Drawing.Size(158, 55);
+            this.testViewToolStripMenuItem.Size = new System.Drawing.Size(159, 55);
             this.testViewToolStripMenuItem.Tag = "chef, owner";
             this.testViewToolStripMenuItem.Text = "Keuken";
             this.testViewToolStripMenuItem.Click += new System.EventHandler(this.KitchenToolBarClick);
@@ -86,41 +86,42 @@ namespace UI {
             // 
             this.voorraadToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.voorraadToolStripMenuItem.Name = "voorraadToolStripMenuItem";
-            this.voorraadToolStripMenuItem.Size = new System.Drawing.Size(186, 55);
-            this.voorraadToolStripMenuItem.Text = "Voorraad";
+            this.voorraadToolStripMenuItem.Size = new System.Drawing.Size(188, 55);
             this.voorraadToolStripMenuItem.Tag = "bartender, chef, owner";
+            this.voorraadToolStripMenuItem.Text = "Voorraad";
             // 
             // tafelsToolStripMenuItem
             // 
             this.tafelsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.tafelsToolStripMenuItem.Name = "tafelsToolStripMenuItem";
-            this.tafelsToolStripMenuItem.Size = new System.Drawing.Size(126, 55);
-            this.tafelsToolStripMenuItem.Text = "Tafels";
+            this.tafelsToolStripMenuItem.Size = new System.Drawing.Size(130, 55);
             this.tafelsToolStripMenuItem.Tag = "owner";
+            this.tafelsToolStripMenuItem.Text = "Tafels";
             // 
-            // personeelToolStripMenuItem
+            // personeelViewToolStripMenuItem
             // 
-            this.personeelToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.personeelToolStripMenuItem.Name = "personeelToolStripMenuItem";
-            this.personeelToolStripMenuItem.Size = new System.Drawing.Size(196, 55);
-            this.personeelToolStripMenuItem.Text = "Personeel";
-            this.personeelToolStripMenuItem.Tag = "owner";
+            this.personeelViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.personeelViewToolStripMenuItem.Name = "personeelViewToolStripMenuItem";
+            this.personeelViewToolStripMenuItem.Size = new System.Drawing.Size(197, 55);
+            this.personeelViewToolStripMenuItem.Tag = "owner";
+            this.personeelViewToolStripMenuItem.Text = "Personeel";
+            this.personeelViewToolStripMenuItem.Click += new System.EventHandler(this.PersoneelToolBarClick);
             // 
             // omzetToolStripMenuItem
             // 
             this.omzetToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.omzetToolStripMenuItem.Name = "omzetToolStripMenuItem";
             this.omzetToolStripMenuItem.Size = new System.Drawing.Size(146, 55);
-            this.omzetToolStripMenuItem.Text = "Omzet";
             this.omzetToolStripMenuItem.Tag = "owner";
+            this.omzetToolStripMenuItem.Text = "Omzet";
             // 
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
-            this.menuToolStripMenuItem.Text = "Menu";
             this.menuToolStripMenuItem.Tag = "owner";
+            this.menuToolStripMenuItem.Text = "Menu";
             // 
             // DesktopView
             // 
@@ -146,7 +147,7 @@ namespace UI {
         private System.Windows.Forms.ToolStripMenuItem barToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem voorraadToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tafelsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem personeelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem personeelViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem omzetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
     }

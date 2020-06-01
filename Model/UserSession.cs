@@ -12,7 +12,7 @@ namespace Model {
 
         private UserSession() {
             LoggedInStaff = new Staff() {
-                Role = "chef"
+                Role = "owner"
             };
         }
 

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace UI {
     public partial class DesktopView: Form {
         public static DesktopView instance;
@@ -58,6 +59,10 @@ namespace UI {
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
             LoadView(new TestView());
+        }
+
+        private void PersoneelToolBarClick(object sender, EventArgs e) {
+            LoadView(new PersoneelView());
         }
     }
 }
