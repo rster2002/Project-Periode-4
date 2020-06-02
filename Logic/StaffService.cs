@@ -57,13 +57,15 @@ namespace Model {
             };
         }
 
-        //    public void DeleteStaffById(int id) {
-        //        try {
+        public bool DeleteStaffById(int id) {
+            try {
+                staffDAO.RemoveStaffById(id);
+                return true;
+            } catch {
+                return false;
+            }
 
-        //            return staff;
-        //        }
-
-        //}
+        }
     }
 }
 

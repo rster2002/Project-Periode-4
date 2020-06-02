@@ -12,9 +12,12 @@ using Model;
 namespace UI {
     public partial class ExtraConfirmationPopup: Form {
         Staff employeeToFire;
-        public ExtraConfirmationPopup(Staff employee) {
+        StaffService staffService = new StaffService();
+        PersoneelPopup opener;
+        public ExtraConfirmationPopup(Staff employee, PersoneelPopup opener) {
             InitializeComponent();
             employeeToFire = employee;
+            this.opener = opener;
         }
         
         private void terugBtn_Click(object sender, EventArgs e) {
@@ -23,8 +26,13 @@ namespace UI {
         }
 
         private void confirmBtn_Click(object sender, EventArgs e) {
-            
-            this.Close();
+            if(staffService.DeleteStaffById(employeeToFire.Id)) {
+                label1.Text = "Werknemer succesvol verwijderd.";
+                this.Close();
+                opener.Close();
+            } else {
+                label1.Text = "Werknemer kon niet verwijderd worden, probeer het later nog eens.";
+            }
         }
     }
 }

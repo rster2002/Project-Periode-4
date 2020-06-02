@@ -34,15 +34,14 @@ namespace DAL {
             return Execute();
         }
 
-        //public void RemoveStaffById(int id) {
-        //    Line("REMOVE *");
-        //    Line("FROM [STAFF]");
-        //    Line("WHERE StaffNumber = @id");
+        public void RemoveStaffById(int id) {
+            Line("DELETE FROM Staff");
+            Line("WHERE StaffNumber = @id");
+            
+            Param("id", id);
 
-        //    Param("id", id);
-
-        //    Execute();
-        //}
+            ExecuteCommand();
+        }
 
         protected override Staff ProcessRecord(Record record) {
             return new Staff() {

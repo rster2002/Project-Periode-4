@@ -106,6 +106,7 @@
             this.Controls.Add(this.labelEName);
             this.Name = "PersoneelPopup";
             this.Text = "PersoneelPopup";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PersoneelPopup_FormClosed);
             this.ResumeLayout(false);
 
         }

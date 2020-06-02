@@ -14,18 +14,22 @@ namespace UI  {
 
         StaffService staffService = new StaffService();
         List<Staff> staffList = new List<Staff>();
-        int nextLabelYAxis = 175;
+        int nextLabelYAxis;
 
         public PersoneelView() {
             InitializeComponent();
-            staffList = staffService.GetAllStaff();
             LoadPersoneelInfo();
         }
 
         List<Label> nameLabelList = new List<Label>();
         List<Label> functionLabelList = new List<Label>();
 
-        private void LoadPersoneelInfo() {
+        public void LoadPersoneelInfo() {
+
+            staffList = staffService.GetAllStaff();
+            nextLabelYAxis = 175;
+            nameLabelList.Clear();
+            functionLabelList.Clear();
 
             for (int i = 0; i < staffList.Count; i++) {
                 Staff currentStaff = staffList[i];
@@ -35,7 +39,7 @@ namespace UI  {
                 nameLabelList[i].Text = currentStaff.Name;
                 functionLabelList[i].Text = currentStaff.Role;
 
-                nameLabelList[i].Click += new EventHandler((object sender, EventArgs e) => OpenEmployeePage(currentStaff.Id));
+                nameLabelList[i].Click += new EventHandler((object sender, EventArgs e) => OpenEmployeePage(currentStaff.Id, sender));
 
             }
 
@@ -67,10 +71,10 @@ namespace UI  {
 
         }
 
-        void OpenEmployeePage(int employeeId) {
-            Form popup = new PersoneelPopup(staffList[employeeId -1]);
+        void OpenEmployeePage(int employeeId, object sender) {
+            Form popup = new PersoneelPopup(staffList.Find(x => x.Id == employeeId), this);
             popup.StartPosition = FormStartPosition.Manual;
-            Point newLocation = nameLabelList[employeeId - 1].Location;
+            Point newLocation = (sender as Label).Location;
             newLocation.Offset(500, 50);
             popup.Location = newLocation;
             popup.ShowDialog();
