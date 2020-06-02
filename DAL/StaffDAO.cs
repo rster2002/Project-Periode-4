@@ -34,6 +34,16 @@ namespace DAL {
             return Execute();
         }
 
+        //public void RemoveStaffById(int id) {
+        //    Line("REMOVE *");
+        //    Line("FROM [STAFF]");
+        //    Line("WHERE StaffNumber = @id");
+
+        //    Param("id", id);
+
+        //    Execute();
+        //}
+
         protected override Staff ProcessRecord(Record record) {
             return new Staff() {
                 Name = (string) record["StaffName"],

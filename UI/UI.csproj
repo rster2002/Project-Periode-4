@@ -53,6 +53,18 @@
     <Compile Include="DesktopView.Designer.cs">
       <DependentUpon>DesktopView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\ExtraConfirmationPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\ExtraConfirmationPopup.Designer.cs">
+      <DependentUpon>ExtraConfirmationPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\PersoneelPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\PersoneelPopup.Designer.cs">
+      <DependentUpon>PersoneelPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -117,6 +129,12 @@
     </Compile>
     <EmbeddedResource Include="DesktopView.resx">
       <DependentUpon>DesktopView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\ExtraConfirmationPopup.resx">
+      <DependentUpon>ExtraConfirmationPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\PersoneelPopup.resx">
+      <DependentUpon>PersoneelPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\PersoneelView.resx">
       <DependentUpon>PersoneelView.cs</DependentUpon>

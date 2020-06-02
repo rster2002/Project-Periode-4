@@ -57,6 +57,13 @@ namespace Model {
             };
         }
 
+        //    public void DeleteStaffById(int id) {
+        //        try {
+
+        //            return staff;
+        //        }
+
+        //}
     }
 }
 

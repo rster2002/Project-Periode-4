@@ -22,16 +22,21 @@ namespace UI  {
             LoadPersoneelInfo();
         }
 
+        List<Label> nameLabelList = new List<Label>();
+        List<Label> functionLabelList = new List<Label>();
+
         private void LoadPersoneelInfo() {
-            List<Label> nameLabelList = new List<Label>();
-            List<Label> functionLabelList = new List<Label>();
 
             for (int i = 0; i < staffList.Count; i++) {
+                Staff currentStaff = staffList[i];
+
                 nameLabelList.Add(new Label());
                 functionLabelList.Add(new Label());
-                nameLabelList[i].Text = staffList[i].Name;
-                functionLabelList[i].Text = staffList[i].Role;
-                
+                nameLabelList[i].Text = currentStaff.Name;
+                functionLabelList[i].Text = currentStaff.Role;
+
+                nameLabelList[i].Click += new EventHandler((object sender, EventArgs e) => OpenEmployeePage(currentStaff.Id));
+
             }
 
             foreach (Label label in nameLabelList) {
@@ -42,6 +47,7 @@ namespace UI  {
                 label.BackColor = Color.FromArgb(33, 33, 33);
                 label.Font = new Font("Microsoft Sans Serif", 25);
                 label.Padding = new Padding(0, 5, 0, 0);
+
                 Controls.Add(label);
                 nextLabelYAxis += 65;
             }
@@ -50,7 +56,6 @@ namespace UI  {
             foreach (Label label in functionLabelList) {
                 label.Location = new Point(1550, nextLabelYAxis);
                 label.AutoSize = true;
-                label.BringToFront();
                 label.Font = new Font("Microsoft Sans Serif", 25);
                 label.ForeColor = Color.White;
                 label.BackColor = Color.FromArgb(33, 33, 33);
@@ -61,6 +66,15 @@ namespace UI  {
             }
 
         }
+
+        void OpenEmployeePage(int employeeId) {
+            Form popup = new PersoneelPopup(staffList[employeeId -1]);
+            popup.StartPosition = FormStartPosition.Manual;
+            Point newLocation = nameLabelList[employeeId - 1].Location;
+            newLocation.Offset(500, 50);
+            popup.Location = newLocation;
+            popup.ShowDialog();
+        }
     }
-    }
+}
 
