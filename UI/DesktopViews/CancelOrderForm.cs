@@ -13,17 +13,21 @@ namespace UI.DesktopViews {
     public partial class CancelOrderForm: Form {
 
         private Order order;
+        private OrderService orderService;
+
         public CancelOrderForm(Order order) {
             InitializeComponent();
-
+            //center the pop up
             CenterToScreen();
 
             this.order = order;
+            orderService = new OrderService();
+            //make clickevent
             btnYes.Click += new EventHandler(DeleteOrder);
         }
 
         protected void DeleteOrder(object sender, EventArgs e) {
-            
+           //orderService.DeleteById(order.Id);
         }
     }
 }

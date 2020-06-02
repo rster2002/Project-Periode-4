@@ -94,7 +94,9 @@ namespace UI.DesktopViews {
                     Dock = DockStyle.Left,
                     Width = groupBox.Width 
                 };
+                //make the click event with an extra parameter of order so our form has it too
                 buttonCancel.Click += delegate (object sender, EventArgs e) { CancelOrder(sender, e, order); };
+
                 Button buttonOrderReady = new Button() {
                     Text = "Bestelling klaarzetten",
                     BackColor = Color.Green,
@@ -125,6 +127,7 @@ namespace UI.DesktopViews {
             return boxes;
         }
         protected void CancelOrder(object sender, EventArgs e, Order order) {
+            //make the pop up and give the order with it
             CancelOrderForm cancel = new CancelOrderForm(order);
             cancel.ShowDialog();
         }
