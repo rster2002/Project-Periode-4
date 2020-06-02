@@ -17,7 +17,9 @@ namespace UI {
 
         private MobileView() {
             InitializeComponent();
-            LoadView(new TableView());
+
+            LoginViewMobile loginViewMobile = new LoginViewMobile(this);
+            LoadView(loginViewMobile);
         }
 
         public static MobileView GetInstance() {

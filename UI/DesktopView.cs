@@ -17,7 +17,7 @@ namespace UI {
         public UserControl loadedView;
         private UserSession session = UserSession.GetInstance();
 
-        // Handiger als apparte class vanwege Seperation of Consern?
+        // Handiger als apparte class vanwege Seperation of Concern?
         public Staff loggedIn = new Staff() {
             Role = "unautherized"
         };

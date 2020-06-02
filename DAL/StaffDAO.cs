@@ -39,7 +39,8 @@ namespace DAL {
                 Name = (string) record["StaffName"],
                 Salt = (int) record["StaffSalt"],
                 Role = (string) record["StaffRole"],
-                Id = (int) record["StaffNumber"]
+                Id = (int) record["StaffNumber"],
+                Hash = (string) record["StaffHash"]
             };
         }
     }

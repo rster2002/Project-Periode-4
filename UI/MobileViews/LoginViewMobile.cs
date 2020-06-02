@@ -7,22 +7,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Security.Cryptography;
+using UI.MobileViews;
 using Model;
+using System.Security.Policy;
+using System.Security.Cryptography;
 
-namespace UI {
-    public partial class LoginView: UserControl {
-        private DesktopView mainView = DesktopView.GetInstance();
+namespace UI.MobileViews {
+    public partial class LoginViewMobile: UserControl {
+        public MobileView mobileView;
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
+        public LoginViewMobile(MobileView mobileView) {
+            this.mobileView = mobileView;
 
-        public LoginView() {
             InitializeComponent();
             txtb_wachtwoord.UseSystemPasswordChar = true;
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void btn_login_Click(object sender, EventArgs e) {
             if (txtb_gebruiker.Text == "" || txtb_wachtwoord.Text == "")
                 lbl_geengegevens.Text = "Staffnummer en wachtwoord \nmoeten ingevuld zijn!";
             else {
@@ -50,7 +53,7 @@ namespace UI {
 
             return false;
         }
-        private bool ParseGegevens(string gebruikersnaam) { //try parse gebruikersnaam string naar int
+        private bool ParseGegevens(string gebruikersnaam) { //try parse string naar int
             bool staffIdCorrect = int.TryParse(gebruikersnaam, out int result);
 
             if (!staffIdCorrect)
@@ -64,17 +67,17 @@ namespace UI {
 
             switch (rol) {
                 case "waiter":
-                    mainView.LoadView(new TestView());
+                    mobileView.LoadView(new TableView());
                     break;
-                case "owner":
-                    mainView.LoadView(new TestView());
+                /*case "owner":
+                    mobileView.LoadView(new OwnerView());
                     break;
                 case "bartender":
-                    mainView.LoadView(new TestView());
+                    mobileView.LoadView(new BarView());
                     break;
                 case "chef":
-                    mainView.LoadView(new TestView());
-                    break;
+                    mobileView.LoadView(new ChefView());
+                    break;*/
             }
         }
 
