@@ -34,6 +34,7 @@ namespace UI.DesktopViews {
                 orders.AddRange(
                     reservation
                         .Orders
+                        // Filter out any non-food menu items from all orders
                         .Select(order => {
                             order.MenuItems = order.MenuItems
                                 .Where(item => item.Type == foodType)
@@ -44,13 +45,12 @@ namespace UI.DesktopViews {
                         // Filter out any orders that do not contain food items
                         .Where(order => order.MenuItems.Count > 0)
 
-                        // Filter out any non-food menu items from all orders
                         
                         .ToList()
                 );
             }
 
-            int requiredNumberOfRows = (int) Math.Ceiling((decimal) orders.Count / 4);
+            int requiredNumberOfRows = (int) Math.Ceiling((decimal) orders.Count / 2);
 
             // Minimal one row
             requiredNumberOfRows = requiredNumberOfRows > 0 ? requiredNumberOfRows : 1;
@@ -74,6 +74,7 @@ namespace UI.DesktopViews {
                 GroupBox groupBox = new GroupBox() {
                     Text = $"Tafel {reservation.Table.Number}, {order.Tag}"
                 };
+
                 groupBox.Dock = DockStyle.Fill;
                 groupBox.Font = new Font(groupBox.Font, FontStyle.Bold);
 
@@ -82,6 +83,7 @@ namespace UI.DesktopViews {
                     BorderStyle = BorderStyle.None,
                     Height = groupBox.Height * 2 
                 };
+
                 Panel panel = new Panel() {
                     Dock = DockStyle.Bottom
                 };
@@ -92,7 +94,7 @@ namespace UI.DesktopViews {
                     Dock = DockStyle.Left,
                     Width = groupBox.Width 
                 };
-
+                buttonCancel.Click += delegate (object sender, EventArgs e) { CancelOrder(sender, e, order); };
                 Button buttonOrderReady = new Button() {
                     Text = "Bestelling klaarzetten",
                     BackColor = Color.Green,
@@ -111,6 +113,7 @@ namespace UI.DesktopViews {
                     item.SubItems.Add(menuItem.Name);
                     listView.Items.Add(item);
                 }
+
                 panel.Controls.Add(buttonCancel);
                 panel.Controls.Add(buttonOrderReady);
 
@@ -120,6 +123,10 @@ namespace UI.DesktopViews {
                 boxes.Add(groupBox);
             }
             return boxes;
+        }
+        protected void CancelOrder(object sender, EventArgs e, Order order) {
+            CancelOrderForm cancel = new CancelOrderForm(order);
+            cancel.ShowDialog();
         }
     }
 }
