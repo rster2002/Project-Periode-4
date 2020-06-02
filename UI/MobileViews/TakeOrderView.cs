@@ -155,6 +155,7 @@ namespace UI.MobileViews {
 
             foreach (Model.MenuItem menuItem in order.MenuItems) {
                 ListViewItem item = new ListViewItem(menuItem.Name);
+                item.SubItems.Add(menuItem.Comment != null ? menuItem.Comment : "");
                 item.SubItems.Add(menuItem.Amount + "x");
                 item.Tag = menuItem;
 
@@ -163,6 +164,8 @@ namespace UI.MobileViews {
         }
 
         private void OrderListOnEntrySelect(object sender, EventArgs e) {
+            if (orderList.SelectedItems.Count == 0) return;
+
             Model.MenuItem menuItem = (Model.MenuItem) orderList.SelectedItems[0].Tag;
 
             ShowPopupDialog(menuItem);
@@ -172,6 +175,7 @@ namespace UI.MobileViews {
             loadedMenuItem = menuItem;
 
             dialogTitleLbl.Text = menuItem.Name;
+            menuItemAmountNumberBox.Value = menuItem.Amount;
 
             popupDialog.Visible = true;
         }
@@ -180,14 +184,26 @@ namespace UI.MobileViews {
             popupDialog.Visible = false;
         }
 
-        private void AddCommentToMenuItemButtonOnClick(object sender, EventArgs e) {
+        private void PopupDialogOnClick(object sender, EventArgs e) {
+            HidePopupDialog();
+        }
+
+        private void DialogConfirmButtonOnClick(object sender, EventArgs e) {
             loadedMenuItem.Comment = commentTextbox.Text;
+            loadedMenuItem.Amount = (int) menuItemAmountNumberBox.Value;
+
+            RefreshOrderList();
+            HidePopupDialog();
+        }
+
+        private void DialogRemoveButtonOnClick(object sender, EventArgs e) {
+            order.MenuItems.Remove(loadedMenuItem);
+
             HidePopupDialog();
         }
 
         private void ConfirmOrderButtonOnClick(object sender, EventArgs e) {
             OrderService orderService = new OrderService();
-            ReservationService reservationService = new ReservationService();
             Random random = new Random();
             int orderId = random.Next(0, 999999);
 
@@ -195,14 +211,7 @@ namespace UI.MobileViews {
             order.PlacedAt = DateTime.Now;
             order.PlacedBy = userSession.LoggedInStaff;
 
-            Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
-            if (reservation == null) {
-                int reservationId = random.Next(0, 999999);
-                reservationService.AddReservation(reservationId, table.Number);
-            }
-
-            orderService.AddOrder(order.Id, reservation.Id, order.PlacedAt, order.PlacedBy.Id);
-            orderService.AddOrderItems(order, order.MenuItems);
+            orderService.PlaceOrder(table, order);
         }
     }
 }

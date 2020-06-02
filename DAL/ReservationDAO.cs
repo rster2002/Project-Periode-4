@@ -89,7 +89,7 @@ namespace DAL {
             Param("number", number);
 
             List<Reservation> reservations = Execute();
-            return reservations.Count == 1 ? reservations[0] : null;
+            return reservations.Count >= 1 ? reservations[0] : null;
         }
         #endregion Read
 

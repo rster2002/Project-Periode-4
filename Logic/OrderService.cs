@@ -10,17 +10,31 @@ using Model;
 namespace Model {
     public class OrderService {
         private OrderDAO orderDAO = new OrderDAO();
+        private ReservationService reservationService = new ReservationService();
 
         #region Create
-        public void AddOrder(int reservationId, DateTime placedAt, int placedBy) => orderDAO.Insert(reservationId, placedAt, placedBy);
-        public void AddOrder(int reservationId, DateTime placedAt, int placedBy, int receiptId) => orderDAO.Insert(reservationId, placedAt, placedBy, receiptId);
-        public void AddOrder(int reservationId, DateTime placedAt, int placedBy, string tag) => orderDAO.Insert(reservationId, placedAt, placedBy, tag);
-        public void AddOrder(int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) => orderDAO.Insert(reservationId, placedAt, placedBy, receiptId, tag);
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy);
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, receiptId);
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, tag);
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, receiptId, tag);
         public void AddOrderItems(Order order, List<MenuItem> menuItems) => orderDAO.InsertMenuItems(order, menuItems);
+
+        public void PlaceOrder(Table table, Order order) {
+            Random random = new Random();
+            Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
+
+            if (reservation == null) {
+                int reservationId = random.Next(0, 999999);
+                reservationService.AddReservation(reservationId, table.Number);
+
+                reservation = new Reservation() {
+                    Id = reservationId
+                };
+            }
+
+            AddOrder(order.Id, reservation.Id, order.PlacedAt, order.PlacedBy.Id);
+            AddOrderItems(order, order.MenuItems);
+        }
         #endregion Create
 
         #region Read

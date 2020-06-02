@@ -20,8 +20,6 @@ namespace DAL {
 
         #region Create
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy) {
-            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
-
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, NULL)");
 
@@ -31,12 +29,9 @@ namespace DAL {
             Param("placedBy", placedBy);
 
             Execute();
-            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) {
-            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
-
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, NULL)");
 
@@ -47,12 +42,9 @@ namespace DAL {
             Param("receiptId", receiptId);
 
             Execute();
-            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) {
-            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
-
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, @tag)");
 
@@ -63,65 +55,13 @@ namespace DAL {
             Param("tag", tag);
 
             Execute();
-            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
         }
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
-            ExecuteQuery("SET IDENTITY_INSERT [Order] ON");
-
             Line("INSERT INTO [Order]");
             Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, @tag)");
 
             Param("orderId", orderId);
-            Param("reservationId", reservationId);
-            Param("placedAt", placedAt);
-            Param("placedBy", placedBy);
-            Param("receiptId", receiptId);
-            Param("tag", tag);
-
-            Execute();
-            ExecuteQuery("SET IDENTITY_INSERT [Order] OFF");
-        }
-
-        public void Insert(int reservationId, DateTime placedAt, int placedBy) {
-            Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, NULL, NULL)");
-
-            Param("reservationId", reservationId);
-            Param("placedAt", placedAt);
-            Param("placedBy", placedBy);
-
-            Execute();
-        }
-
-        public void Insert(int reservationId, DateTime placedAt, int placedBy, int receiptId) {
-            Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, @receiptId, NULL)");
-
-            Param("reservationId", reservationId);
-            Param("placedAt", placedAt);
-            Param("placedBy", placedBy);
-            Param("receiptId", receiptId);
-
-            Execute();
-        }
-
-        public void Insert(int reservationId, DateTime placedAt, int placedBy, string tag) {
-            Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, NULL, @tag)");
-
-            Param("reservationId", reservationId);
-            Param("placedAt", placedAt);
-            Param("placedBy", placedBy);
-            Param("tag", tag);
-
-            Execute();
-        }
-
-        public void Insert(int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
-            Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, @receiptId, @tag)");
-
             Param("reservationId", reservationId);
             Param("placedAt", placedAt);
             Param("placedBy", placedBy);
@@ -138,9 +78,18 @@ namespace DAL {
                 MenuItem item = menuItems[i];
 
                 Param("menuItemId" + i, item.Id);
-                Param("comment" + 1, item.Comment);
 
-                values.Add($"(@orderId, @menuItemId{i}, @comment{i})");
+                string valueString;
+                if (item.Comment != null) {
+                    Param("comment" + i, item.Comment);
+                    valueString = $"(@orderId, @menuItemId{i}, @comment{i})";
+                } else {
+                    valueString = $"(@orderId, @menuItemId{i}, NULL)";
+                }
+
+                for (int j = 0; j < item.Amount; j++) {
+                    values.Add(valueString);
+                }
             }
 
             Param("orderId", order.Id);
