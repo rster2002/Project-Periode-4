@@ -13,11 +13,11 @@ using UI.MobileViews;
 namespace UI {
     public partial class MobileView: Form {
         private static MobileView instance;
-        private List<UserControl> history = new List<UserControl>();
+        private List<HistoryItem> history = new List<HistoryItem>();
 
         private MobileView() {
             InitializeComponent();
-            LoadView(new TableView());
+            LoadView(new TableView(), "Tavels");
         }
 
         public static MobileView GetInstance() {
@@ -30,7 +30,10 @@ namespace UI {
             userControl.Dock = DockStyle.Fill;
 
             if (trackInHistory) {
-                history.Add(userControl);
+                history.Add(new HistoryItem() {
+                    UserControl = userControl,
+                    LabelText = currentPageLbl.Text
+                });
             }
 
             ShowBackButton();
@@ -38,13 +41,26 @@ namespace UI {
             mainPanel.Controls.Add(userControl);
         }
 
+        public void LoadView(UserControl userControl, string setLabelText, bool trackInHistort = true) {
+            currentPageLbl.Text = setLabelText;
+            LoadView(userControl, trackInHistort);
+        }
+
         private void ShowBackButton() {
             historyBackButton.Visible = history.Count > 1;
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void HistoryBackButtonOnClick(object sender, EventArgs e) {
             history.Remove(history.Last());
-            LoadView(history.Last(), false);
+
+            HistoryItem lastHistoryItem = history.Last();
+            currentPageLbl.Text = lastHistoryItem.LabelText;
+            LoadView(lastHistoryItem.UserControl, false);
         }
+    }
+
+    class HistoryItem {
+        public UserControl UserControl { get; set; }
+        public string LabelText { get; set; }
     }
 }

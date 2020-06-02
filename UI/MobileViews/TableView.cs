@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Model;
 
 namespace UI.MobileViews {
+
     public partial class TableView: UserControl {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableView));
         private TableService tableSerivce = new TableService();
@@ -58,7 +59,7 @@ namespace UI.MobileViews {
             pictureBox.Click += TablePanelOnClick;
 
             // Prepare label
-            label.Text = "Table " + table.Number;
+            label.Text = "Tafel " + table.Number;
             label.Dock = DockStyle.Bottom;
             label.Location = new Point(0, 121);
             label.Size = new Size(193, 20);
@@ -87,7 +88,7 @@ namespace UI.MobileViews {
             PictureBox pictureBox = (PictureBox) sender;
             Table table = (Table) pictureBox.Tag;
 
-            mobileView.LoadView(new TableControlsView(table));
+            mobileView.LoadView(new TableControlsView(table), "Tafel " + table.Number);
         }
     }
 }

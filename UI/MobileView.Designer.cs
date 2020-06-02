@@ -27,6 +27,7 @@
             this.topBarPanel = new System.Windows.Forms.Panel();
             this.historyBackButton = new System.Windows.Forms.Button();
             this.currentScreenLbl = new System.Windows.Forms.Label();
+            this.currentPageLbl = new System.Windows.Forms.Label();
             this.topBarPanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,6 +42,7 @@
             // topBarPanel
             // 
             this.topBarPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.topBarPanel.Controls.Add(this.currentPageLbl);
             this.topBarPanel.Controls.Add(this.historyBackButton);
             this.topBarPanel.Controls.Add(this.currentScreenLbl);
             this.topBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
@@ -63,7 +65,7 @@
             this.historyBackButton.Text = "Terug";
             this.historyBackButton.UseVisualStyleBackColor = false;
             this.historyBackButton.Visible = false;
-            this.historyBackButton.Click += new System.EventHandler(this.button1_Click);
+            this.historyBackButton.Click += new System.EventHandler(this.HistoryBackButtonOnClick);
             // 
             // currentScreenLbl
             // 
@@ -74,6 +76,16 @@
             this.currentScreenLbl.Name = "currentScreenLbl";
             this.currentScreenLbl.Size = new System.Drawing.Size(0, 24);
             this.currentScreenLbl.TabIndex = 1;
+            // 
+            // currentPageLbl
+            // 
+            this.currentPageLbl.AutoSize = true;
+            this.currentPageLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.currentPageLbl.ForeColor = System.Drawing.Color.White;
+            this.currentPageLbl.Location = new System.Drawing.Point(12, 8);
+            this.currentPageLbl.Name = "currentPageLbl";
+            this.currentPageLbl.Size = new System.Drawing.Size(0, 26);
+            this.currentPageLbl.TabIndex = 0;
             // 
             // MobileView
             // 
@@ -97,5 +109,6 @@
         private System.Windows.Forms.Panel topBarPanel;
         private System.Windows.Forms.Label currentScreenLbl;
         private System.Windows.Forms.Button historyBackButton;
+        private System.Windows.Forms.Label currentPageLbl;
     }
 }
