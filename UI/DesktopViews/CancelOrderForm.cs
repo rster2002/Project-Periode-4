@@ -27,7 +27,8 @@ namespace UI.DesktopViews {
         }
 
         protected void DeleteOrder(object sender, EventArgs e) {
-           //orderService.DeleteById(order.Id);
+           //delete the order from the database by id
+           orderService.DeleteById(order.Id);
         }
     }
 }

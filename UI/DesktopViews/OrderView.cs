@@ -95,7 +95,8 @@ namespace UI.DesktopViews {
                     Width = groupBox.Width 
                 };
                 //make the click event with an extra parameter of order so our form has it too
-                buttonCancel.Click += delegate (object sender, EventArgs e) { CancelOrder(sender, e, order); };
+                //buttonCancel.Click += delegate (object sender, EventArgs e) { CancelOrder(sender, e, order); };
+                buttonCancel.Click += (sender, e) => CancelOrder(sender, e, order);
 
                 Button buttonOrderReady = new Button() {
                     Text = "Bestelling klaarzetten",
