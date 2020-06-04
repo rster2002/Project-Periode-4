@@ -65,6 +65,12 @@
     <Compile Include="DesktopViews\OrderView.Designer.cs">
       <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MobileViews\CheckoutView.resx">
       <DependentUpon>CheckoutView.cs</DependentUpon>

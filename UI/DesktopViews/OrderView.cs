@@ -45,7 +45,7 @@ namespace UI.DesktopViews {
                         // Filter out any orders that do not contain food items
                         .Where(order => order.MenuItems.Count > 0)
 
-                        
+
                         .ToList()
                 );
             }
@@ -56,13 +56,13 @@ namespace UI.DesktopViews {
             requiredNumberOfRows = requiredNumberOfRows > 0 ? requiredNumberOfRows : 1;
             decimal rowHeight = 100 / requiredNumberOfRows;
 
-            for(int i = 0; i < requiredNumberOfRows; i++) {
+            for (int i = 0; i < requiredNumberOfRows; i++) {
                 orderOverviewLayout.RowCount++;
 
                 orderOverviewLayout.RowStyles.Add(new RowStyle(SizeType.Percent, (float) rowHeight));
             }
 
-            foreach(Reservation reservation in reservations) {
+            foreach (Reservation reservation in reservations) {
                 orderOverviewLayout.Controls.AddRange(GenerateOrderPanel(reservation).ToArray());
             }
         }
@@ -81,7 +81,7 @@ namespace UI.DesktopViews {
                 ListView listView = new ListView() {
                     View = View.Details,
                     BorderStyle = BorderStyle.None,
-                    Height = groupBox.Height * 2 
+                    Height = groupBox.Height * 2
                 };
 
                 Panel panel = new Panel() {
@@ -92,7 +92,7 @@ namespace UI.DesktopViews {
                     Text = "Annuleer",
                     BackColor = Color.Red,
                     Dock = DockStyle.Left,
-                    Width = groupBox.Width 
+                    Width = groupBox.Width
                 };
                 //make the click event with an extra parameter of order so our form has it too
                 //buttonCancel.Click += delegate (object sender, EventArgs e) { CancelOrder(sender, e, order); };
@@ -105,13 +105,15 @@ namespace UI.DesktopViews {
                     Width = groupBox.Width
                 };
 
+                buttonOrderReady.Click += (sender, e) => PrepareOrder(sender, e, order);
+
                 listView.Font = new Font(listView.Font, FontStyle.Regular);
                 listView.Columns.Add("Aantal");
-                listView.Columns.Add("Gerechten",300);
+                listView.Columns.Add("Gerechten", 300);
                 listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                 listView.Dock = DockStyle.Top;
 
-                foreach(Model.MenuItem menuItem in order.MenuItems) {
+                foreach (Model.MenuItem menuItem in order.MenuItems) {
                     ListViewItem item = new ListViewItem(menuItem.Amount.ToString());
                     item.SubItems.Add(menuItem.Name);
                     listView.Items.Add(item);
@@ -131,6 +133,12 @@ namespace UI.DesktopViews {
             //make the pop up and give the order with it
             CancelOrderForm cancel = new CancelOrderForm(order);
             cancel.ShowDialog();
+        }
+
+        protected void PrepareOrder(object sender, EventArgs e, Order order) {
+            //make the up up and give the order with it
+            PrepareOrderForm prepare = new PrepareOrderForm(order);
+            prepare.ShowDialog();
         }
     }
 }
