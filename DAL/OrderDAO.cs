@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
@@ -21,7 +22,7 @@ namespace DAL {
         #region Create
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, NULL)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, NULL, 'open')");
 
             Param("orderId", orderId);
             Param("reservationId", reservationId);
@@ -33,7 +34,7 @@ namespace DAL {
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, NULL)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, NULL, 'open')");
 
             Param("orderId", orderId);
             Param("reservationId", reservationId);
@@ -46,7 +47,7 @@ namespace DAL {
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, @tag)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, @tag, 'open')");
 
             Param("orderId", orderId);
             Param("reservationId", reservationId);
@@ -59,7 +60,7 @@ namespace DAL {
 
         public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, @tag)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, @tag, 'open')");
 
             Param("orderId", orderId);
             Param("reservationId", reservationId);
@@ -71,6 +72,7 @@ namespace DAL {
             Execute();
         }
 
+        // Placed in this DAO because 'OrderItem' does not have it's own DAO
         public void InsertMenuItems(Order order, List<MenuItem> menuItems) {
             List<string> values = new List<string>();
 
@@ -272,6 +274,26 @@ namespace DAL {
 
             Execute();
         }
+
+        public void OpenOrder(int id) {
+            Line("UPDATE [Order]");
+            Line("SET [Status] = 'open'");
+            Line("WHERE [OrderId] = @id");
+
+            Param("id", id);
+
+            Execute();
+        }
+
+        public void CloseOrder(int id) {
+            Line("UPDATE [Order]");
+            Line("SET [Status] = 'closed'");
+            Line("WHERE [OrderId] = @id");
+
+            Param("id", id);
+
+            Execute();
+        }
         #endregion Update
 
         #region Delete
@@ -348,6 +370,7 @@ namespace DAL {
                     Role = (string) record["StaffRole"]
                 },
                 PlacedAt = (DateTime) record["OrderPlacedDateTime"],
+                Status = (string) record["Status"],
             };
         }
     }
