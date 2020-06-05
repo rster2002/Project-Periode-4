@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using System.Reflection;
+using System.Data.SqlTypes;
 
 namespace UI.MobileViews {
     public partial class CheckoutView: UserControl {
@@ -18,6 +19,8 @@ namespace UI.MobileViews {
 
         public CheckoutView(Table table) {
             InitializeComponent();
+            Size = new Size(398, 649);
+            paymentMethodDialog.Dock = DockStyle.Fill;
 
             this.table = table;
             GetOrder();
@@ -103,6 +106,18 @@ namespace UI.MobileViews {
         private decimal GetTotalPrice(List<Model.MenuItem> menuItems) {
             return menuItems
                 .Sum(menuItem => menuItem.Price * menuItem.Amount);
+        }
+
+        private void StartPaymentButtonOnClick(object sender, EventArgs e) {
+            ShowPaymentMethodDialog();
+        }
+
+        private void ShowPaymentMethodDialog() {
+            paymentMethodDialog.Visible = true;
+        }
+
+        private void HidePaymentMethodDialog() {
+            paymentMethodDialog.Visible = false;
         }
     }
 }

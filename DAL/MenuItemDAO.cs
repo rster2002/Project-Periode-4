@@ -31,6 +31,23 @@ namespace DAL {
             return Execute();
         }
 
+        public void ApplyMenuItemsToStock(List<MenuItem> menuItems) {
+            Line("UPDATE [MenuItem]");
+            Line("SET [InStock] = CASE");
+
+            for (int i = 0; i < menuItems.Count; i++) {
+                MenuItem currentItem = menuItems[i];
+                Line($"WHEN [MenuItemId] = @menuItemId{i} THEN [InStock] - @stockChange{i}");
+
+                Param("menuItemId" + i, currentItem.Id);
+                Param("stockChange" + i, currentItem.Amount);
+            }
+
+            Line("ELSE [InStock] END");
+
+            Execute();
+        }
+
         protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
                 Id = (int) record["MenuItemId"],

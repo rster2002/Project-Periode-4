@@ -12,6 +12,7 @@ namespace Model {
     public class OrderService {
         private Random random = new Random();
         private OrderDAO orderDAO = new OrderDAO();
+        private MenuItemService menuItemService = new MenuItemService();
         private ReservationService reservationService = new ReservationService();
         private UserSession userSession = UserSession.GetInstance();
 
@@ -70,6 +71,8 @@ namespace Model {
                 AddOrder(baseOrder.Id, reservation.Id, baseOrder.PlacedAt, baseOrder.PlacedBy.Id);
                 AddOrderItems(baseOrder, menuItems);
             }
+
+            menuItemService.UpdateStock(menuItems);
         }
 
         private Order GenerateOrderForSubtype(Order baseOrder, string subtype) {

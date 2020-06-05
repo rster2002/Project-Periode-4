@@ -214,7 +214,7 @@ namespace UI.MobileViews {
             OrderService orderService = new OrderService();
             orderService.PlaceOrder(table, order.MenuItems, splitOrderCheckbox.Checked);
 
-            mobileView.LoadView(new TableView());
+            mobileView.ResetTo(new TableView(), "Tafels");
         }
 
         private void CancelOrderButtonOnClick(object sender, EventArgs e) {

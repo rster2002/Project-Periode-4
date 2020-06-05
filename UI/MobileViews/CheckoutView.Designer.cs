@@ -32,8 +32,9 @@
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.button1 = new System.Windows.Forms.Button();
+            this.startPaymentButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.paymentMethodDialog = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +47,7 @@
             this.menuItemsList.HideSelection = false;
             this.menuItemsList.Location = new System.Drawing.Point(3, 3);
             this.menuItemsList.Name = "menuItemsList";
-            this.menuItemsList.Size = new System.Drawing.Size(392, 355);
+            this.menuItemsList.Size = new System.Drawing.Size(392, 307);
             this.menuItemsList.TabIndex = 0;
             this.menuItemsList.UseCompatibleStateImageBehavior = false;
             this.menuItemsList.View = System.Windows.Forms.View.Details;
@@ -106,16 +107,17 @@
             this.numericUpDown1.Size = new System.Drawing.Size(392, 26);
             this.numericUpDown1.TabIndex = 4;
             // 
-            // button1
+            // startPaymentButton
             // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(3, 611);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(392, 35);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Betaal";
-            this.button1.UseVisualStyleBackColor = false;
+            this.startPaymentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
+            this.startPaymentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startPaymentButton.Location = new System.Drawing.Point(3, 611);
+            this.startPaymentButton.Name = "startPaymentButton";
+            this.startPaymentButton.Size = new System.Drawing.Size(392, 35);
+            this.startPaymentButton.TabIndex = 5;
+            this.startPaymentButton.Text = "Betaal";
+            this.startPaymentButton.UseVisualStyleBackColor = false;
+            this.startPaymentButton.Click += new System.EventHandler(this.StartPaymentButtonOnClick);
             // 
             // label2
             // 
@@ -127,18 +129,27 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Fooi";
             // 
+            // paymentMethodDialog
+            // 
+            this.paymentMethodDialog.Location = new System.Drawing.Point(401, 3);
+            this.paymentMethodDialog.Name = "paymentMethodDialog";
+            this.paymentMethodDialog.Size = new System.Drawing.Size(398, 649);
+            this.paymentMethodDialog.TabIndex = 7;
+            this.paymentMethodDialog.Visible = false;
+            // 
             // CheckoutView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.paymentMethodDialog);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.startPaymentButton);
             this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.VATListView);
             this.Controls.Add(this.menuItemsList);
             this.Name = "CheckoutView";
-            this.Size = new System.Drawing.Size(398, 649);
+            this.Size = new System.Drawing.Size(805, 649);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -156,7 +167,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button startPaymentButton;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel paymentMethodDialog;
     }
 }
