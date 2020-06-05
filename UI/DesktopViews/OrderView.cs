@@ -8,30 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
+using MenuItem = Model.MenuItem;
 
 namespace UI.DesktopViews {
-    public partial class OrderBarView: UserControl {
+    public partial class OrderView: UserControl {
         private ReservationService reservationSerivce = new ReservationService();
         private List<Reservation> reservations;
-        private string drinkType;
-        public OrderBarView(string drinkType) {
-            this.drinkType = drinkType;
+        private string foodType;
+
+        public OrderView(string foodType) {
+            this.foodType = foodType;
             InitializeComponent();
 
             reservations = reservationSerivce.GetAllReservations();
             PopulateOrderLayout();
         }
+
         private void PopulateOrderLayout() {
-            orderBarOverviewLayout.Controls.Clear();
-            orderBarOverviewLayout.RowCount = 0;
-            orderBarOverviewLayout.RowStyles.Clear();
+            orderKitchenOverviewLayout.Controls.Clear();
+            orderKitchenOverviewLayout.RowCount = 0;
+            orderKitchenOverviewLayout.RowStyles.Clear();
 
             reservations = reservations
                 .Select(reservation => {
                     reservation.Orders = reservation.Orders
                         .Select(order => {
                             order.MenuItems = GetAmount(order.MenuItems
-                                .Where(menuItem => menuItem.Type == drinkType)
+                                .Where(menuItem => menuItem.Type == foodType)
                                 .ToList());
 
                             return order;
@@ -55,20 +58,20 @@ namespace UI.DesktopViews {
             decimal rowHeight = 100 / requiredNumberOfRows;
 
             for (int i = 0; i < requiredNumberOfRows; i++) {
-                orderBarOverviewLayout.RowCount++;
+                orderKitchenOverviewLayout.RowCount++;
 
-                orderBarOverviewLayout.RowStyles.Add(new RowStyle(SizeType.Percent, (float) rowHeight));
+                orderKitchenOverviewLayout.RowStyles.Add(new RowStyle(SizeType.Percent, (float) rowHeight));
             }
 
             foreach (Reservation reservation in reservations) {
-                orderBarOverviewLayout.Controls.AddRange(GenerateOrderPanel(reservation).ToArray());
+                orderKitchenOverviewLayout.Controls.AddRange(GenerateOrderPanel(reservation).ToArray());
             }
         }
 
-        private List<Model.MenuItem> GetAmount(List<Model.MenuItem> menuItems) {
-            Dictionary<int, Model.MenuItem> menuItemMap = new Dictionary<int, Model.MenuItem>();
+        private List<MenuItem> GetAmount(List<Model.MenuItem> menuItems) {
+            Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
 
-            foreach (Model.MenuItem item in menuItems) {
+            foreach (MenuItem item in menuItems) {
 
                 int menuItemId = item.Id;
 

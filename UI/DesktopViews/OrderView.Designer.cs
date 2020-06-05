@@ -1,5 +1,5 @@
 ﻿namespace UI.DesktopViews {
-    partial class OrderKitchenView {
+    partial class OrderView {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -25,7 +25,9 @@
         private void InitializeComponent() {
             this.orderKitchenOverviewLayout = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.orderKitchenOverviewLayout.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // orderKitchenOverviewLayout
@@ -49,6 +51,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listView1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
@@ -56,6 +59,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
+            // 
+            // listView1
+            // 
+            this.listView1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(3, 16);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(464, 329);
+            this.listView1.TabIndex = 0;
+            this.listView1.UseCompatibleStateImageBehavior = false;
             // 
             // OrderKitchenView
             // 
@@ -65,6 +78,7 @@
             this.Name = "OrderKitchenView";
             this.Size = new System.Drawing.Size(1904, 982);
             this.orderKitchenOverviewLayout.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -73,5 +87,6 @@
 
         private System.Windows.Forms.TableLayoutPanel orderKitchenOverviewLayout;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListView listView1;
     }
 }

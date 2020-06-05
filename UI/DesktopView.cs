@@ -58,11 +58,11 @@ namespace UI {
         }
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
-            LoadView(new OrderKitchenView("food"));
+            LoadView(new OrderView("food"));
         }
 
         private void BarToolStripMenuItem_Click(object sender, EventArgs e) {
-            LoadView(new OrderBarView("drink"));
+            LoadView(new OrderView("drink"));
         }
     }
 }
