@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
+using MenuItem = Model.MenuItem;
 
 namespace UI.DesktopViews {
     public partial class OrderView: UserControl {
@@ -28,27 +29,49 @@ namespace UI.DesktopViews {
             orderOverviewLayout.RowCount = 0;
             orderOverviewLayout.RowStyles.Clear();
 
-            List<Order> orders = new List<Order>();
+            //List<Order> orders = new List<Order>();
 
-            foreach (Reservation reservation in reservations) {
-                orders.AddRange(
-                    reservation
-                        .Orders
-                        // Filter out any non-food menu items from all orders
+            //foreach (Reservation reservation in reservations) {
+            //    orders.AddRange(
+            //        reservation
+            //            .Orders
+            //            // Filter out any non-food menu items from all orders
+            //            .Select(order => {
+            //                order.MenuItems = order.MenuItems
+            //                    .Where(item => item.Type == foodType)
+            //                    .ToList();
+
+            //                return order;
+            //            })
+            //            // Filter out any orders that do not contain food items
+            //            .Where(order => order.MenuItems.Count > 0)
+
+
+            //            .ToList()
+            //    );
+            //}
+
+            reservations = reservations
+                .Select(reservation => {
+                    reservation.Orders = reservation.Orders
                         .Select(order => {
-                            order.MenuItems = order.MenuItems
-                                .Where(item => item.Type == foodType)
-                                .ToList();
+                            order.MenuItems = GetAmount(order.MenuItems
+                                .Where(menuItem => menuItem.Type == foodType)
+                                .ToList());
 
                             return order;
                         })
-                        // Filter out any orders that do not contain food items
                         .Where(order => order.MenuItems.Count > 0)
+                        .ToList();
 
+                    return reservation;
+                })
+                .Where(reservation => reservation.Orders.Count > 0)
+                .ToList();
 
-                        .ToList()
-                );
-            }
+            List<Order> orders = reservations
+                .SelectMany(reservation => reservation.Orders)
+                .ToList();
 
             int requiredNumberOfRows = (int) Math.Ceiling((decimal) orders.Count / 2);
 
@@ -67,6 +90,24 @@ namespace UI.DesktopViews {
             }
         }
 
+        private List<MenuItem> GetAmount(List<Model.MenuItem> menuItems) {
+            Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
+
+            foreach (MenuItem item in menuItems) {
+
+                int menuItemId = item.Id;
+
+                if (!menuItemMap.ContainsKey(menuItemId)) {
+                    item.Amount = 1;
+                    menuItemMap[menuItemId] = item;
+                } else {
+                    menuItemMap[menuItemId].Amount++;
+                }
+
+            }
+
+            return menuItemMap.Values.ToList();
+        }
         private List<GroupBox> GenerateOrderPanel(Reservation reservation) {
             List<GroupBox> boxes = new List<GroupBox>();
 
