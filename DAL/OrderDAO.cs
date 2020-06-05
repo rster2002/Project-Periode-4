@@ -19,10 +19,11 @@ namespace DAL {
         }
 
         #region Create
-        public void Insert(int reservationId, DateTime placedAt, int placedBy) {
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, NULL, NULL)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, NULL)");
 
+            Param("orderId", orderId);
             Param("reservationId", reservationId);
             Param("placedAt", placedAt);
             Param("placedBy", placedBy);
@@ -30,10 +31,11 @@ namespace DAL {
             Execute();
         }
 
-        public void Insert(int reservationId, DateTime placedAt, int placedBy, int receiptId) {
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, @receiptId, NULL)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, NULL)");
 
+            Param("orderId", orderId);
             Param("reservationId", reservationId);
             Param("placedAt", placedAt);
             Param("placedBy", placedBy);
@@ -42,10 +44,11 @@ namespace DAL {
             Execute();
         }
 
-        public void Insert(int reservationId, DateTime placedAt, int placedBy, string tag) {
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, string tag) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, NULL, @tag)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, NULL, @tag)");
 
+            Param("orderId", orderId);
             Param("reservationId", reservationId);
             Param("placedAt", placedAt);
             Param("placedBy", placedBy);
@@ -54,15 +57,45 @@ namespace DAL {
             Execute();
         }
 
-        public void Insert(int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
+        public void Insert(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) {
             Line("INSERT INTO [Order]");
-            Line("VALUES (@reservationId, @placedAt, @placedBy, @receiptId, @tag)");
+            Line("VALUES (@orderId, @reservationId, @placedAt, @placedBy, @receiptId, @tag)");
 
+            Param("orderId", orderId);
             Param("reservationId", reservationId);
             Param("placedAt", placedAt);
             Param("placedBy", placedBy);
             Param("receiptId", receiptId);
             Param("tag", tag);
+
+            Execute();
+        }
+
+        public void InsertMenuItems(Order order, List<MenuItem> menuItems) {
+            List<string> values = new List<string>();
+
+            for (int i = 0; i < menuItems.Count; i++) {
+                MenuItem item = menuItems[i];
+
+                Param("menuItemId" + i, item.Id);
+
+                string valueString;
+                if (item.Comment != null) {
+                    Param("comment" + i, item.Comment);
+                    valueString = $"(@orderId, @menuItemId{i}, @comment{i})";
+                } else {
+                    valueString = $"(@orderId, @menuItemId{i}, NULL)";
+                }
+
+                for (int j = 0; j < item.Amount; j++) {
+                    values.Add(valueString);
+                }
+            }
+
+            Param("orderId", order.Id);
+
+            Line("INSERT INTO [OrderItem]");
+            Line($"VALUES {String.Join(", ", values)}");
 
             Execute();
         }
@@ -71,6 +104,7 @@ namespace DAL {
         #region Read
         public override List<Order> GetAll() {
             BasicSelect();
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             return Execute();
         }
@@ -87,6 +121,7 @@ namespace DAL {
         public List<Order> GetByReservationId(int reservationId) {
             BasicSelect();
             Line("WHERE [ReservationId] = @reservationId");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("reservationId", reservationId);
 
@@ -96,6 +131,7 @@ namespace DAL {
         public List<Order> GetByReceiptId(int receiptId) {
             BasicSelect();
             Line("WHERE [ReceiptId] = @receiptId");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("receiptId", receiptId);
 
@@ -105,6 +141,7 @@ namespace DAL {
         public List<Order> GetByDateTimeRange(DateTime startDateTime, DateTime endDateTime) {
             BasicSelect();
             Line("WHERE [OrderPlacedDateTime] > @startDateTime AND [OrderPlacedDateTime] < @endDateTime");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("startDateTime", startDateTime);
             Param("endDateTime", endDateTime);
@@ -116,8 +153,23 @@ namespace DAL {
             BasicSelect();
             Line("JOIN [Reservation] ON [Order].ReservationId = [Reservation].ReservationId");
             Line("WHERE [TableNumber] = @tableNumber");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("tableNumber", tableNumber);
+
+            return Execute();
+        }
+
+        public List<Order> GetAllOrdersContainingDrinks() {
+            BasicSelect();
+            Line("WHERE [Type] = 'drink'");
+
+            return Execute();
+        }
+
+        public List<Order> GetAllOrdersContainingDishes() {
+            BasicSelect();
+            Line("WHERE [Type] = 'food'");
 
             return Execute();
         }
@@ -286,29 +338,6 @@ namespace DAL {
             return ordersMap.Values.ToList();
         }
 
-        //public override List<Order> ProcessRecords(List<Record> records) {
-        //    Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
-
-        //    foreach (Record record in records) {
-        //        int orderId = (int) record["OrderId"];
-
-        //        if (!ordersMap.ContainsKey(orderId)) {
-        //            ordersMap[orderId] = ProcessRecord(record);
-        //        }
-
-        //        ordersMap[orderId].MenuItems.Add(new MenuItem() {
-        //            Id = (int) record["MenuItemId"],
-        //            Name = (string) record["MenuItemName"],
-        //            Price = (decimal) record["Price"],
-        //            VAT = (int) record["VAT"],
-        //            AmountInStock = (int) record["InStock"],
-        //            Comment = (string) record["Comment"]
-        //        });
-        //    }
-
-        //    return ordersMap.Values.ToList();
-        //}
-
         protected override Order ProcessRecord(Record record) {
             return new Order() {
                 Id = (int) record["OrderId"],
@@ -318,7 +347,7 @@ namespace DAL {
                     Salt = (int) record["StaffSalt"],
                     Role = (string) record["StaffRole"]
                 },
-                PlacedAt = (DateTime) record["OrderPlacedDateTime"]
+                PlacedAt = (DateTime) record["OrderPlacedDateTime"],
             };
         }
     }

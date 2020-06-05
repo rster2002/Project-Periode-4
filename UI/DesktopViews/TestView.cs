@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace UI {
+namespace UI.DesktopViews {
     public partial class TestView: UserControl {
         public TestView() {
             InitializeComponent();
@@ -16,6 +16,7 @@ namespace UI {
 
         private void button1_Click(object sender, EventArgs e) {
             DesktopView desktopView = DesktopView.GetInstance();
+            
 
             button1.Text = desktopView.loggedIn.Name;
         }

@@ -1,28 +1,34 @@
 ﻿using Model;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DAL {
-    public class MenuItemDAO : SQLInterface<MenuItem> {
-
-        public override List<MenuItem> GetAll() {
+    public class MenuItemDAO: SQLInterface<MenuItem> {
+        private void BasicSelect() {
             Line("SELECT *");
             Line("FROM [MenuItem]");
+        }
+
+        public override List<MenuItem> GetAll() {
+            BasicSelect();
 
             return Execute();
         }
 
         public override MenuItem GetById(int id) {
-            Line("SELECT *");
-            Line("FROM [MenuItem]");
+            BasicSelect();
             Line("WHERE [MenuItemId] = @id");
 
             Param("id", id);
 
             return Execute()[0];
+        }
+
+        public List<MenuItem> GetDrinks() {
+            BasicSelect();
+            Line("WHERE [Type] = 'drink'");
+
+            return Execute();
         }
 
         protected override MenuItem ProcessRecord(Record record) {
@@ -31,9 +37,12 @@ namespace DAL {
                 Name = (string) record["MenuItemName"],
                 Price = (decimal) record["Price"],
                 VAT = (int) record["VAT"],
-                AmountInStock = (int) record["InStock"]
+                AmountInStock = (int) record["InStock"],
+                Type = (string) record["Type"],
+                Subtype = (string) record["SubType"]
             };
         }
+
         public override List<MenuItem> ProcessRecords(List<Record> records) {
             Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
 
