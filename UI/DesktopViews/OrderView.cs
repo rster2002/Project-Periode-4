@@ -110,12 +110,14 @@ namespace UI.DesktopViews {
                 listView.Font = new Font(listView.Font, FontStyle.Regular);
                 listView.Columns.Add("Aantal");
                 listView.Columns.Add("Gerechten", 300);
+                listView.Columns.Add("Opmerking", 300);
                 listView.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
                 listView.Dock = DockStyle.Top;
 
                 foreach (Model.MenuItem menuItem in order.MenuItems) {
                     ListViewItem item = new ListViewItem(menuItem.Amount.ToString());
                     item.SubItems.Add(menuItem.Name);
+                    item.SubItems.Add(menuItem.Comment);
                     listView.Items.Add(item);
                 }
 
