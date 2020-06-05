@@ -51,7 +51,7 @@
             // btnVoegtoe
             // 
             this.btnVoegtoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
-            this.btnVoegtoe.Location = new System.Drawing.Point(834, 791);
+            this.btnVoegtoe.Location = new System.Drawing.Point(817, 55);
             this.btnVoegtoe.Name = "btnVoegtoe";
             this.btnVoegtoe.Size = new System.Drawing.Size(232, 76);
             this.btnVoegtoe.TabIndex = 2;

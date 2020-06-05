@@ -69,6 +69,8 @@ namespace UI  {
                 nextLabelYAxis += 65;
             }
 
+            
+
         }
 
         void OpenEmployeePage(int employeeId, object sender) {
