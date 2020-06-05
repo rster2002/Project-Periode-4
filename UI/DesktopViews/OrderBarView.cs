@@ -8,55 +8,30 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
-using MenuItem = Model.MenuItem;
 
 namespace UI.DesktopViews {
-    public partial class OrderView: UserControl {
+    public partial class OrderBarView: UserControl {
         private ReservationService reservationSerivce = new ReservationService();
         private List<Reservation> reservations;
-        private string foodType;
-
-        public OrderView(string foodType) {
-            this.foodType = foodType;
+        private string drinkType;
+        public OrderBarView(string drinkType) {
+            this.drinkType = drinkType;
             InitializeComponent();
 
             reservations = reservationSerivce.GetAllReservations();
             PopulateOrderLayout();
         }
-
         private void PopulateOrderLayout() {
-            orderOverviewLayout.Controls.Clear();
-            orderOverviewLayout.RowCount = 0;
-            orderOverviewLayout.RowStyles.Clear();
-
-            //List<Order> orders = new List<Order>();
-
-            //foreach (Reservation reservation in reservations) {
-            //    orders.AddRange(
-            //        reservation
-            //            .Orders
-            //            // Filter out any non-food menu items from all orders
-            //            .Select(order => {
-            //                order.MenuItems = order.MenuItems
-            //                    .Where(item => item.Type == foodType)
-            //                    .ToList();
-
-            //                return order;
-            //            })
-            //            // Filter out any orders that do not contain food items
-            //            .Where(order => order.MenuItems.Count > 0)
-
-
-            //            .ToList()
-            //    );
-            //}
+            orderBarOverviewLayout.Controls.Clear();
+            orderBarOverviewLayout.RowCount = 0;
+            orderBarOverviewLayout.RowStyles.Clear();
 
             reservations = reservations
                 .Select(reservation => {
                     reservation.Orders = reservation.Orders
                         .Select(order => {
                             order.MenuItems = GetAmount(order.MenuItems
-                                .Where(menuItem => menuItem.Type == foodType)
+                                .Where(menuItem => menuItem.Type == drinkType)
                                 .ToList());
 
                             return order;
@@ -80,20 +55,20 @@ namespace UI.DesktopViews {
             decimal rowHeight = 100 / requiredNumberOfRows;
 
             for (int i = 0; i < requiredNumberOfRows; i++) {
-                orderOverviewLayout.RowCount++;
+                orderBarOverviewLayout.RowCount++;
 
-                orderOverviewLayout.RowStyles.Add(new RowStyle(SizeType.Percent, (float) rowHeight));
+                orderBarOverviewLayout.RowStyles.Add(new RowStyle(SizeType.Percent, (float) rowHeight));
             }
 
             foreach (Reservation reservation in reservations) {
-                orderOverviewLayout.Controls.AddRange(GenerateOrderPanel(reservation).ToArray());
+                orderBarOverviewLayout.Controls.AddRange(GenerateOrderPanel(reservation).ToArray());
             }
         }
 
-        private List<MenuItem> GetAmount(List<Model.MenuItem> menuItems) {
-            Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
+        private List<Model.MenuItem> GetAmount(List<Model.MenuItem> menuItems) {
+            Dictionary<int, Model.MenuItem> menuItemMap = new Dictionary<int, Model.MenuItem>();
 
-            foreach (MenuItem item in menuItems) {
+            foreach (Model.MenuItem item in menuItems) {
 
                 int menuItemId = item.Id;
 

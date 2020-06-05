@@ -59,11 +59,17 @@
     <Compile Include="DesktopViews\CancelOrderForm.Designer.cs">
       <DependentUpon>CancelOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DesktopViews\OrderView.cs">
+    <Compile Include="DesktopViews\OrderBarView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="DesktopViews\OrderView.Designer.cs">
-      <DependentUpon>OrderView.cs</DependentUpon>
+    <Compile Include="DesktopViews\OrderBarView.Designer.cs">
+      <DependentUpon>OrderBarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\OrderKitchenView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\OrderKitchenView.Designer.cs">
+      <DependentUpon>OrderKitchenView.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopViews\PrepareOrderForm.cs">
       <SubType>Form</SubType>
@@ -138,8 +144,11 @@
     <EmbeddedResource Include="DesktopViews\CancelOrderForm.resx">
       <DependentUpon>CancelOrderForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DesktopViews\OrderView.resx">
-      <DependentUpon>OrderView.cs</DependentUpon>
+    <EmbeddedResource Include="DesktopViews\OrderBarView.resx">
+      <DependentUpon>OrderBarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\OrderKitchenView.resx">
+      <DependentUpon>OrderKitchenView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
