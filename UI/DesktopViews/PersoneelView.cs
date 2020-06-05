@@ -79,6 +79,12 @@ namespace UI  {
             popup.Location = newLocation;
             popup.ShowDialog();
         }
+
+        private void btnVoegtoe_Click(object sender, EventArgs e) {
+            Form voegtoePopup = new PersoneelAdd(this);
+            voegtoePopup.Location = new Point(this.Width/2-voegtoePopup.Width/2);
+            voegtoePopup.ShowDialog();
+        }
     }
 }
 

@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             this.labelNaam = new System.Windows.Forms.Label();
             this.labelFunctie = new System.Windows.Forms.Label();
+            this.btnVoegtoe = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelNaam
@@ -47,12 +48,24 @@
             this.labelFunctie.TabIndex = 1;
             this.labelFunctie.Text = "Functie";
             // 
+            // btnVoegtoe
+            // 
+            this.btnVoegtoe.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
+            this.btnVoegtoe.Location = new System.Drawing.Point(834, 791);
+            this.btnVoegtoe.Name = "btnVoegtoe";
+            this.btnVoegtoe.Size = new System.Drawing.Size(232, 76);
+            this.btnVoegtoe.TabIndex = 2;
+            this.btnVoegtoe.Text = "Voeg Medewerker Toe";
+            this.btnVoegtoe.UseVisualStyleBackColor = true;
+            this.btnVoegtoe.Click += new System.EventHandler(this.btnVoegtoe_Click);
+            // 
             // PersoneelView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
+            this.Controls.Add(this.btnVoegtoe);
             this.Controls.Add(this.labelFunctie);
             this.Controls.Add(this.labelNaam);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -67,5 +80,6 @@
 
         private System.Windows.Forms.Label labelNaam;
         private System.Windows.Forms.Label labelFunctie;
+        private System.Windows.Forms.Button btnVoegtoe;
     }
 }

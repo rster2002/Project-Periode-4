@@ -38,6 +38,11 @@ namespace UI {
         }
 
         private void PersoneelPopup_FormClosed(object sender, FormClosedEventArgs e) {
+            foreach (Control c in mainView.Controls.OfType<Label>().ToList()) {
+                if (c.Name == "") {
+                    c.Dispose();
+                }
+            }
             mainView.LoadPersoneelInfo();
         }
     }

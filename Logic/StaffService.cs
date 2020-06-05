@@ -14,7 +14,7 @@ namespace Model {
             try {
                 List<Staff> staff = staffDAO.GetAll();
                 return staff;
-            } catch {
+            } catch (Exception e) {
                 List<Staff> staff = new List<Staff>();
                 Staff staffMember = new Staff {
                     Id = 1,
@@ -65,6 +65,15 @@ namespace Model {
                 return false;
             }
 
+        }
+
+        public bool AddStaffMember(string name, string role, int salt, string pass) {
+            try {
+                staffDAO.AddStaffMember(name, role, salt, pass);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
         }
     }
 }
