@@ -23,8 +23,13 @@ namespace Model {
         public void AddOrder(int orderId, int reservationId, DateTime placedAt, int placedBy, int receiptId, string tag) => orderDAO.Insert(orderId, reservationId, placedAt, placedBy, receiptId, tag);
         public void AddOrderItems(Order order, List<MenuItem> menuItems) => orderDAO.InsertMenuItems(order, menuItems);
 
-        public void PlaceOrder(Table table, Order order, bool splitOrder = false) {
+        public void PlaceOrder(Table table, List<MenuItem> menuItems, bool splitOrder = false) {
             Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
+            Order baseOrder = new Order() {
+                PlacedAt = DateTime.Now,
+                PlacedBy = userSession.LoggedInStaff,
+                MenuItems = menuItems,
+            };
 
             if (reservation == null) {
                 int reservationId = random.Next(0, 999999);
@@ -40,32 +45,30 @@ namespace Model {
             if (splitOrder) {
                 List<string> subtypes = new List<string>();
 
-                foreach (MenuItem menuItem in order.MenuItems) {
+                foreach (MenuItem menuItem in menuItems) {
                     if (!subtypes.Contains(menuItem.Subtype) && menuItem.Type == "food") {
-                        Order subtypeOrder = GenerateOrderForSubtype(order, menuItem.Subtype);
+                        Order subtypeOrder = GenerateOrderForSubtype(baseOrder, menuItem.Subtype);
 
                         AddOrder(reservation.Id, subtypeOrder);
                         AddOrderItems(subtypeOrder, subtypeOrder.MenuItems);
                     }
                 }
 
-                List<MenuItem> drinks = order.MenuItems
+                List<MenuItem> drinks = menuItems
                     .Where(item => item.Type == "drink")
                     .ToList();
 
                 if (drinks.Count > 0) {
-                    Order drinksOrder = GenerateOrderForType(order, "drink");
+                    Order drinksOrder = GenerateOrderForType(baseOrder, "drink");
 
                     AddOrder(reservation.Id, drinksOrder);
                     AddOrderItems(drinksOrder, drinksOrder.MenuItems);
                 }
             } else {
-                order.Id = random.Next(0, 999999);
-                order.PlacedAt = DateTime.Now;
-                order.PlacedBy = userSession.LoggedInStaff;
+                baseOrder.Id = random.Next(0, 999999);
 
-                AddOrder(order.Id, reservation.Id, order.PlacedAt, order.PlacedBy.Id);
-                AddOrderItems(order, order.MenuItems);
+                AddOrder(baseOrder.Id, reservation.Id, baseOrder.PlacedAt, baseOrder.PlacedBy.Id);
+                AddOrderItems(baseOrder, menuItems);
             }
         }
 

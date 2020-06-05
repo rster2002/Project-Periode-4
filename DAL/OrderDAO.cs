@@ -347,7 +347,7 @@ namespace DAL {
                     Salt = (int) record["StaffSalt"],
                     Role = (string) record["StaffRole"]
                 },
-                PlacedAt = (DateTime) record["OrderPlacedDateTime"]
+                PlacedAt = (DateTime) record["OrderPlacedDateTime"],
             };
         }
     }

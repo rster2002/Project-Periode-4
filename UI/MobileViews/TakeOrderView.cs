@@ -212,7 +212,7 @@ namespace UI.MobileViews {
 
         private void BackToTablesViewButton(object sender, EventArgs e) {
             OrderService orderService = new OrderService();
-            orderService.PlaceOrder(table, order, splitOrderCheckbox.Checked);
+            orderService.PlaceOrder(table, order.MenuItems, splitOrderCheckbox.Checked);
 
             mobileView.LoadView(new TableView());
         }
