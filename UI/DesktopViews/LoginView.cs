@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Model;
 
-namespace UI {
+namespace UI.DesktopViews {
     public partial class LoginView: UserControl {
         private DesktopView mainView = DesktopView.GetInstance();
 

@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Model;
 
 namespace UI.MobileViews {
+
     public partial class TableView: UserControl {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableView));
         private TableService tableSerivce = new TableService();
@@ -51,19 +52,30 @@ namespace UI.MobileViews {
             // Prepare pictureBox
             pictureBox.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
             pictureBox.Dock = DockStyle.Top;
-            pictureBox.Size = new Size(186, 100);
+            pictureBox.Size = new Size(186, 90);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox.Location = new Point(4, 3);
             pictureBox.Tag = table;
             pictureBox.Click += TablePanelOnClick;
 
             // Prepare label
-            label.Text = "Table " + table.Number;
+            label.Text = "Tafel " + table.Number;
             label.Dock = DockStyle.Bottom;
             label.Location = new Point(0, 121);
             label.Size = new Size(193, 20);
             label.TextAlign = ContentAlignment.MiddleCenter;
             label.Font = new Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte) 0);
+
+            if (table.Status == "Available") {
+                label.ForeColor = Color.Black;
+                label.BackColor = Color.FromArgb(132, 204, 6);
+            } else if (table.Status == "Reserved") {
+                label.ForeColor = Color.Black;
+                label.BackColor = Color.FromArgb(221, 243, 17);
+            } else {
+                label.ForeColor = Color.White;
+                label.BackColor = Color.FromArgb(152, 0, 0);
+            }
 
             panel.Controls.Add(pictureBox);
             panel.Controls.Add(label);
@@ -76,7 +88,7 @@ namespace UI.MobileViews {
             PictureBox pictureBox = (PictureBox) sender;
             Table table = (Table) pictureBox.Tag;
 
-            mobileView.LoadView(new TableControlsView(table));
+            mobileView.LoadView(new TableControlsView(table), "Tafel " + table.Number);
         }
     }
 }

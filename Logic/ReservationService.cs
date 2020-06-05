@@ -12,6 +12,8 @@ namespace Model {
 
         public void AddReservation(int tableNumber) => reservationDAO.Insert(tableNumber, null);
         public void AddReservation(int tableNumber, object customerId) => reservationDAO.Insert(tableNumber, customerId);
+        public void AddReservation(int reservationId, int tableNumber) => reservationDAO.Insert(reservationId, tableNumber, null);
+        public void AddReservation(int reservationId, int tableNumber, object customerId) => reservationDAO.Insert(reservationId, tableNumber, customerId);
 
         public List<Reservation> GetAllReservations() => reservationDAO.GetAll();
         public Reservation GetReservationById(int id) => reservationDAO.GetById(id);

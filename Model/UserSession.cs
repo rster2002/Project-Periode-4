@@ -12,7 +12,8 @@ namespace Model {
 
         private UserSession() {
             LoggedInStaff = new Staff() {
-                Role = "owner"
+                Id = 5,
+                Role = "owner",
             };
         }
 

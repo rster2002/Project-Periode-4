@@ -1,4 +1,4 @@
-﻿namespace UI {
+﻿namespace UI.DesktopViews {
     partial class TestView {
         /// <summary> 
         /// Required designer variable.
