@@ -104,6 +104,7 @@ namespace DAL {
         #region Read
         public override List<Order> GetAll() {
             BasicSelect();
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             return Execute();
         }
@@ -120,6 +121,7 @@ namespace DAL {
         public List<Order> GetByReservationId(int reservationId) {
             BasicSelect();
             Line("WHERE [ReservationId] = @reservationId");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("reservationId", reservationId);
 
@@ -129,6 +131,7 @@ namespace DAL {
         public List<Order> GetByReceiptId(int receiptId) {
             BasicSelect();
             Line("WHERE [ReceiptId] = @receiptId");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("receiptId", receiptId);
 
@@ -138,6 +141,7 @@ namespace DAL {
         public List<Order> GetByDateTimeRange(DateTime startDateTime, DateTime endDateTime) {
             BasicSelect();
             Line("WHERE [OrderPlacedDateTime] > @startDateTime AND [OrderPlacedDateTime] < @endDateTime");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("startDateTime", startDateTime);
             Param("endDateTime", endDateTime);
@@ -149,6 +153,7 @@ namespace DAL {
             BasicSelect();
             Line("JOIN [Reservation] ON [Order].ReservationId = [Reservation].ReservationId");
             Line("WHERE [TableNumber] = @tableNumber");
+            Line("ORDER BY [OrderPlacedDateTime] ASC");
 
             Param("tableNumber", tableNumber);
 
@@ -332,29 +337,6 @@ namespace DAL {
 
             return ordersMap.Values.ToList();
         }
-
-        //public override List<Order> ProcessRecords(List<Record> records) {
-        //    Dictionary<int, Order> ordersMap = new Dictionary<int, Order>();
-
-        //    foreach (Record record in records) {
-        //        int orderId = (int) record["OrderId"];
-
-        //        if (!ordersMap.ContainsKey(orderId)) {
-        //            ordersMap[orderId] = ProcessRecord(record);
-        //        }
-
-        //        ordersMap[orderId].MenuItems.Add(new MenuItem() {
-        //            Id = (int) record["MenuItemId"],
-        //            Name = (string) record["MenuItemName"],
-        //            Price = (decimal) record["Price"],
-        //            VAT = (int) record["VAT"],
-        //            AmountInStock = (int) record["InStock"],
-        //            Comment = (string) record["Comment"]
-        //        });
-        //    }
-
-        //    return ordersMap.Values.ToList();
-        //}
 
         protected override Order ProcessRecord(Record record) {
             return new Order() {

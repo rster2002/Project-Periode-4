@@ -17,7 +17,7 @@ namespace UI {
 
         private MobileView() {
             InitializeComponent();
-            LoadView(new TableView(), "Tavels");
+            LoadView(new TableView(), "Tafels");
         }
 
         public static MobileView GetInstance() {
@@ -47,7 +47,11 @@ namespace UI {
         }
 
         private void ShowBackButton() {
-            historyBackButton.Visible = history.Count > 1;
+            if (history.Count > 1) {
+                historyBackButton.Text = "Terug";
+            } else {
+                historyBackButton.Text = "Logout";
+            }
         }
 
         private void HistoryBackButtonOnClick(object sender, EventArgs e) {

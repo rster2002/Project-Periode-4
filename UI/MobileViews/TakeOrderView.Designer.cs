@@ -25,6 +25,8 @@
         private void InitializeComponent() {
             this.orderList = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuItemTypeButtons = new System.Windows.Forms.TableLayoutPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.categoryLabel = new System.Windows.Forms.Label();
@@ -39,12 +41,18 @@
             this.dialogRemoveButton = new System.Windows.Forms.Button();
             this.commentTextbox = new System.Windows.Forms.TextBox();
             this.dialogTitleLbl = new System.Windows.Forms.Label();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitOrderCheckbox = new System.Windows.Forms.CheckBox();
+            this.confirmationDialog = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.cancelOrderButton = new System.Windows.Forms.Button();
+            this.backToTablesOverviewButton = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuItemTypeButtons.SuspendLayout();
             this.popupDialog.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemAmountNumberBox)).BeginInit();
+            this.confirmationDialog.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // orderList
@@ -67,6 +75,15 @@
             // 
             this.columnHeader1.Text = "Gerecht";
             this.columnHeader1.Width = 227;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Opmerking";
+            this.columnHeader4.Width = 96;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Aantal";
             // 
             // menuItemTypeButtons
             // 
@@ -125,13 +142,13 @@
             // 
             this.buttonConfirmOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
             this.buttonConfirmOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonConfirmOrder.Location = new System.Drawing.Point(6, 605);
+            this.buttonConfirmOrder.Location = new System.Drawing.Point(150, 605);
             this.buttonConfirmOrder.Name = "buttonConfirmOrder";
-            this.buttonConfirmOrder.Size = new System.Drawing.Size(389, 41);
+            this.buttonConfirmOrder.Size = new System.Drawing.Size(245, 41);
             this.buttonConfirmOrder.TabIndex = 4;
             this.buttonConfirmOrder.Text = "Plaats bestelling";
             this.buttonConfirmOrder.UseVisualStyleBackColor = false;
-            this.buttonConfirmOrder.Click += new System.EventHandler(this.ConfirmOrderButtonOnClick);
+            this.buttonConfirmOrder.Click += new System.EventHandler(this.PlaceOrderButtonOnClick);
             // 
             // popupDialog
             // 
@@ -228,19 +245,77 @@
             this.dialogTitleLbl.TabIndex = 0;
             this.dialogTitleLbl.Text = "label1";
             // 
-            // columnHeader4
+            // splitOrderCheckbox
             // 
-            this.columnHeader4.Text = "Opmerking";
-            this.columnHeader4.Width = 96;
+            this.splitOrderCheckbox.AutoSize = true;
+            this.splitOrderCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.splitOrderCheckbox.Location = new System.Drawing.Point(6, 614);
+            this.splitOrderCheckbox.Name = "splitOrderCheckbox";
+            this.splitOrderCheckbox.Size = new System.Drawing.Size(138, 24);
+            this.splitOrderCheckbox.TabIndex = 6;
+            this.splitOrderCheckbox.Text = "Splits bestelling";
+            this.splitOrderCheckbox.UseVisualStyleBackColor = true;
             // 
-            // columnHeader5
+            // confirmationDialog
             // 
-            this.columnHeader5.Text = "Aantal";
+            this.confirmationDialog.BackColor = System.Drawing.Color.Transparent;
+            this.confirmationDialog.Controls.Add(this.panel3);
+            this.confirmationDialog.Location = new System.Drawing.Point(799, 3);
+            this.confirmationDialog.Name = "confirmationDialog";
+            this.confirmationDialog.Size = new System.Drawing.Size(392, 643);
+            this.confirmationDialog.TabIndex = 6;
+            this.confirmationDialog.Visible = false;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.White;
+            this.panel3.Controls.Add(this.cancelOrderButton);
+            this.panel3.Controls.Add(this.backToTablesOverviewButton);
+            this.panel3.Controls.Add(this.label5);
+            this.panel3.Location = new System.Drawing.Point(61, 246);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(287, 123);
+            this.panel3.TabIndex = 0;
+            // 
+            // cancelOrderButton
+            // 
+            this.cancelOrderButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cancelOrderButton.ForeColor = System.Drawing.Color.White;
+            this.cancelOrderButton.Location = new System.Drawing.Point(18, 76);
+            this.cancelOrderButton.Name = "cancelOrderButton";
+            this.cancelOrderButton.Size = new System.Drawing.Size(126, 40);
+            this.cancelOrderButton.TabIndex = 7;
+            this.cancelOrderButton.Text = "Terug naar bestelling";
+            this.cancelOrderButton.UseVisualStyleBackColor = false;
+            this.cancelOrderButton.Click += new System.EventHandler(this.CancelOrderButtonOnClick);
+            // 
+            // backToTablesOverviewButton
+            // 
+            this.backToTablesOverviewButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
+            this.backToTablesOverviewButton.Location = new System.Drawing.Point(150, 76);
+            this.backToTablesOverviewButton.Name = "backToTablesOverviewButton";
+            this.backToTablesOverviewButton.Size = new System.Drawing.Size(122, 40);
+            this.backToTablesOverviewButton.TabIndex = 3;
+            this.backToTablesOverviewButton.Text = "Plaats bestelling";
+            this.backToTablesOverviewButton.UseVisualStyleBackColor = false;
+            this.backToTablesOverviewButton.Click += new System.EventHandler(this.BackToTablesViewButton);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(14, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(154, 24);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Plaats bestelling?";
             // 
             // TakeOrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.confirmationDialog);
+            this.Controls.Add(this.splitOrderCheckbox);
             this.Controls.Add(this.popupDialog);
             this.Controls.Add(this.buttonConfirmOrder);
             this.Controls.Add(this.menuItemList);
@@ -248,12 +323,15 @@
             this.Controls.Add(this.menuItemTypeButtons);
             this.Controls.Add(this.orderList);
             this.Name = "TakeOrderView";
-            this.Size = new System.Drawing.Size(799, 649);
+            this.Size = new System.Drawing.Size(1197, 649);
             this.menuItemTypeButtons.ResumeLayout(false);
             this.popupDialog.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.menuItemAmountNumberBox)).EndInit();
+            this.confirmationDialog.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,5 +357,11 @@
         private System.Windows.Forms.NumericUpDown menuItemAmountNumberBox;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.CheckBox splitOrderCheckbox;
+        private System.Windows.Forms.Panel confirmationDialog;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Button backToTablesOverviewButton;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button cancelOrderButton;
     }
 }

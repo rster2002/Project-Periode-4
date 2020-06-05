@@ -12,16 +12,16 @@ namespace DAL {
     public class ReservationDAO: SQLInterface<Reservation> {
         private void BasicSelect() {
             Line("SELECT *, (");
-                Line("SELECT[Customer].CustomerSurname AS CustomerSurname");
-                Line("FROM[Customer]");
-                Line("WHERE[Reservation].Customer = [Customer].CustomerId");
+                Line("SELECT [Customer].CustomerSurname AS CustomerSurname");
+                Line("FROM [Customer]");
+                Line("WHERE [Reservation].Customer = [Customer].CustomerId");
             Line(") AS CustomerSurname");
             Line("FROM [Reservation]");
             Line("JOIN [Table] ON [Reservation].TableNumber = [Table].TableNumber");
             Line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
-            Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
-            Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
-            Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
+            //Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
+            //Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
+            //Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
         #region Create
@@ -84,7 +84,7 @@ namespace DAL {
 
         public Reservation GetByTableNumber(int number) {
             BasicSelect();
-            Line("WHERE [Table].[TableNumber] = @number");
+            Line("WHERE [Reservation].[TableNumber] = @number");
 
             Param("number", number);
 
@@ -171,18 +171,14 @@ namespace DAL {
         }
         #endregion Delete
 
-        protected override Reservation ProcessRecord(Record record)
-        {
-            return new Reservation()
-            {
+        protected override Reservation ProcessRecord(Record record) {
+            return new Reservation() {
                 Id = (int)record["ReservationId"],
                 Customer = null,
-                Table = new Table()
-                {
+                Table = new Table() {
                     Number = (int)record["TableNumber"],
                     NumberOfSeats = (int)record["TableSeats"],
-                    ServedBy = new Staff()
-                    {
+                    ServedBy = new Staff() {
                         Id = (int)record["StaffNumber"],
                         Name = (string)record["StaffName"],
                         Salt = (int)record["StaffSalt"],
@@ -211,14 +207,8 @@ namespace DAL {
                         };
                     }
 
-                    // Because 'ProcessRecords' is public, we can ask other DAO's to process certain records for us
-                    reservation.Orders = orderDAO.ProcessRecords(
-                        // We only want to process the records that apply to the current reservation, so we filter out any that don't
-                        // match the current reservation id
-                        records
-                            .Where(r => (int) r["ReservationId"] == reservationId)
-                            .ToList()
-                    );
+                    // We use a seperate query because joining will cause reservations without orders to be omited.
+                    reservation.Orders = orderDAO.GetByReservationId(reservationId);
 
                     reservationMap[reservationId] = reservation;
                 }

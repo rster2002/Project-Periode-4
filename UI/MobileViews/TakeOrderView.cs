@@ -11,13 +11,16 @@ using Model;
 
 namespace UI.MobileViews {
     public partial class TakeOrderView: UserControl {
-        private MenuItemService menuItemService = new MenuItemService();
-        private Model.Menu menu;
-        private List<Model.MenuItem> loadedMenuItems;
-        private Order order;
         private UserSession userSession = UserSession.GetInstance();
-        private Model.MenuItem loadedMenuItem;
+        private MobileView mobileView = MobileView.GetInstance();
+        private MenuItemService menuItemService = new MenuItemService();
+
+        private Model.Menu menu;
+        private Order order;
         private Table table;
+
+        private List<Model.MenuItem> loadedMenuItems;
+        private Model.MenuItem loadedMenuItem;
 
         public TakeOrderView(Model.Menu menu, Table table) {
             this.menu = menu;
@@ -29,6 +32,7 @@ namespace UI.MobileViews {
 
             Size = new Size(398, 649);
             popupDialog.Dock = DockStyle.Fill;
+            confirmationDialog.Dock = DockStyle.Fill;
         }
 
         // Generates the buttons for the different types of MenuItems
@@ -202,16 +206,27 @@ namespace UI.MobileViews {
             HidePopupDialog();
         }
 
-        private void ConfirmOrderButtonOnClick(object sender, EventArgs e) {
+        private void PlaceOrderButtonOnClick(object sender, EventArgs e) {
+            ShowConfirmationDialog();
+        }
+
+        private void BackToTablesViewButton(object sender, EventArgs e) {
             OrderService orderService = new OrderService();
-            Random random = new Random();
-            int orderId = random.Next(0, 999999);
+            orderService.PlaceOrder(table, order, splitOrderCheckbox.Checked);
 
-            order.Id = orderId;
-            order.PlacedAt = DateTime.Now;
-            order.PlacedBy = userSession.LoggedInStaff;
+            mobileView.LoadView(new TableView());
+        }
 
-            orderService.PlaceOrder(table, order);
+        private void CancelOrderButtonOnClick(object sender, EventArgs e) {
+            HideConfirmationDialog();
+        }
+
+        private void ShowConfirmationDialog() {
+            confirmationDialog.Visible = true;
+        }
+
+        private void HideConfirmationDialog() {
+            confirmationDialog.Visible = false;
         }
     }
 }
