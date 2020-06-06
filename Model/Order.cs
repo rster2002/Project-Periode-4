@@ -8,6 +8,7 @@ namespace Model {
         public List<MenuItem> MenuItems { get; set; }
         public DateTime PlacedAt { get; set; }
         public string Tag { get; set; }
+        public string Status { get; set; }
 
         public Order() {
             MenuItems = new List<MenuItem>();

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.DesktopViews;
 
 namespace UI {
     public partial class ViewPicker: Form {

@@ -43,43 +43,47 @@ namespace DAL {
         protected void ExecuteCommand() => ExecuteCommand(queryString);
         protected void ExecuteCommand(string query) {
             using (SqlConnection sqlConnection = new SqlConnection(config)) {
-                sqlConnection.Open();
-                SqlCommand command = new SqlCommand(query, sqlConnection);
+                try {
+                    sqlConnection.Open();
+                    SqlCommand command = new SqlCommand(query, sqlConnection);
 
-                EvaluateParameters(command);
+                    EvaluateParameters(command);
 
-                command.ExecuteNonQuery();
-
-                Clear();
+                    command.ExecuteNonQuery();
+                } finally {
+                    Clear();
+                }
             }
         }
 
         protected List<Record> ExecuteSelect() => ExecuteSelect(queryString);
         protected List<Record> ExecuteSelect(string query) {
             using (SqlConnection sqlConnection = new SqlConnection(config)) {
-                sqlConnection.Open();
-                SqlCommand command = new SqlCommand(query, sqlConnection);
+                try {
+                    sqlConnection.Open();
+                    SqlCommand command = new SqlCommand(query, sqlConnection);
 
-                List<Record> records = new List<Record>();
+                    List<Record> records = new List<Record>();
 
-                EvaluateParameters(command);
+                    EvaluateParameters(command);
 
-                SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read()) {
-                    Record record = new Record();
-                    record.fieldCount = reader.FieldCount;
+                    while (reader.Read()) {
+                        Record record = new Record();
+                        record.fieldCount = reader.FieldCount;
 
-                    for (int i = 0; i < reader.FieldCount; i++) {
-                        record[reader.GetName(i)] = reader.GetValue(i);
+                        for (int i = 0; i < reader.FieldCount; i++) {
+                            record[reader.GetName(i)] = reader.GetValue(i);
+                        }
+
+                        records.Add(record);
                     }
 
-                    records.Add(record);
+                    return records;
+                } finally {
+                    Clear();
                 }
-
-                Clear();
-
-                return records;
             }
         }
 
@@ -87,7 +91,7 @@ namespace DAL {
         protected List<Record> ExecuteUnprocessed(string query) {
             List<Record> returnValue = new List<Record>();
 
-            if (queryString.Contains("SELECT") && queryString.Contains("FROM")) {
+            if (query.Contains("SELECT") && query.Contains("FROM")) {
                 returnValue = ExecuteSelect(query);
             } else {
                 ExecuteCommand(query);

@@ -1,4 +1,4 @@
-﻿namespace UI {
+﻿namespace UI.DesktopViews {
     partial class LoginView {
         /// <summary> 
         /// Required designer variable.

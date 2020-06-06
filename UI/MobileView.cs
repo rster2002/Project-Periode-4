@@ -13,13 +13,11 @@ using UI.MobileViews;
 namespace UI {
     public partial class MobileView: Form {
         private static MobileView instance;
-        private List<UserControl> history = new List<UserControl>();
+        private List<HistoryItem> history = new List<HistoryItem>();
 
         private MobileView() {
             InitializeComponent();
-
-            LoginViewMobile loginViewMobile = new LoginViewMobile(this);
-            LoadView(loginViewMobile);
+            LoadView(new TableView(), "Tafels");
         }
 
         public static MobileView GetInstance() {
@@ -32,7 +30,10 @@ namespace UI {
             userControl.Dock = DockStyle.Fill;
 
             if (trackInHistory) {
-                history.Add(userControl);
+                history.Add(new HistoryItem() {
+                    UserControl = userControl,
+                    LabelText = currentPageLbl.Text
+                });
             }
 
             ShowBackButton();
@@ -40,13 +41,30 @@ namespace UI {
             mainPanel.Controls.Add(userControl);
         }
 
-        private void ShowBackButton() {
-            historyBackButton.Visible = history.Count > 1;
+        public void LoadView(UserControl userControl, string setLabelText, bool trackInHistort = true) {
+            currentPageLbl.Text = setLabelText;
+            LoadView(userControl, trackInHistort);
         }
 
-        private void button1_Click(object sender, EventArgs e) {
-            history.Remove(history.Last());
-            LoadView(history.Last(), false);
+        private void ShowBackButton() {
+            if (history.Count > 1) {
+                historyBackButton.Text = "Terug";
+            } else {
+                historyBackButton.Text = "Logout";
+            }
         }
+
+        private void HistoryBackButtonOnClick(object sender, EventArgs e) {
+            history.Remove(history.Last());
+
+            HistoryItem lastHistoryItem = history.Last();
+            currentPageLbl.Text = lastHistoryItem.LabelText;
+            LoadView(lastHistoryItem.UserControl, false);
+        }
+    }
+
+    class HistoryItem {
+        public UserControl UserControl { get; set; }
+        public string LabelText { get; set; }
     }
 }
