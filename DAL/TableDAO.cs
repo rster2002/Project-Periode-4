@@ -8,38 +8,50 @@ using Model;
 
 namespace DAL {
     public class TableDAO: SQLInterface<Table> {
-        protected override Table ProcessRecord(Record record) {
-            StaffDAO staffDAO = new StaffDAO();
-
-            return new Table() {
-                Number = (int) record["TableNumber"],
-                NumberOfSeats = (int) record["TableSeats"],
-                ServedBy = staffDAO.GetById((int) record["ServedBy"])
-            };
-        }
-        public override List<Table> GetAll() {
-            Line("SELECT TableNumber, TableSeats, ServedBy");
+        private void BasicSelect() {
+            Line("SELECT *, dbo.CheckTableAvailable([Table].[TableNumber]) AS Availability");
             Line("FROM [Table]");
+            Line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
+        }
+
+        public override List<Table> GetAll() {
+            BasicSelect();
 
             return Execute();
         }
+
         public override Table GetById(int id) {
-            Line("SELECT TableNumber, TableSeats, ServedBy");
-            Line("FROM [Table]");
+            BasicSelect();
             Line("WHERE [TableNumber] = @id");
 
             Param("id", id);
 
             return Execute()[0];
         }
+
         public List<Table> GetByStaff(int id) {
-            Line("SELECT TableNumber, TableSeats, ServedBy");
-            Line("FROM [Table]");
+            BasicSelect();
             Line("WHERE [ServedBy] = @id");
 
             Param("id", id);
 
             return Execute();
+        }
+
+        protected override Table ProcessRecord(Record record) {
+            StaffDAO staffDAO = new StaffDAO();
+
+            return new Table() {
+                Number = (int) record["TableNumber"],
+                NumberOfSeats = (int) record["TableSeats"],
+                ServedBy = new Staff() {
+                    Name = (string) record["StaffName"],
+                    Salt = (int) record["StaffSalt"],
+                    Role = (string) record["StaffRole"],
+                    Id = (int) record["StaffNumber"],
+                },
+                Status = (string) record["Availability"],
+            };
         }
     }
 }

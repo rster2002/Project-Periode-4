@@ -11,24 +11,28 @@ using Model;
 
 namespace UI.MobileViews {
     public partial class TakeOrderView: UserControl {
-        private MenuItemService menuItemService = new MenuItemService();
-        private Model.Menu menu;
-        private List<Model.MenuItem> loadedMenuItems;
-        private Order order;
         private UserSession userSession = UserSession.GetInstance();
+        private MobileView mobileView = MobileView.GetInstance();
+        private MenuItemService menuItemService = new MenuItemService();
+
+        private Model.Menu menu;
+        private Order order;
+        private Table table;
+
+        private List<Model.MenuItem> loadedMenuItems;
         private Model.MenuItem loadedMenuItem;
 
-        public TakeOrderView(Model.Menu menu) {
+        public TakeOrderView(Model.Menu menu, Table table) {
             this.menu = menu;
-            order = new Order() {
-                PlacedBy = userSession.LoggedInStaff,
-            };
+            this.table = table;
+            order = new Order();
 
             InitializeComponent();
             PopulateMenuItemTypes();
 
             Size = new Size(398, 649);
             popupDialog.Dock = DockStyle.Fill;
+            confirmationDialog.Dock = DockStyle.Fill;
         }
 
         // Generates the buttons for the different types of MenuItems
@@ -155,6 +159,7 @@ namespace UI.MobileViews {
 
             foreach (Model.MenuItem menuItem in order.MenuItems) {
                 ListViewItem item = new ListViewItem(menuItem.Name);
+                item.SubItems.Add(menuItem.Comment != null ? menuItem.Comment : "");
                 item.SubItems.Add(menuItem.Amount + "x");
                 item.Tag = menuItem;
 
@@ -163,6 +168,8 @@ namespace UI.MobileViews {
         }
 
         private void OrderListOnEntrySelect(object sender, EventArgs e) {
+            if (orderList.SelectedItems.Count == 0) return;
+
             Model.MenuItem menuItem = (Model.MenuItem) orderList.SelectedItems[0].Tag;
 
             ShowPopupDialog(menuItem);
@@ -172,12 +179,54 @@ namespace UI.MobileViews {
             loadedMenuItem = menuItem;
 
             dialogTitleLbl.Text = menuItem.Name;
+            menuItemAmountNumberBox.Value = menuItem.Amount;
 
             popupDialog.Visible = true;
         }
 
         private void HidePopupDialog() {
-            popupDialog.Visible = true;
+            popupDialog.Visible = false;
+        }
+
+        private void PopupDialogOnClick(object sender, EventArgs e) {
+            HidePopupDialog();
+        }
+
+        private void DialogConfirmButtonOnClick(object sender, EventArgs e) {
+            loadedMenuItem.Comment = commentTextbox.Text;
+            loadedMenuItem.Amount = (int) menuItemAmountNumberBox.Value;
+
+            RefreshOrderList();
+            HidePopupDialog();
+        }
+
+        private void DialogRemoveButtonOnClick(object sender, EventArgs e) {
+            order.MenuItems.Remove(loadedMenuItem);
+
+            HidePopupDialog();
+        }
+
+        private void PlaceOrderButtonOnClick(object sender, EventArgs e) {
+            ShowConfirmationDialog();
+        }
+
+        private void BackToTablesViewButton(object sender, EventArgs e) {
+            OrderService orderService = new OrderService();
+            orderService.PlaceOrder(table, order.MenuItems, splitOrderCheckbox.Checked);
+
+            mobileView.LoadView(new TableView());
+        }
+
+        private void CancelOrderButtonOnClick(object sender, EventArgs e) {
+            HideConfirmationDialog();
+        }
+
+        private void ShowConfirmationDialog() {
+            confirmationDialog.Visible = true;
+        }
+
+        private void HideConfirmationDialog() {
+            confirmationDialog.Visible = false;
         }
     }
 }
