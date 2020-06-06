@@ -23,9 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.orderKitchenOverviewLayout = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.refreshTimer = new System.Windows.Forms.Timer(this.components);
             this.orderKitchenOverviewLayout.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -70,12 +72,16 @@
             this.listView1.TabIndex = 0;
             this.listView1.UseCompatibleStateImageBehavior = false;
             // 
-            // OrderKitchenView
+            // refreshTimer
+            // 
+            this.refreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
+            // 
+            // OrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.orderKitchenOverviewLayout);
-            this.Name = "OrderKitchenView";
+            this.Name = "OrderView";
             this.Size = new System.Drawing.Size(1904, 982);
             this.orderKitchenOverviewLayout.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -88,5 +94,6 @@
         private System.Windows.Forms.TableLayoutPanel orderKitchenOverviewLayout;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Timer refreshTimer;
     }
 }

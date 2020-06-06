@@ -22,6 +22,12 @@ namespace UI.DesktopViews {
             InitializeComponent();
 
             PopulateOrderLayout();
+
+            refreshTimer.Interval = 5000;
+            refreshTimer.Enabled = true;
+            refreshTimer.Start();
+
+            //testTimer.Elapsed += new System.Timers.ElapsedEventHandler(RefreshLayout);
         }
         private void PopulateOrderLayout() {
             reservations = reservationSerivce.GetAllReservations();
@@ -154,16 +160,14 @@ namespace UI.DesktopViews {
             //make the pop up and give the order with it
             CancelOrderForm cancel = new CancelOrderForm(order);
             cancel.ShowDialog();
-            RefreshLayout();
         }
 
         protected void PrepareOrder(object sender, EventArgs e, Order order) {
             //make the up up and give the order with it
             PrepareOrderForm prepare = new PrepareOrderForm(order);
             prepare.ShowDialog();
-            RefreshLayout();
         }
-        protected void RefreshLayout() {
+        private void RefreshTimer_Tick(object sender, EventArgs e) {
             PopulateOrderLayout();
         }
     }
