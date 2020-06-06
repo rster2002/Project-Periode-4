@@ -51,8 +51,8 @@ namespace UI {
         }
 
         public void ResetTo(UserControl userControl, string setLabelText) {
-            LoadView(userControl, setLabelText);
             ClearHistory();
+            LoadView(userControl, setLabelText);
             ShowBackButton();
         }
 
