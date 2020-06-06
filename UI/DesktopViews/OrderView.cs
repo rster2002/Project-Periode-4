@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using MenuItem = Model.MenuItem;
+using System.Timers;
 
 namespace UI.DesktopViews {
     public partial class OrderView: UserControl {
@@ -20,11 +21,11 @@ namespace UI.DesktopViews {
             this.foodType = foodType;
             InitializeComponent();
 
-            reservations = reservationSerivce.GetAllReservations();
             PopulateOrderLayout();
         }
-
         private void PopulateOrderLayout() {
+            reservations = reservationSerivce.GetAllReservations();
+
             orderKitchenOverviewLayout.Controls.Clear();
             orderKitchenOverviewLayout.RowCount = 0;
             orderKitchenOverviewLayout.RowStyles.Clear();
@@ -39,7 +40,7 @@ namespace UI.DesktopViews {
 
                             return order;
                         })
-                        .Where(order => order.MenuItems.Count > 0)
+                        .Where(order => order.MenuItems.Count > 0 && order.Status == "open")
                         .ToList();
 
                     return reservation;
@@ -114,7 +115,6 @@ namespace UI.DesktopViews {
                     Width = groupBox.Width
                 };
                 //make the click event with an extra parameter of order so our form has it too
-                //buttonCancel.Click += delegate (object sender, EventArgs e) { CancelOrder(sender, e, order); };
                 buttonCancel.Click += (sender, e) => CancelOrder(sender, e, order);
 
                 Button buttonOrderReady = new Button() {
@@ -154,12 +154,17 @@ namespace UI.DesktopViews {
             //make the pop up and give the order with it
             CancelOrderForm cancel = new CancelOrderForm(order);
             cancel.ShowDialog();
+            RefreshLayout();
         }
 
         protected void PrepareOrder(object sender, EventArgs e, Order order) {
             //make the up up and give the order with it
             PrepareOrderForm prepare = new PrepareOrderForm(order);
             prepare.ShowDialog();
+            RefreshLayout();
+        }
+        protected void RefreshLayout() {
+            PopulateOrderLayout();
         }
     }
 }

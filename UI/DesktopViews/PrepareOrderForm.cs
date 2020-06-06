@@ -27,7 +27,8 @@ namespace UI.DesktopViews {
         }
         protected void PrepareOrder(object sender, EventArgs e) {
             //prepare the order by setting reservation id on null 
-            orderService.UpdateReservationId(order.Id, null);
+            orderService.CloseOrder(order.Id);
+            Close();
         }
     }
 }
