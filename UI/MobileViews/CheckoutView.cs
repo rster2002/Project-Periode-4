@@ -10,12 +10,21 @@ using System.Windows.Forms;
 using Model;
 using System.Reflection;
 using System.Data.SqlTypes;
+using System.Drawing.Drawing2D;
 
 namespace UI.MobileViews {
     public partial class CheckoutView: UserControl {
+        private ReservationService reservationService = new ReservationService();
         private OrderService orderService = new OrderService();
+        private ReceiptService receiptService = new ReceiptService();
+        private MobileView mobileView = MobileView.GetInstance();
+
         private Table table;
         private List<Order> orders;
+        private string selectedPaymentMethod;
+
+        private Color optionSelectedColor = Color.FromArgb(9, 111, 189);
+        private Color optionDefaultColor = Color.White;
 
         public CheckoutView(Table table) {
             InitializeComponent();
@@ -34,6 +43,7 @@ namespace UI.MobileViews {
 
         private void GetOrder() {
             orders = orderService.GetOrderByTableId(table.Number);
+            startPaymentButton.Enabled = orders.Count > 0;
         }
 
         private List<Model.MenuItem> CompileTotalMenuItemsList(List<Order> orders) {
@@ -118,6 +128,37 @@ namespace UI.MobileViews {
 
         private void HidePaymentMethodDialog() {
             paymentMethodDialog.Visible = false;
+        }
+
+        private void SelectPaymentMethod(object sender, string paymentMethod) {
+            Button button = (Button) sender;
+
+            cashPaymentMethodButton.BackColor = optionDefaultColor;
+            debitCardPaymentMethodButton.BackColor = optionDefaultColor;
+            creditCardPaymentMethodButton.BackColor = optionDefaultColor;
+
+            confirmPaymentButton.Enabled = true;
+            button.BackColor = optionSelectedColor;
+
+            selectedPaymentMethod = paymentMethod;
+        }
+
+        private void CashPaymentMethodButtonOnClick(object sender, EventArgs e) => SelectPaymentMethod(sender, "cash");
+        private void DebitCardPaymentMethodButtonOnClick(object sender, EventArgs e) => SelectPaymentMethod(sender, "pin");
+        private void CreditCardPaymentMethodButtonOnClick(object sender, EventArgs e) => SelectPaymentMethod(sender, "visa");
+
+        private void ConfirmPaymentButtonOnClick(object sender, EventArgs e) {
+            Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
+            if (reservation == null) throw new Exception("Cannot find a reservation assosiated with this table");
+
+            Random random = new Random();
+            int receiptId = random.Next();
+
+            receiptService.AddReceipt(receiptId, selectedPaymentMethod);
+            orderService.UpdateReceiptIdByReservationId(reservation.Id, receiptId);
+            reservationService.DeleteById(reservation.Id);
+
+            mobileView.ResetTo(new TableView(), "Tafels");
         }
     }
 }

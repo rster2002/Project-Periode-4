@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Logic.CustomerService">
-    <Position X="0.5" Y="9.25" Width="1.5" />
+  <Class Name="Model.CustomerService">
+    <Position X="0.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>CustomerService.cs</FileName>
@@ -10,17 +10,7 @@
       <Field Name="customerDAO" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.MenuItemService">
-    <Position X="11.75" Y="9" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAEAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>MenuItemService.cs</FileName>
-    </TypeIdentifier>
-    <ShowAsAssociation>
-      <Field Name="menuItemDAO" />
-    </ShowAsAssociation>
-  </Class>
-  <Class Name="Logic.MenuService">
+  <Class Name="Model.MenuService">
     <Position X="5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -30,7 +20,7 @@
       <Field Name="menuDAO" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.StaffService">
+  <Class Name="Model.StaffService">
     <Position X="9.5" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAIAACAIAAA=</HashCode>
@@ -40,7 +30,7 @@
       <Field Name="staffDAO" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.TableService">
+  <Class Name="Model.TableService">
     <Position X="16.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>BAAAAAAEACAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
@@ -145,17 +135,17 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="Model.Staff">
-    <Position X="5" Y="14.75" Width="1.5" />
+    <Position X="5" Y="15.25" Width="1.5" />
     <TypeIdentifier />
   </Class>
   <Class Name="Model.Table">
-    <Position X="2.75" Y="14" Width="1.5" />
+    <Position X="2.75" Y="15.25" Width="1.5" />
     <TypeIdentifier />
     <ShowAsAssociation>
       <Property Name="ServedBy" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.ReceiptService">
+  <Class Name="Model.ReceiptService">
     <Position X="2.75" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAABAAAAAAAAAAAAAQAA=</HashCode>
@@ -165,7 +155,7 @@
       <Field Name="receiptDAO" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.RegisterService">
+  <Class Name="Model.RegisterService">
     <Position X="7.25" Y="9" Width="1.5" />
     <TypeIdentifier>
       <HashCode>QAAAAAAAAAAAAAAAAAAACAAAAAABAAAAAAAAAAAAAAA=</HashCode>
@@ -175,17 +165,17 @@
       <Field Name="registerDAO" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.OrderService">
-    <Position X="18.5" Y="11.5" Width="1.5" />
+  <Class Name="Model.OrderService">
+    <Position X="18.5" Y="13" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAwAAAAgAAgAAAAAAQAiAAACCCAEIAAAAAEADAAAAAg=</HashCode>
+      <HashCode>AAwAAAAgAEgIAAAAQQAiAAAGCCAMIAgEAAUADAAAAAg=</HashCode>
       <FileName>OrderService.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="orderDAO" />
     </ShowAsAssociation>
   </Class>
-  <Class Name="Logic.ReservationService">
+  <Class Name="Model.ReservationService">
     <Position X="14" Y="10.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAEQAAAAAAAAAAABQEAKAAAAAAAAAAAgEAAQg=</HashCode>
@@ -193,6 +183,16 @@
     </TypeIdentifier>
     <ShowAsAssociation>
       <Field Name="reservationDAO" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Model.MenuItemService">
+    <Position X="11.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAQAAAAAIAAIAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MenuItemService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="menuItemDAO" />
     </ShowAsAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />

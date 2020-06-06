@@ -116,6 +116,8 @@ namespace Model {
         public void UpdateReservationId(int id, int reservationId) => orderDAO.UpdateReservationId(id, reservationId);
         public void UpdatePlacedBy(int id, int placedBy) => orderDAO.UpdatePlacedBy(id, placedBy);
         public void UpdateReceiptId(int id, object receiptId) => orderDAO.UpdateReceiptId(id, receiptId);
+        public void UpdateReceiptIdByReservationId(int reservationId, object receiptId) => orderDAO.UpdateReceiptIdByReservationId(reservationId, receiptId);
+        public void UpdateReservationIdByReservationId(int reservationId, object newReservationId) => orderDAO.UpdateReservationIdByReservationId(reservationId, newReservationId);
         public void UpdateTag(int id, object tag) => orderDAO.UpdateTag(id, tag);
         public void OpenOrder(int id) => orderDAO.OpenOrder(id);
         public void CloseOrder(int id) => orderDAO.CloseOrder(id);

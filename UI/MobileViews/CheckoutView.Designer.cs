@@ -35,7 +35,16 @@
             this.startPaymentButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.paymentMethodDialog = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.cashPaymentMethodButton = new System.Windows.Forms.Button();
+            this.debitCardPaymentMethodButton = new System.Windows.Forms.Button();
+            this.creditCardPaymentMethodButton = new System.Windows.Forms.Button();
+            this.confirmPaymentButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.paymentMethodDialog.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuItemsList
@@ -131,11 +140,89 @@
             // 
             // paymentMethodDialog
             // 
+            this.paymentMethodDialog.Controls.Add(this.panel1);
             this.paymentMethodDialog.Location = new System.Drawing.Point(401, 3);
             this.paymentMethodDialog.Name = "paymentMethodDialog";
             this.paymentMethodDialog.Size = new System.Drawing.Size(398, 649);
             this.paymentMethodDialog.TabIndex = 7;
             this.paymentMethodDialog.Visible = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.tableLayoutPanel1);
+            this.panel1.Location = new System.Drawing.Point(76, 207);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(259, 217);
+            this.panel1.TabIndex = 0;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.ColumnCount = 2;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.cashPaymentMethodButton, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.debitCardPaymentMethodButton, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.creditCardPaymentMethodButton, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.confirmPaymentButton, 1, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(259, 217);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // cashPaymentMethodButton
+            // 
+            this.cashPaymentMethodButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cashPaymentMethodButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cashPaymentMethodButton.Location = new System.Drawing.Point(3, 3);
+            this.cashPaymentMethodButton.Name = "cashPaymentMethodButton";
+            this.cashPaymentMethodButton.Size = new System.Drawing.Size(123, 102);
+            this.cashPaymentMethodButton.TabIndex = 0;
+            this.cashPaymentMethodButton.Text = "Contant";
+            this.cashPaymentMethodButton.UseVisualStyleBackColor = true;
+            this.cashPaymentMethodButton.Click += new System.EventHandler(this.CashPaymentMethodButtonOnClick);
+            // 
+            // debitCardPaymentMethodButton
+            // 
+            this.debitCardPaymentMethodButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.debitCardPaymentMethodButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.debitCardPaymentMethodButton.Location = new System.Drawing.Point(132, 3);
+            this.debitCardPaymentMethodButton.Name = "debitCardPaymentMethodButton";
+            this.debitCardPaymentMethodButton.Size = new System.Drawing.Size(124, 102);
+            this.debitCardPaymentMethodButton.TabIndex = 1;
+            this.debitCardPaymentMethodButton.Text = "Pin/debit kaart";
+            this.debitCardPaymentMethodButton.UseVisualStyleBackColor = true;
+            this.debitCardPaymentMethodButton.Click += new System.EventHandler(this.DebitCardPaymentMethodButtonOnClick);
+            // 
+            // creditCardPaymentMethodButton
+            // 
+            this.creditCardPaymentMethodButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.creditCardPaymentMethodButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.creditCardPaymentMethodButton.Location = new System.Drawing.Point(3, 111);
+            this.creditCardPaymentMethodButton.Name = "creditCardPaymentMethodButton";
+            this.creditCardPaymentMethodButton.Size = new System.Drawing.Size(123, 103);
+            this.creditCardPaymentMethodButton.TabIndex = 2;
+            this.creditCardPaymentMethodButton.Text = "Credit card (VISA/ AMEX)";
+            this.creditCardPaymentMethodButton.UseVisualStyleBackColor = true;
+            this.creditCardPaymentMethodButton.Click += new System.EventHandler(this.CreditCardPaymentMethodButtonOnClick);
+            // 
+            // confirmPaymentButton
+            // 
+            this.confirmPaymentButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
+            this.confirmPaymentButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.confirmPaymentButton.Enabled = false;
+            this.confirmPaymentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.confirmPaymentButton.Location = new System.Drawing.Point(132, 111);
+            this.confirmPaymentButton.Name = "confirmPaymentButton";
+            this.confirmPaymentButton.Size = new System.Drawing.Size(124, 103);
+            this.confirmPaymentButton.TabIndex = 3;
+            this.confirmPaymentButton.Text = "Reken af";
+            this.confirmPaymentButton.UseVisualStyleBackColor = false;
+            this.confirmPaymentButton.Click += new System.EventHandler(this.ConfirmPaymentButtonOnClick);
             // 
             // CheckoutView
             // 
@@ -151,6 +238,9 @@
             this.Name = "CheckoutView";
             this.Size = new System.Drawing.Size(805, 649);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.paymentMethodDialog.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -170,5 +260,11 @@
         private System.Windows.Forms.Button startPaymentButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel paymentMethodDialog;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Button cashPaymentMethodButton;
+        private System.Windows.Forms.Button debitCardPaymentMethodButton;
+        private System.Windows.Forms.Button creditCardPaymentMethodButton;
+        private System.Windows.Forms.Button confirmPaymentButton;
     }
 }

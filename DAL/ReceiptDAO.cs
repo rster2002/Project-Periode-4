@@ -4,30 +4,56 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.CodeDom;
 
 namespace DAL {
     public class ReceiptDAO : SQLInterface<Receipt> {
         private void BasicSelect() {
-           
             Line("SELECT *");
             Line("FROM [Receipt]");
 
-            Line("JOIN [Register] ON [Receipt].RegisterId = [Register].RegisterId");
             Line("JOIN [Order] ON [Receipt].ReceiptId = [Order].ReceiptId");
             Line("JOIN [Staff] ON [Order].OrderPlacedBy = [Staff].StaffNumber");
             Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
+        #region Create
+        public void Insert(int id, string paymentMethod, object tip, object feedback) {
+            Line("INSERT INTO [Receipt]");
+
+            Param("id", id);
+            Param("paymentMethod", paymentMethod);
+
+            if (tip != null && feedback != null) {
+                Line("VALUES (@id, @paymentMethod, @tip, @feedback)");
+
+                Param("tip", (decimal) tip);
+                Param("feedback", (string) feedback);
+            } else if (tip != null) {
+                Line("VALUES (@id, @paymentMethod, @tip, NULL)");
+
+                Param("tip", (decimal) tip);
+            } else if (feedback != null) {
+                Line("VALUES (@id, @paymentMethod, NULL, @feedback)");
+
+                Param("feedback", (string) feedback);
+            } else {
+                Line("VALUES (@id, @paymentMethod, NULL, NULL)");
+            }
+
+            Execute();
+        }
+        #endregion Create
+
+        #region Read
         public override List<Receipt> GetAll() {
-           
             BasicSelect();
 
             return Execute();
         }
 
         public override Receipt GetById(int id) {
-           
             BasicSelect();
             Line("WHERE ReceiptId = @id");
 
@@ -35,6 +61,7 @@ namespace DAL {
 
             return Execute()[0];
         }
+        #endregion Read
 
         public override List<Receipt> ProcessRecords(List<Record> records) {
             Dictionary<int, Receipt> receiptMap = new Dictionary<int, Receipt>();
@@ -62,15 +89,8 @@ namespace DAL {
         }
 
         protected override Receipt ProcessRecord(Record record) {
-
             return new Receipt() {
-
                 Id = (int) record["ReceiptId"],
-                Register = new Register() {
-                    Name = (string) record["RegisterName"],
-                    Id = (int) record["RegisterId"],
-                    CashBalance = (decimal) record["CashBalance"]
-                }
             };
         }
     }
