@@ -90,6 +90,7 @@ namespace UI {
             this.voorraadToolStripMenuItem.Size = new System.Drawing.Size(186, 55);
             this.voorraadToolStripMenuItem.Tag = "bartender, chef, owner";
             this.voorraadToolStripMenuItem.Text = "Voorraad";
+            this.voorraadToolStripMenuItem.Click += new System.EventHandler(this.VoorraadToolStripMenuItem_Click);
             // 
             // tafelsToolStripMenuItem
             // 

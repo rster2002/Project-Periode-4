@@ -13,7 +13,7 @@ namespace Model {
         private UserSession() {
             LoggedInStaff = new Staff() {
                 Id = 5,
-                Role = "owner",
+                Role = "waiter",
             };
         }
 

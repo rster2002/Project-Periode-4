@@ -22,12 +22,12 @@ namespace UI.DesktopViews {
             InitializeComponent();
 
             PopulateOrderLayout();
-
+            //set interval for timer and enable timer.
             refreshTimer.Interval = 5000;
             refreshTimer.Enabled = true;
+            //start the timer
             refreshTimer.Start();
 
-            //testTimer.Elapsed += new System.Timers.ElapsedEventHandler(RefreshLayout);
         }
         private void PopulateOrderLayout() {
             reservations = reservationSerivce.GetAllReservations();
@@ -167,6 +167,7 @@ namespace UI.DesktopViews {
             PrepareOrderForm prepare = new PrepareOrderForm(order);
             prepare.ShowDialog();
         }
+        //everytime the timer elapsed the interval the layout will referesh
         private void RefreshTimer_Tick(object sender, EventArgs e) {
             PopulateOrderLayout();
         }

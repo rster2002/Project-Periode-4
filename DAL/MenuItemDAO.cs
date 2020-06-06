@@ -31,6 +31,13 @@ namespace DAL {
 
             return Execute();
         }
+        public List<MenuItem> OrderByStock() {
+            BasicSelect();
+            Line("ORDER BY InStock");
+
+            return Execute();
+        }
+
 
         protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
@@ -41,7 +48,7 @@ namespace DAL {
                 AmountInStock = (int) record["InStock"],
                 Type = (string) record["Type"],
                 Subtype = (string) record["SubType"],
-                Comment = record["Comment"] != DBNull.Value ? (string) record["Comment"] : null,
+                //Comment = record["Comment"] != DBNull.Value ? (string) record["Comment"] : null,
             };
         }
     }
