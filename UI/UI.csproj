@@ -53,6 +53,24 @@
     <Compile Include="DesktopView.Designer.cs">
       <DependentUpon>DesktopView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\CancelOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\CancelOrderForm.Designer.cs">
+      <DependentUpon>CancelOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\OrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\OrderView.Designer.cs">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -116,6 +134,15 @@
     </Compile>
     <EmbeddedResource Include="DesktopView.resx">
       <DependentUpon>DesktopView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\CancelOrderForm.resx">
+      <DependentUpon>CancelOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\OrderView.resx">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MobileViews\CheckoutView.resx">
       <DependentUpon>CheckoutView.cs</DependentUpon>
