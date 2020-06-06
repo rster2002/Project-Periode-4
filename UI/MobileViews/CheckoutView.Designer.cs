@@ -31,7 +31,7 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.label1 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.tipNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.startPaymentButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.paymentMethodDialog = new System.Windows.Forms.Panel();
@@ -41,7 +41,9 @@
             this.debitCardPaymentMethodButton = new System.Windows.Forms.Button();
             this.creditCardPaymentMethodButton = new System.Windows.Forms.Button();
             this.confirmPaymentButton = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.feedbackTextbox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.tipNumericUpDown)).BeginInit();
             this.paymentMethodDialog.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -81,7 +83,7 @@
             this.columnHeader4,
             this.columnHeader6});
             this.VATListView.HideSelection = false;
-            this.VATListView.Location = new System.Drawing.Point(3, 430);
+            this.VATListView.Location = new System.Drawing.Point(3, 344);
             this.VATListView.Name = "VATListView";
             this.VATListView.Size = new System.Drawing.Size(392, 107);
             this.VATListView.TabIndex = 1;
@@ -102,19 +104,21 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3, 407);
+            this.label1.Location = new System.Drawing.Point(3, 321);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 20);
             this.label1.TabIndex = 2;
             this.label1.Text = "BTW-specificatie";
             // 
-            // numericUpDown1
+            // tipNumericUpDown
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(3, 579);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(392, 26);
-            this.numericUpDown1.TabIndex = 4;
+            this.tipNumericUpDown.DecimalPlaces = 2;
+            this.tipNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tipNumericUpDown.Location = new System.Drawing.Point(3, 579);
+            this.tipNumericUpDown.Name = "tipNumericUpDown";
+            this.tipNumericUpDown.Size = new System.Drawing.Size(392, 26);
+            this.tipNumericUpDown.TabIndex = 4;
+            this.tipNumericUpDown.ValueChanged += new System.EventHandler(this.TipNumericUpDownOnChange);
             // 
             // startPaymentButton
             // 
@@ -224,20 +228,40 @@
             this.confirmPaymentButton.UseVisualStyleBackColor = false;
             this.confirmPaymentButton.Click += new System.EventHandler(this.ConfirmPaymentButtonOnClick);
             // 
+            // feedbackTextbox
+            // 
+            this.feedbackTextbox.Location = new System.Drawing.Point(3, 493);
+            this.feedbackTextbox.Multiline = true;
+            this.feedbackTextbox.Name = "feedbackTextbox";
+            this.feedbackTextbox.Size = new System.Drawing.Size(392, 60);
+            this.feedbackTextbox.TabIndex = 8;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 470);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 20);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Opmerking";
+            // 
             // CheckoutView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.paymentMethodDialog);
+            this.Controls.Add(this.feedbackTextbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.startPaymentButton);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.tipNumericUpDown);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.VATListView);
             this.Controls.Add(this.menuItemsList);
             this.Name = "CheckoutView";
             this.Size = new System.Drawing.Size(805, 649);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tipNumericUpDown)).EndInit();
             this.paymentMethodDialog.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -256,7 +280,7 @@
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.ColumnHeader columnHeader6;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown tipNumericUpDown;
         private System.Windows.Forms.Button startPaymentButton;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel paymentMethodDialog;
@@ -266,5 +290,7 @@
         private System.Windows.Forms.Button debitCardPaymentMethodButton;
         private System.Windows.Forms.Button creditCardPaymentMethodButton;
         private System.Windows.Forms.Button confirmPaymentButton;
+        private System.Windows.Forms.TextBox feedbackTextbox;
+        private System.Windows.Forms.Label label3;
     }
 }

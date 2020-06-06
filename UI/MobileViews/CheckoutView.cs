@@ -22,6 +22,7 @@ namespace UI.MobileViews {
         private Table table;
         private List<Order> orders;
         private string selectedPaymentMethod;
+        private List<Model.MenuItem> menuItems;
 
         private Color optionSelectedColor = Color.FromArgb(9, 111, 189);
         private Color optionDefaultColor = Color.White;
@@ -34,11 +35,11 @@ namespace UI.MobileViews {
             this.table = table;
             GetOrder();
 
-            List<Model.MenuItem> menuItems = CollapseMenuItems(
+            menuItems = CollapseMenuItems(
                 CompileTotalMenuItemsList(orders)
             );
-            PopulateMenuItemsList(menuItems);
-            PopulateVATList(menuItems);
+            PopulateMenuItemsList();
+            PopulateVATList();
         }
 
         private void GetOrder() {
@@ -71,7 +72,7 @@ namespace UI.MobileViews {
             return menuItemsMap.Values.ToList();
         }
 
-        private void PopulateMenuItemsList(List<Model.MenuItem> menuItems) {
+        private void PopulateMenuItemsList() {
             menuItemsList.Items.Clear();
 
             foreach (Model.MenuItem menuItem in menuItems) {
@@ -83,10 +84,14 @@ namespace UI.MobileViews {
             }
         }
 
-        private void PopulateVATList(List<Model.MenuItem> menuItems) {
+        private void TipNumericUpDownOnChange(object sender, EventArgs e) {
+            PopulateVATList();
+        }
+
+        private void PopulateVATList() {
             VATListView.Items.Clear();
 
-            decimal totalPrice = GetTotalPrice(menuItems);
+            decimal totalPrice = GetTotalPrice(menuItems) + tipNumericUpDown.Value;
 
             decimal nonalchoholVAT = GetVAT(menuItems, 6);
             decimal alchoholVAT = GetVAT(menuItems, 21);
@@ -154,7 +159,7 @@ namespace UI.MobileViews {
             Random random = new Random();
             int receiptId = random.Next();
 
-            receiptService.AddReceipt(receiptId, selectedPaymentMethod);
+            receiptService.AddReceipt(receiptId, selectedPaymentMethod, tipNumericUpDown.Value, feedbackTextbox.Text.Length > 0 ? feedbackTextbox.Text : null);
             orderService.UpdateReceiptIdByReservationId(reservation.Id, receiptId);
             reservationService.DeleteById(reservation.Id);
 
