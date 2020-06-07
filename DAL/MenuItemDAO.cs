@@ -39,8 +39,25 @@ namespace DAL {
         }
 
 
+        public void ApplyMenuItemsToStock(List<MenuItem> menuItems) {
+            Line("UPDATE [MenuItem]");
+            Line("SET [InStock] = CASE");
+
+            for (int i = 0; i < menuItems.Count; i++) {
+                MenuItem currentItem = menuItems[i];
+                Line($"WHEN [MenuItemId] = @menuItemId{i} THEN [InStock] - @stockChange{i}");
+
+                Param("menuItemId" + i, currentItem.Id);
+                Param("stockChange" + i, currentItem.Amount);
+            }
+
+            Line("ELSE [InStock] END");
+
+            Execute();
+        }
+
         protected override MenuItem ProcessRecord(Record record) {
-            return new MenuItem() {
+            MenuItem item = new MenuItem() {
                 Id = (int) record["MenuItemId"],
                 Name = (string) record["MenuItemName"],
                 Price = (decimal) record["Price"],
@@ -48,8 +65,14 @@ namespace DAL {
                 AmountInStock = (int) record["InStock"],
                 Type = (string) record["Type"],
                 Subtype = (string) record["SubType"],
-                //Comment = record["Comment"] != DBNull.Value ? (string) record["Comment"] : null,
+                Comment = null,
             };
+
+            if (record.ContainsKey("Comment")) {
+                item.Comment = record["Comment"] != DBNull.Value ? (string) record["Comment"] : null;
+            }
+
+            return item;
         }
     }
 }

@@ -214,7 +214,7 @@ namespace DAL {
 
             if (reservationId != null) {
                 Line("SET [ReservationId] = @reservationId");
-                Param("reservationId", reservationId);
+                Param("reservationId", (int) reservationId);
             } else {
                 Line("SET [ReservationId] = NULL");
             }
@@ -252,15 +252,49 @@ namespace DAL {
             Line("UPDATE [Order]");
 
             if (receiptId != null) {
-                Line("SET [PlacedBy] = @placedBy");
-                Param("receiptId", receiptId);
+                Line("SET [ReceiptId] = @receiptId");
+                Param("receiptId", (int) receiptId);
             } else {
-                Line("SET [PlacedBy] = NULL");
+                Line("SET [ReceiptId] = NULL");
             }
 
             Line("WHERE [OrderId] = @id");
 
             Param("id", id);
+
+            Execute();
+        }
+        
+        public void UpdateReceiptIdByReservationId(int reservationId, object receiptId) {
+            Line("UPDATE [Order]");
+
+            if (receiptId != null) {
+                Line("SET [ReceiptId] = @receiptId");
+                Param("receiptId", (int) receiptId);
+            } else {
+                Line("SET [ReceiptId] = NULL");
+            }
+
+            Line("WHERE [ReservationId] = @reservationId");
+
+            Param("reservationId", reservationId);
+
+            Execute();
+        }
+
+        public void UpdateReservationIdByReservationId(int reservationId, object newReservationId) {
+            Line("UPDATE [Order]");
+
+            if (newReservationId != null) {
+                Line("SET [ReservationId] = @newReservationId");
+                Param("newReservationId", (int) newReservationId);
+            } else {
+                Line("SET [ReservationId] = NULL");
+            }
+
+            Line("WHERE [ReservationId] = @reservationId");
+
+            Param("reservationId", reservationId);
 
             Execute();
         }

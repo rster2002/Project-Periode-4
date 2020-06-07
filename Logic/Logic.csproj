@@ -47,7 +47,6 @@
     <Compile Include="OrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReceiptService.cs" />
-    <Compile Include="RegisterService.cs" />
     <Compile Include="ReservationService.cs" />
     <Compile Include="StaffService.cs" />
     <Compile Include="TableService.cs" />
