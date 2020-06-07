@@ -175,6 +175,13 @@ namespace DAL {
 
             return Execute();
         }
+
+        public List<Order> GetOpenOrders() {
+            BasicSelect();
+            Line("WHERE [Status] = 'open'");
+
+            return Execute();
+        }
         #endregion Read
 
         #region Update

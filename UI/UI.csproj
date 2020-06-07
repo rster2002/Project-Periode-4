@@ -71,6 +71,18 @@
     <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\StockPickerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockPickerView.Designer.cs">
+      <DependentUpon>StockPickerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StockView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockView.Designer.cs">
+      <DependentUpon>StockView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -143,6 +155,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockPickerView.resx">
+      <DependentUpon>StockPickerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockView.resx">
+      <DependentUpon>StockView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MobileViews\CheckoutView.resx">
       <DependentUpon>CheckoutView.cs</DependentUpon>

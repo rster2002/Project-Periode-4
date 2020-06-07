@@ -31,6 +31,13 @@ namespace DAL {
 
             return Execute();
         }
+        public List<MenuItem> OrderByStock() {
+            BasicSelect();
+            Line("ORDER BY InStock");
+
+            return Execute();
+        }
+
 
         public void ApplyMenuItemsToStock(List<MenuItem> menuItems) {
             Line("UPDATE [MenuItem]");

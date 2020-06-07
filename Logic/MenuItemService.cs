@@ -15,5 +15,6 @@ namespace Model
         public List<MenuItem> GetMenuItems() => menuItemDAO.GetAll();
         public List<MenuItem> GetDrinks() => menuItemDAO.GetDrinks();
         public void UpdateStock(List<MenuItem> menuItems) => menuItemDAO.ApplyMenuItemsToStock(menuItems);
+        public List<MenuItem> OrderByStock() => menuItemDAO.OrderByStock();
     }
 }
