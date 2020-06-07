@@ -139,8 +139,18 @@
             this.label2.Location = new System.Drawing.Point(3, 556);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 20);
-            this.label2.TabIndex = 6;
+            this.label2.TabIndex = 9;
             this.label2.Text = "Fooi";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label3.Location = new System.Drawing.Point(3, 470);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 20);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Opmerking";
             // 
             // paymentMethodDialog
             // 
@@ -236,23 +246,13 @@
             this.feedbackTextbox.Size = new System.Drawing.Size(392, 60);
             this.feedbackTextbox.TabIndex = 8;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(3, 470);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 20);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Opmerking";
-            // 
             // CheckoutView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label3);
             this.Controls.Add(this.paymentMethodDialog);
             this.Controls.Add(this.feedbackTextbox);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.startPaymentButton);
             this.Controls.Add(this.tipNumericUpDown);

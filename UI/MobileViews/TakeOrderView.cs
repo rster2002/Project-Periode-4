@@ -203,6 +203,7 @@ namespace UI.MobileViews {
         private void DialogRemoveButtonOnClick(object sender, EventArgs e) {
             order.MenuItems.Remove(loadedMenuItem);
 
+            RefreshOrderList();
             HidePopupDialog();
         }
 
