@@ -1,4 +1,5 @@
 ﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,6 +31,13 @@ namespace DAL {
 
             return Execute();
         }
+        public List<MenuItem> OrderByStock() {
+            BasicSelect();
+            Line("ORDER BY InStock");
+
+            return Execute();
+        }
+
 
         protected override MenuItem ProcessRecord(Record record) {
             return new MenuItem() {
@@ -39,25 +47,9 @@ namespace DAL {
                 VAT = (int) record["VAT"],
                 AmountInStock = (int) record["InStock"],
                 Type = (string) record["Type"],
-                Subtype = (string) record["SubType"]
+                Subtype = (string) record["SubType"],
+                //Comment = record["Comment"] != DBNull.Value ? (string) record["Comment"] : null,
             };
-        }
-
-        public override List<MenuItem> ProcessRecords(List<Record> records) {
-            Dictionary<int, MenuItem> menuItemMap = new Dictionary<int, MenuItem>();
-
-            foreach (Record record in records) {
-
-                int menuItemId = (int) record["MenuItemId"];
-
-                if (!menuItemMap.ContainsKey(menuItemId)) {
-                    MenuItem menuItem = ProcessRecord(record);
-
-                    menuItemMap[menuItemId] = menuItem;
-                }
-            }
-
-            return menuItemMap.Values.ToList();
         }
     }
 }

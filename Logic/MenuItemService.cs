@@ -38,5 +38,6 @@ namespace Model
             }
         }
         public List<MenuItem> GetDrinks() => menuItemDAO.GetDrinks();
+        public List<MenuItem> OrderByStock() => menuItemDAO.OrderByStock();
     }
 }

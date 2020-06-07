@@ -110,7 +110,7 @@ namespace Model {
 
         #region Update
         public void Update(int id, int reservationId, DateTime placedAt, int placedBy, int receiptId, object tag) => orderDAO.UpdateById(id, reservationId, placedAt, placedBy, receiptId, tag);
-        public void UpdateReservationId(int id, int reservationId) => orderDAO.UpdateReservationId(id, reservationId);
+        public void UpdateReservationId(int id, object reservationId) => orderDAO.UpdateReservationId(id, reservationId);
         public void UpdatePlacedBy(int id, int placedBy) => orderDAO.UpdatePlacedBy(id, placedBy);
         public void UpdateReceiptId(int id, object receiptId) => orderDAO.UpdateReceiptId(id, receiptId);
         public void UpdateTag(int id, object tag) => orderDAO.UpdateTag(id, tag);

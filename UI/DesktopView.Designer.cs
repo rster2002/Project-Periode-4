@@ -81,46 +81,48 @@ namespace UI {
             this.barToolStripMenuItem.Size = new System.Drawing.Size(88, 55);
             this.barToolStripMenuItem.Tag = "bartender, owner";
             this.barToolStripMenuItem.Text = "Bar";
+            this.barToolStripMenuItem.Click += new System.EventHandler(this.BarToolStripMenuItem_Click);
             // 
             // voorraadToolStripMenuItem
             // 
             this.voorraadToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.voorraadToolStripMenuItem.Name = "voorraadToolStripMenuItem";
             this.voorraadToolStripMenuItem.Size = new System.Drawing.Size(186, 55);
-            this.voorraadToolStripMenuItem.Text = "Voorraad";
             this.voorraadToolStripMenuItem.Tag = "bartender, chef, owner";
+            this.voorraadToolStripMenuItem.Text = "Voorraad";
+            this.voorraadToolStripMenuItem.Click += new System.EventHandler(this.VoorraadToolStripMenuItem_Click);
             // 
             // tafelsToolStripMenuItem
             // 
             this.tafelsToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.tafelsToolStripMenuItem.Name = "tafelsToolStripMenuItem";
             this.tafelsToolStripMenuItem.Size = new System.Drawing.Size(126, 55);
-            this.tafelsToolStripMenuItem.Text = "Tafels";
             this.tafelsToolStripMenuItem.Tag = "owner";
+            this.tafelsToolStripMenuItem.Text = "Tafels";
             // 
             // personeelToolStripMenuItem
             // 
             this.personeelToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.personeelToolStripMenuItem.Name = "personeelToolStripMenuItem";
             this.personeelToolStripMenuItem.Size = new System.Drawing.Size(196, 55);
-            this.personeelToolStripMenuItem.Text = "Personeel";
             this.personeelToolStripMenuItem.Tag = "owner";
+            this.personeelToolStripMenuItem.Text = "Personeel";
             // 
             // omzetToolStripMenuItem
             // 
             this.omzetToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.omzetToolStripMenuItem.Name = "omzetToolStripMenuItem";
             this.omzetToolStripMenuItem.Size = new System.Drawing.Size(146, 55);
-            this.omzetToolStripMenuItem.Text = "Omzet";
             this.omzetToolStripMenuItem.Tag = "owner";
+            this.omzetToolStripMenuItem.Text = "Omzet";
             // 
             // menuToolStripMenuItem
             // 
             this.menuToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
-            this.menuToolStripMenuItem.Text = "Menu";
             this.menuToolStripMenuItem.Tag = "owner";
+            this.menuToolStripMenuItem.Text = "Menu";
             // 
             // DesktopView
             // 
