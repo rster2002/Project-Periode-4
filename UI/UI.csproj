@@ -127,12 +127,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DesktopViews\TestView.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="DesktopViews\TestView.Designer.cs">
-      <DependentUpon>TestView.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -187,9 +181,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DesktopViews\TestView.resx">
-      <DependentUpon>TestView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewPicker.resx">
       <DependentUpon>ViewPicker.cs</DependentUpon>
