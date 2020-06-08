@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms;
 using UI.DesktopViews;
 
 namespace UI {
@@ -60,6 +61,10 @@ namespace UI {
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
             LoadView(new OrderView("food"));
+        }
+
+        private void StaffToolBarClick(object sender, EventArgs e) {
+            LoadView(new StaffView());
         }
 
         private void BarToolStripMenuItem_Click(object sender, EventArgs e) {

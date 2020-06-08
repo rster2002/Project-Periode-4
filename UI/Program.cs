@@ -13,6 +13,7 @@ namespace UI {
         static void Main() {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new ViewPicker());
 
             Application.Run(new ViewPicker());
             //try {
