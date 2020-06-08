@@ -26,10 +26,14 @@
             this.components = new System.ComponentModel.Container();
             this.refreshStockTimer = new System.Windows.Forms.Timer(this.components);
             this.PnlStock = new System.Windows.Forms.Panel();
-            this.LblGerecht = new System.Windows.Forms.Label();
             this.LblAmount = new System.Windows.Forms.Label();
+            this.LblGerecht = new System.Windows.Forms.Label();
             this.PnlStock.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // refreshStockTimer
+            // 
+            this.refreshStockTimer.Tick += new System.EventHandler(this.RefreshStockTimer_Tick);
             // 
             // PnlStock
             // 
@@ -42,16 +46,6 @@
             this.PnlStock.Size = new System.Drawing.Size(1904, 982);
             this.PnlStock.TabIndex = 0;
             // 
-            // LblGerecht
-            // 
-            this.LblGerecht.AutoSize = true;
-            this.LblGerecht.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGerecht.Location = new System.Drawing.Point(52, 70);
-            this.LblGerecht.Name = "LblGerecht";
-            this.LblGerecht.Size = new System.Drawing.Size(162, 46);
-            this.LblGerecht.TabIndex = 0;
-            this.LblGerecht.Text = "Gerecht";
-            // 
             // LblAmount
             // 
             this.LblAmount.AutoSize = true;
@@ -61,6 +55,16 @@
             this.LblAmount.Size = new System.Drawing.Size(133, 46);
             this.LblAmount.TabIndex = 1;
             this.LblAmount.Text = "Aantal";
+            // 
+            // LblGerecht
+            // 
+            this.LblGerecht.AutoSize = true;
+            this.LblGerecht.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblGerecht.Location = new System.Drawing.Point(52, 70);
+            this.LblGerecht.Name = "LblGerecht";
+            this.LblGerecht.Size = new System.Drawing.Size(162, 46);
+            this.LblGerecht.TabIndex = 0;
+            this.LblGerecht.Text = "Gerecht";
             // 
             // StockView
             // 

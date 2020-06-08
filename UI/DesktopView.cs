@@ -77,5 +77,9 @@ namespace UI {
                 LoadView(new StockView("drink"));
             }
         }
+
+        private void MenuToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new MenuPickerView());
+        }
     }
 }

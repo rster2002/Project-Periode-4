@@ -95,5 +95,9 @@ namespace UI.DesktopViews {
 
             return lbl;
         }
+
+        private void RefreshStockTimer_Tick(object sender, EventArgs e) {
+            PopulateStockView();
+        }
     }
 }

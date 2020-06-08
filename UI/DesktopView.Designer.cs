@@ -123,6 +123,7 @@ namespace UI {
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
             this.menuToolStripMenuItem.Tag = "owner";
             this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Click += new System.EventHandler(this.MenuToolStripMenuItem_Click);
             // 
             // DesktopView
             // 
