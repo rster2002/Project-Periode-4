@@ -18,8 +18,13 @@ namespace UI.MobileViews {
 
         public TableView() {
             InitializeComponent();
+            try {
+                tables = tableSerivce.GetAllTables();
+            } catch (Exception error) {
+                ErrorView errorView = new ErrorView(error.Message);
+                errorView.ShowDialog();
+            }
 
-            tables = tableSerivce.GetAllTables();
             PopulateTableLayout();
         }
 
@@ -48,12 +53,6 @@ namespace UI.MobileViews {
             Label label = new Label();
 
             panel.Size = new Size(193, 141);
-            if (TableFree()) {
-                panel.BackColor = Color.FromArgb(50, 132, 204, 6);
-
-            } else {
-                panel.BackColor = Color.FromArgb(50, 152, 0, 0);
-            } 
 
             // Prepare pictureBox
             pictureBox.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
@@ -88,10 +87,7 @@ namespace UI.MobileViews {
 
             return panel;
         }
-        private bool TableFree() {
-            // check if table is free (ik weet nog niet hoe)
-            return true;
-        }
+        
         private void TablePanelOnClick(object sender, EventArgs args) {
             MobileView mobileView = MobileView.GetInstance();
             PictureBox pictureBox = (PictureBox) sender;

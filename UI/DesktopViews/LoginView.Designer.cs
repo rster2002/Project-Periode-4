@@ -30,6 +30,7 @@
             this.txtb_gebruiker = new System.Windows.Forms.TextBox();
             this.txtb_wachtwoord = new System.Windows.Forms.TextBox();
             this.lbl_geengegevens = new System.Windows.Forms.Label();
+            this.Btn_changeView = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pb_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -39,7 +40,7 @@
             this.btn_login.FlatAppearance.BorderSize = 3;
             this.btn_login.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_login.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.25F);
-            this.btn_login.Location = new System.Drawing.Point(819, 517);
+            this.btn_login.Location = new System.Drawing.Point(819, 537);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(269, 74);
             this.btn_login.TabIndex = 0;
@@ -101,15 +102,25 @@
             this.lbl_geengegevens.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lbl_geengegevens.Location = new System.Drawing.Point(815, 487);
             this.lbl_geengegevens.Name = "lbl_geengegevens";
-            this.lbl_geengegevens.Size = new System.Drawing.Size(37, 20);
+            this.lbl_geengegevens.Size = new System.Drawing.Size(0, 20);
             this.lbl_geengegevens.TabIndex = 10;
-            this.lbl_geengegevens.Text = "MM";
+            // 
+            // Btn_changeView
+            // 
+            this.Btn_changeView.Location = new System.Drawing.Point(1634, 935);
+            this.Btn_changeView.Name = "Btn_changeView";
+            this.Btn_changeView.Size = new System.Drawing.Size(252, 34);
+            this.Btn_changeView.TabIndex = 11;
+            this.Btn_changeView.Text = "Change View";
+            this.Btn_changeView.UseVisualStyleBackColor = true;
+            this.Btn_changeView.Click += new System.EventHandler(this.Btn_changeView_Click);
             // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
+            this.Controls.Add(this.Btn_changeView);
             this.Controls.Add(this.lbl_geengegevens);
             this.Controls.Add(this.txtb_wachtwoord);
             this.Controls.Add(this.txtb_gebruiker);
@@ -134,5 +145,6 @@
         private System.Windows.Forms.TextBox txtb_gebruiker;
         private System.Windows.Forms.TextBox txtb_wachtwoord;
         private System.Windows.Forms.Label lbl_geengegevens;
+        private System.Windows.Forms.Button Btn_changeView;
     }
 }

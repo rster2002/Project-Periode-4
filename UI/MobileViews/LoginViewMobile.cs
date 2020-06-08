@@ -15,17 +15,19 @@ using System.Security.Cryptography;
 namespace UI.MobileViews {
     public partial class LoginViewMobile: UserControl {
         public MobileView mobileView;
+        public UserSession userSession;
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
-        public LoginViewMobile(MobileView mobileView) {
+        private ViewPicker viewPicker;
+        public LoginViewMobile(MobileView mobileView, ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
             this.mobileView = mobileView;
-
+            this.viewPicker = viewPicker;
             InitializeComponent();
             txtb_wachtwoord.UseSystemPasswordChar = true;
         }
 
-        private void btn_login_Click(object sender, EventArgs e) {
+        private void Btn_login_Click(object sender, EventArgs e) {
             if (txtb_gebruiker.Text == "" || txtb_wachtwoord.Text == "")
                 lbl_geengegevens.Text = "Staffnummer en wachtwoord \nmoeten ingevuld zijn!";
             else {
@@ -67,17 +69,19 @@ namespace UI.MobileViews {
 
             switch (rol) {
                 case "waiter":
-                    mobileView.LoadView(new TableView());
+                    mobileView.LoadView(new TableView(), "Tafels");
+                    userSession = UserSession.GetInstance();
                     break;
-                /*case "owner":
-                    mobileView.LoadView(new OwnerView());
+                case "owner":
+                    mobileView.LoadView(new TableView(), "Tafels");
+                    userSession = UserSession.GetInstance();
                     break;
                 case "bartender":
-                    mobileView.LoadView(new BarView());
+                    lbl_geengegevens.Text = "Barpersoneel kan niet hier inloggen";
                     break;
                 case "chef":
-                    mobileView.LoadView(new ChefView());
-                    break;*/
+                    lbl_geengegevens.Text = "Keukenpersoneel kan niet hier inloggen";
+                    break;
             }
         }
 
@@ -91,6 +95,11 @@ namespace UI.MobileViews {
                 sb.Append(b.ToString("x2"));
             }
             return sb.ToString();
+        }
+
+        private void Btn_changeView_Click(object sender, EventArgs e) {
+            mobileView.Close();
+            viewPicker.Show();
         }
     }
 }
