@@ -12,16 +12,16 @@ namespace DAL {
     public class ReservationDAO: SQLInterface<Reservation> {
         private void BasicSelect() {
             Line("SELECT *, (");
-                Line("SELECT[Customer].CustomerSurname AS CustomerSurname");
-                Line("FROM[Customer]");
-                Line("WHERE[Reservation].Customer = [Customer].CustomerId");
+                Line("SELECT [Customer].CustomerSurname AS CustomerSurname");
+                Line("FROM [Customer]");
+                Line("WHERE [Reservation].Customer = [Customer].CustomerId");
             Line(") AS CustomerSurname");
             Line("FROM [Reservation]");
             Line("JOIN [Table] ON [Reservation].TableNumber = [Table].TableNumber");
             Line("JOIN [Staff] ON [Table].ServedBy = [Staff].StaffNumber");
-            Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
-            Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
-            Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
+            //Line("JOIN [Order] ON [Reservation].ReservationId = [Order].ReservationId");
+            //Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
+            //Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
 
         #region Create
@@ -35,6 +35,22 @@ namespace DAL {
                 Line("VALUES (@tableNumber, NULL)");
             }
 
+            Param("tableNumber", tableNumber);
+
+            Execute();
+        }
+
+        public void Insert(int reservationId, int tableNumber, object customerId) {
+            Line("INSERT INTO [Reservation]");
+
+            if (customerId != null) {
+                Line("VALUES (@reservationId, @tableNumber, @customerId)");
+                Param("customerId", customerId);
+            } else {
+                Line("VALUES (@reservationId, @tableNumber, NULL)");
+            }
+
+            Param("reservationId", reservationId);
             Param("tableNumber", tableNumber);
 
             Execute();
@@ -68,11 +84,12 @@ namespace DAL {
 
         public Reservation GetByTableNumber(int number) {
             BasicSelect();
-            Line("WHERE [TableNumber] = @number");
+            Line("WHERE [Reservation].[TableNumber] = @number");
 
-            Param("id", number);
+            Param("number", number);
 
-            return Execute()[0];
+            List<Reservation> reservations = Execute();
+            return reservations.Count >= 1 ? reservations[0] : null;
         }
         #endregion Read
 
@@ -154,18 +171,14 @@ namespace DAL {
         }
         #endregion Delete
 
-        protected override Reservation ProcessRecord(Record record)
-        {
-            return new Reservation()
-            {
+        protected override Reservation ProcessRecord(Record record) {
+            return new Reservation() {
                 Id = (int)record["ReservationId"],
                 Customer = null,
-                Table = new Table()
-                {
+                Table = new Table() {
                     Number = (int)record["TableNumber"],
                     NumberOfSeats = (int)record["TableSeats"],
-                    ServedBy = new Staff()
-                    {
+                    ServedBy = new Staff() {
                         Id = (int)record["StaffNumber"],
                         Name = (string)record["StaffName"],
                         Salt = (int)record["StaffSalt"],
@@ -194,14 +207,8 @@ namespace DAL {
                         };
                     }
 
-                    // Because 'ProcessRecords' is public, we can ask other DAO's to process certain records for us
-                    reservation.Orders = orderDAO.ProcessRecords(
-                        // We only want to process the records that apply to the current reservation, so we filter out any that don't
-                        // match the current reservation id
-                        records
-                            .Where(r => (int) r["ReservationId"] == reservationId)
-                            .ToList()
-                    );
+                    // We use a seperate query because joining will cause reservations without orders to be omited.
+                    reservation.Orders = orderDAO.GetByReservationId(reservationId);
 
                     reservationMap[reservationId] = reservation;
                 }
@@ -209,88 +216,5 @@ namespace DAL {
 
             return reservationMap.Values.ToList();
         }
-
-        //public override List<Reservation> ProcessRecords(List<Record> records) {
-        //    // Create maps for easy lookup when sqashing multiple records into one reservation
-        //    Dictionary<int, Reservation> reservationMap = new Dictionary<int, Reservation>();
-        //    Dictionary<int, Dictionary<int, Order>> ordersMap = new Dictionary<int, Dictionary<int, Order>>();
-
-        //    // Process every record
-        //    foreach (Record record in records) {
-        //        // Generate reservation from record
-        //        Reservation reservation = ProcessRecord(record);
-
-        //        // Check if reservation id exists in map
-        //        if (!reservationMap.ContainsKey(reservation.Id)) {
-        //            // Gets required info from record that is 1-on-1
-        //            reservation.Table = GetTableFromRecord(record);
-
-        //            if (record["Customer"] != DBNull.Value) {
-        //                reservation.Customer = new Customer() {
-        //                    Id = (int) record["Customer"],
-        //                    Name = (string) record["CustomerSurname"]
-        //                };
-        //            }
-
-        //            // Adds a map where orders will be added so MenuItems can be mapped
-        //            ordersMap.Add(reservation.Id, new Dictionary<int, Order>());
-
-        //            // Adds the reservation object to the reservations map
-        //            reservationMap[reservation.Id] = reservation;
-        //        }
-
-        //        // Get the orders map for this record's reservation
-        //        Dictionary<int, Order> reservationOrderMap = ordersMap[reservation.Id];
-        //        int orderId = (int) record["OrderId"];
-
-        //        // Checks if order id exists in orders map for this record's reservation
-        //        if (!reservationOrderMap.ContainsKey(orderId)) {
-        //            // Adds order to orders map
-        //            reservationOrderMap[orderId] = new Order() {
-        //                Id = orderId,
-        //                PlacedBy = GetStaffFromRecord(record)
-        //            };
-        //        }
-
-        //        // Adds the menu item to the reservation's order map
-        //        reservationOrderMap[orderId].MenuItems.Add(new MenuItem() {
-        //            Id = (int) record["MenuItemId"],
-        //            Name = (string) record["MenuItemName"],
-        //            Price = (decimal) record["Price"],
-        //            VAT = (int) record["VAT"],
-        //            AmountInStock = (int) record["InStock"],
-        //            Comment = (string) record["Comment"]
-        //        });
-        //    }
-
-        //    // Adds the values from the record's order map to the reservation object stores in the reservations map
-        //    foreach (KeyValuePair<int, Dictionary<int, Order>> keyValuePair in ordersMap) {
-        //        int reservationId = keyValuePair.Key;
-        //        reservationMap[reservationId].Orders = keyValuePair.Value.Values.ToList();
-        //    }
-
-        //    // Returns all values from the reservations map
-        //    return reservationMap.Values.ToList();
-        //}
-
-        //protected override Reservation ProcessRecord(Record record) {
-        //    OrderDAO orderDAO = new OrderDAO();
-        //    TableDAO tableDAO = new TableDAO();
-        //    Table table = tableDAO.GetById((int) record["TableNumber"]);
-
-        //    Customer customer = null;
-        //    if (record["Customer"] != DBNull.Value) {
-        //        CustomerDAO customerDAO = new CustomerDAO();
-        //        customer = customerDAO.GetById((int) record["Customer"]);
-        //    }
-
-        //    int id = (int) record["ReservationId"];
-        //return new Reservation() {
-        //Id = id,
-        //    Customer = customer,
-        //    Table = table,
-        //    Orders = orderDAO.GetByReservationId(id)
-        //};
-        //}
     }
 }

@@ -10,7 +10,8 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Windows.Forms;
+using UI.DesktopViews;
 
 namespace UI {
     public partial class DesktopView: Form {
@@ -30,6 +31,7 @@ namespace UI {
 
         private DesktopView() {
             InitializeComponent();
+            WindowState = FormWindowState.Maximized;
         }
 
         private void ShowTabs() {
@@ -58,11 +60,27 @@ namespace UI {
         }
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
-            LoadView(new TestView());
+            LoadView(new OrderView("food"));
         }
 
         private void PersoneelToolBarClick(object sender, EventArgs e) {
             LoadView(new PersoneelView());
+        }
+
+        private void BarToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new OrderView("drink"));
+        }
+
+        private void VoorraadToolStripMenuItem_Click(object sender, EventArgs e) {
+            if(session.LoggedInStaff.Role == "owner") {
+                LoadView(new StockPickerView(this));
+            }
+            else if(session.LoggedInStaff.Role == "chef") {
+                LoadView(new StockView("food"));
+            } 
+            else if (session.LoggedInStaff.Role == "bartender") {
+                LoadView(new StockView("drink"));
+            }
         }
     }
 }
