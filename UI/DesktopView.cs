@@ -63,8 +63,8 @@ namespace UI {
             LoadView(new OrderView("food"));
         }
 
-        private void PersoneelToolBarClick(object sender, EventArgs e) {
-            LoadView(new PersoneelView());
+        private void StaffToolBarClick(object sender, EventArgs e) {
+            LoadView(new StaffView());
         }
 
         private void BarToolStripMenuItem_Click(object sender, EventArgs e) {

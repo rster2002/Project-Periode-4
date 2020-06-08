@@ -59,11 +59,35 @@
     <Compile Include="DesktopViews\CancelOrderForm.Designer.cs">
       <DependentUpon>CancelOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\extraConfirmationPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\extraConfirmationPopup.Designer.cs">
+      <DependentUpon>extraConfirmationPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\OrderView.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="DesktopViews\OrderView.Designer.cs">
       <DependentUpon>OrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StaffAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StaffAdd.Designer.cs">
+      <DependentUpon>StaffAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StaffPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StaffPopup.Designer.cs">
+      <DependentUpon>StaffPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StaffView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StaffView.Designer.cs">
+      <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopViews\PrepareOrderForm.cs">
       <SubType>Form</SubType>
@@ -150,8 +174,20 @@
     <EmbeddedResource Include="DesktopViews\CancelOrderForm.resx">
       <DependentUpon>CancelOrderForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\ExtraConfirmationPopup.resx">
+      <DependentUpon>extraConfirmationPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StaffAdd.resx">
+      <DependentUpon>StaffAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StaffPopup.resx">
+      <DependentUpon>StaffPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StaffView.resx">
+      <DependentUpon>StaffView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>

@@ -13,8 +13,8 @@ namespace UI {
     public partial class ExtraConfirmationPopup: Form {
         Staff employeeToFire;
         StaffService staffService = new StaffService();
-        PersoneelPopup opener;
-        public ExtraConfirmationPopup(Staff employee, PersoneelPopup opener) {
+        StaffPopup opener;
+        public ExtraConfirmationPopup(Staff employee, StaffPopup opener) {
             InitializeComponent();
             employeeToFire = employee;
             this.opener = opener;
