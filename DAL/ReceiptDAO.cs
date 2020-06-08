@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.CodeDom;
+using System.Runtime.CompilerServices;
 
 namespace DAL {
     public class ReceiptDAO : SQLInterface<Receipt> {
@@ -89,9 +90,16 @@ namespace DAL {
         }
 
         protected override Receipt ProcessRecord(Record record) {
-            return new Receipt() {
+            Receipt receipt = new Receipt() {
                 Id = (int) record["ReceiptId"],
+                Feedback = record["Feedback"] != DBNull.Value ? (string) record["Feedback"] : null,
             };
+
+            if (record["Tip"] != DBNull.Value) {
+                receipt.Tip = (decimal) record["Tip"];
+            }
+
+            return receipt;
         }
     }
 }

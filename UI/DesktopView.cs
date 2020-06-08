@@ -10,7 +10,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms;
 using UI.DesktopViews;
 
 namespace UI {
@@ -81,6 +80,10 @@ namespace UI {
             else if (session.LoggedInStaff.Role == "bartender") {
                 LoadView(new StockView("drink"));
             }
+        }
+
+        private void SalesViewToolStripMenuItemOnClick(object sender, EventArgs e) {
+            LoadView(new SalesView());
         }
     }
 }

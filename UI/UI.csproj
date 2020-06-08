@@ -71,6 +71,18 @@
     <Compile Include="DesktopViews\OrderView.Designer.cs">
       <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\SalePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\SalePopup.Designer.cs">
+      <DependentUpon>SalePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\SalesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\SalesView.Designer.cs">
+      <DependentUpon>SalesView.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\StaffAdd.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -173,6 +185,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\SalePopup.resx">
+      <DependentUpon>SalePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\SalesView.resx">
+      <DependentUpon>SalesView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\StaffAdd.resx">
       <DependentUpon>StaffAdd.cs</DependentUpon>
