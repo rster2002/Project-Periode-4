@@ -143,6 +143,12 @@
     <Compile Include="MobileView.Designer.cs">
       <DependentUpon>MobileView.cs</DependentUpon>
     </Compile>
+    <Compile Include="MobileViews\LoginViewMobile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\LoginViewMobile.Designer.cs">
+      <DependentUpon>LoginViewMobile.cs</DependentUpon>
+    </Compile>
     <Compile Include="MobileViews\TableControlsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -222,6 +228,9 @@
     <EmbeddedResource Include="MobileView.resx">
       <DependentUpon>MobileView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\LoginViewMobile.resx">
+      <DependentUpon>LoginViewMobile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MobileViews\TableControlsView.resx">
       <DependentUpon>TableControlsView.cs</DependentUpon>
     </EmbeddedResource>
@@ -267,6 +276,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chapoo logo1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

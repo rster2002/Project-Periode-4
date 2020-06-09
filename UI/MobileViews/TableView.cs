@@ -18,8 +18,13 @@ namespace UI.MobileViews {
 
         public TableView() {
             InitializeComponent();
+            try {
+                tables = tableSerivce.GetAllTables();
+            } catch (Exception error) {
+                ErrorView errorView = new ErrorView(error.Message);
+                errorView.ShowDialog();
+            }
 
-            tables = tableSerivce.GetAllTables();
             PopulateTableLayout();
         }
 
@@ -82,7 +87,7 @@ namespace UI.MobileViews {
 
             return panel;
         }
-
+        
         private void TablePanelOnClick(object sender, EventArgs args) {
             MobileView mobileView = MobileView.GetInstance();
             PictureBox pictureBox = (PictureBox) sender;
