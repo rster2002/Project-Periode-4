@@ -18,7 +18,7 @@ namespace UI.DesktopViews {
         }
 
         private void button1_Click(object sender, EventArgs e) {
-            mainView.LoadView(new TestView());
+            
         }
     }
 }

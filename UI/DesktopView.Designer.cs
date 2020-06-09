@@ -32,7 +32,7 @@ namespace UI {
             this.stockViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staffViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.omzetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.salesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -56,7 +56,7 @@ namespace UI {
             this.stockViewToolStripMenuItem,
             this.staffViewToolStripMenuItem,
             this.tablesViewToolStripMenuItem,
-            this.omzetToolStripMenuItem,
+            this.salesViewToolStripMenuItem,
             this.menuViewToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
@@ -109,13 +109,14 @@ namespace UI {
             this.tablesViewToolStripMenuItem.Tag = "owner";
             this.tablesViewToolStripMenuItem.Text = "Tafels";
             // 
-            // omzetToolStripMenuItem
+            // salesViewToolStripMenuItem
             // 
-            this.omzetToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.omzetToolStripMenuItem.Name = "omzetToolStripMenuItem";
-            this.omzetToolStripMenuItem.Size = new System.Drawing.Size(146, 55);
-            this.omzetToolStripMenuItem.Tag = "owner";
-            this.omzetToolStripMenuItem.Text = "Omzet";
+            this.salesViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.salesViewToolStripMenuItem.Name = "salesViewToolStripMenuItem";
+            this.salesViewToolStripMenuItem.Size = new System.Drawing.Size(146, 55);
+            this.salesViewToolStripMenuItem.Tag = "owner";
+            this.salesViewToolStripMenuItem.Text = "Omzet";
+            this.salesViewToolStripMenuItem.Click += new System.EventHandler(this.SalesViewToolStripMenuItemOnClick);
             // 
             // menuViewToolStripMenuItem
             // 
@@ -133,7 +134,7 @@ namespace UI {
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip);
             this.Name = "DesktopView";
-            this.Text = "Form1";
+            this.Text = "Chapoo";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
@@ -150,7 +151,7 @@ namespace UI {
         private System.Windows.Forms.ToolStripMenuItem stockViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tablesViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personeelViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem omzetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem salesViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem staffViewToolStripMenuItem;
     }
