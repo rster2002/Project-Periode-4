@@ -18,6 +18,7 @@ namespace UI.DesktopViews {
 
             InitializeComponent();
             PopulateOrderList();
+            PopulateLabels();
         }
 
         private void PopulateOrderList() {
@@ -39,6 +40,10 @@ namespace UI.DesktopViews {
 
                 ordersListView.Groups.Add(group);
             }
+        }
+
+        private void PopulateLabels() {
+            feedbackLabel.Text = receipt.Feedback;
         }
     }
 }

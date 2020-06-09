@@ -134,7 +134,7 @@ namespace UI {
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip);
             this.Name = "DesktopView";
-            this.Text = "Form1";
+            this.Text = "Chapoo";
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
