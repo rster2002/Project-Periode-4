@@ -82,5 +82,9 @@ namespace UI {
                 LoadView(new StockView("drink"));
             }
         }
+
+        private void tablesViewToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new TableView());
+        }
     }
 }
