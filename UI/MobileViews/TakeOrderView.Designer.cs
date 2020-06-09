@@ -315,12 +315,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.confirmationDialog);
-            this.Controls.Add(this.splitOrderCheckbox);
             this.Controls.Add(this.popupDialog);
             this.Controls.Add(this.buttonConfirmOrder);
             this.Controls.Add(this.menuItemList);
             this.Controls.Add(this.categoryLabel);
             this.Controls.Add(this.menuItemTypeButtons);
+            this.Controls.Add(this.splitOrderCheckbox);
             this.Controls.Add(this.orderList);
             this.Name = "TakeOrderView";
             this.Size = new System.Drawing.Size(1197, 649);

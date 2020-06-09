@@ -8,14 +8,9 @@ using DAL;
 
 namespace Model {
     public class CustomerService {
-
         private CustomerDAO customerDAO = new CustomerDAO();
 
-        public List<Customer> GetAllCustomers() {
-            return customerDAO.GetAll();
-        }
-        public Customer GetBySurname(string surname) {
-            return customerDAO.GetBySurname(surname);
-        }
+        public List<Customer> GetAllCustomers() => customerDAO.GetAll();
+        public Customer GetBySurname(string surname) => customerDAO.GetBySurname(surname);
     }
 }

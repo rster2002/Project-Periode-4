@@ -9,28 +9,42 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
 using System.Reflection;
+using System.Data.SqlTypes;
+using System.Drawing.Drawing2D;
 
 namespace UI.MobileViews {
     public partial class CheckoutView: UserControl {
+        private ReservationService reservationService = new ReservationService();
         private OrderService orderService = new OrderService();
+        private ReceiptService receiptService = new ReceiptService();
+        private MobileView mobileView = MobileView.GetInstance();
+
         private Table table;
         private List<Order> orders;
+        private string selectedPaymentMethod;
+        private List<Model.MenuItem> menuItems;
+
+        private Color optionSelectedColor = Color.FromArgb(9, 111, 189);
+        private Color optionDefaultColor = Color.White;
 
         public CheckoutView(Table table) {
             InitializeComponent();
+            Size = new Size(398, 649);
+            paymentMethodDialog.Dock = DockStyle.Fill;
 
             this.table = table;
             GetOrder();
 
-            List<Model.MenuItem> menuItems = CollapseMenuItems(
+            menuItems = CollapseMenuItems(
                 CompileTotalMenuItemsList(orders)
             );
-            PopulateMenuItemsList(menuItems);
-            PopulateVATList(menuItems);
+            PopulateMenuItemsList();
+            PopulateVATList();
         }
 
         private void GetOrder() {
             orders = orderService.GetOrderByTableId(table.Number);
+            startPaymentButton.Enabled = orders.Count > 0;
         }
 
         private List<Model.MenuItem> CompileTotalMenuItemsList(List<Order> orders) {
@@ -58,7 +72,7 @@ namespace UI.MobileViews {
             return menuItemsMap.Values.ToList();
         }
 
-        private void PopulateMenuItemsList(List<Model.MenuItem> menuItems) {
+        private void PopulateMenuItemsList() {
             menuItemsList.Items.Clear();
 
             foreach (Model.MenuItem menuItem in menuItems) {
@@ -70,10 +84,14 @@ namespace UI.MobileViews {
             }
         }
 
-        private void PopulateVATList(List<Model.MenuItem> menuItems) {
+        private void TipNumericUpDownOnChange(object sender, EventArgs e) {
+            PopulateVATList();
+        }
+
+        private void PopulateVATList() {
             VATListView.Items.Clear();
 
-            decimal totalPrice = GetTotalPrice(menuItems);
+            decimal totalPrice = GetTotalPrice(menuItems) + tipNumericUpDown.Value;
 
             decimal nonalchoholVAT = GetVAT(menuItems, 6);
             decimal alchoholVAT = GetVAT(menuItems, 21);
@@ -103,6 +121,49 @@ namespace UI.MobileViews {
         private decimal GetTotalPrice(List<Model.MenuItem> menuItems) {
             return menuItems
                 .Sum(menuItem => menuItem.Price * menuItem.Amount);
+        }
+
+        private void StartPaymentButtonOnClick(object sender, EventArgs e) {
+            ShowPaymentMethodDialog();
+        }
+
+        private void ShowPaymentMethodDialog() {
+            paymentMethodDialog.Visible = true;
+        }
+
+        private void HidePaymentMethodDialog() {
+            paymentMethodDialog.Visible = false;
+        }
+
+        private void SelectPaymentMethod(object sender, string paymentMethod) {
+            Button button = (Button) sender;
+
+            cashPaymentMethodButton.BackColor = optionDefaultColor;
+            debitCardPaymentMethodButton.BackColor = optionDefaultColor;
+            creditCardPaymentMethodButton.BackColor = optionDefaultColor;
+
+            confirmPaymentButton.Enabled = true;
+            button.BackColor = optionSelectedColor;
+
+            selectedPaymentMethod = paymentMethod;
+        }
+
+        private void CashPaymentMethodButtonOnClick(object sender, EventArgs e) => SelectPaymentMethod(sender, "cash");
+        private void DebitCardPaymentMethodButtonOnClick(object sender, EventArgs e) => SelectPaymentMethod(sender, "pin");
+        private void CreditCardPaymentMethodButtonOnClick(object sender, EventArgs e) => SelectPaymentMethod(sender, "visa");
+
+        private void ConfirmPaymentButtonOnClick(object sender, EventArgs e) {
+            Reservation reservation = reservationService.GetReservationByTableNumber(table.Number);
+            if (reservation == null) throw new Exception("Cannot find a reservation assosiated with this table");
+
+            Random random = new Random();
+            int receiptId = random.Next();
+
+            receiptService.AddReceipt(receiptId, selectedPaymentMethod, tipNumericUpDown.Value, feedbackTextbox.Text.Length > 0 ? feedbackTextbox.Text : null);
+            orderService.UpdateReceiptIdByReservationId(reservation.Id, receiptId);
+            reservationService.DeleteById(reservation.Id);
+
+            mobileView.ResetTo(new TableView(), "Tafels");
         }
     }
 }

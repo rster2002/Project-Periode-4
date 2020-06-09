@@ -46,6 +46,16 @@ namespace UI {
             LoadView(userControl, trackInHistort);
         }
 
+        public void ClearHistory() {
+            history.Clear();
+        }
+
+        public void ResetTo(UserControl userControl, string setLabelText) {
+            ClearHistory();
+            LoadView(userControl, setLabelText);
+            ShowBackButton();
+        }
+
         private void ShowBackButton() {
             if (history.Count == 1) {
                 historyBackButton.Hide();
