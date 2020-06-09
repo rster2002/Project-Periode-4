@@ -12,8 +12,7 @@ namespace Model {
 
         private UserSession() {
             LoggedInStaff = new Staff() {
-                Id = 5,
-                Role = "owner",
+                Role = "unauthorized",
             };
         }
 
@@ -22,8 +21,8 @@ namespace Model {
             return instance;
         }
 
-        public bool Login() {
-            return true;
+        public void SetLoggedInStaff(Staff staff) {
+            LoggedInStaff = staff;
         }
     }
 }

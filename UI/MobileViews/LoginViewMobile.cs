@@ -15,7 +15,7 @@ using System.Security.Cryptography;
 namespace UI.MobileViews {
     public partial class LoginViewMobile: UserControl {
         public MobileView mobileView;
-        public UserSession userSession;
+        public UserSession userSession = UserSession.GetInstance();
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
@@ -33,8 +33,13 @@ namespace UI.MobileViews {
             else {
                 wachtwoord = txtb_wachtwoord.Text;
                 if (ParseGegevens(txtb_gebruiker.Text)) {
-                    if (CheckGebruiker(staffId, wachtwoord))
+                    StaffService staffService = new StaffService();
+                    loggedStaff = staffService.GetStaffById(staffId);
+
+                    if (CheckGebruiker(loggedStaff, wachtwoord)) {
+                        userSession.SetLoggedInStaff(loggedStaff);
                         KiesScherm(loggedStaff);
+                    }
                     else {
                         txtb_wachtwoord.Text = null;
                         lbl_geengegevens.Text = "Onjuist staffnummer of wachtwoord";
@@ -45,16 +50,16 @@ namespace UI.MobileViews {
                 }
             }
         }
-        private bool CheckGebruiker(int staffId, string password) { //check inlog gegevens
-            StaffService staffService = new StaffService();
-            loggedStaff = staffService.GetStaffById(staffId);
 
+        private bool CheckGebruiker(Staff loggedStaff, string password) { //check inlog gegevens
+            if (loggedStaff == null) return false;
             if (loggedStaff.Hash == GetHashString(loggedStaff, password)) {
                 return true;
             }
 
             return false;
         }
+
         private bool ParseGegevens(string gebruikersnaam) { //try parse string naar int
             bool staffIdCorrect = int.TryParse(gebruikersnaam, out int result);
 
@@ -64,6 +69,7 @@ namespace UI.MobileViews {
             staffId = result;
             return true;
         }
+
         private void KiesScherm(Staff staff) {
             string rol = staff.Role;
 
