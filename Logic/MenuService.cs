@@ -8,11 +8,14 @@ using System.Threading.Tasks;
 
 namespace Model {
     public class MenuService {
-
         MenuDAO menuDAO = new MenuDAO();
 
-        public List<Menu> GetMenus() {
-            return menuDAO.GetAll();
-        }
+        #region Create
+        public void AddMenu(int id, string menuName, TimeSpan startTime, TimeSpan endTime) => menuDAO.Insert(id, menuName, startTime, endTime);
+        #endregion Create
+
+        #region Read
+        public List<Menu> GetMenus() => menuDAO.GetAll();
+        #endregion Read
     }
 }

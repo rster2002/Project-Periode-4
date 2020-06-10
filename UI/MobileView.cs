@@ -17,7 +17,7 @@ namespace UI {
 
         private MobileView() {
             InitializeComponent();
-            LoadView(new TableView(), "Tafels");
+            FormBorderStyle = FormBorderStyle.FixedSingle;
         }
 
         public static MobileView GetInstance() {
@@ -47,7 +47,9 @@ namespace UI {
         }
 
         public void ClearHistory() {
-            history.Clear();
+            history = new List<HistoryItem>() {
+                history[0]
+            };
         }
 
         public void ResetTo(UserControl userControl, string setLabelText) {
@@ -57,7 +59,13 @@ namespace UI {
         }
 
         private void ShowBackButton() {
-            if (history.Count > 1) {
+            if (history.Count == 1) {
+                historyBackButton.Hide();
+            }
+            else {
+                historyBackButton.Show();
+            }
+            if (history.Count > 2) {
                 historyBackButton.Text = "Terug";
             } else {
                 historyBackButton.Text = "Logout";

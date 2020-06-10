@@ -33,7 +33,8 @@ namespace DAL {
 
             Param("id", id);
 
-            return Execute()[0];
+            List<Staff> staffList = Execute();
+            return staffList.Count > 0 ? staffList[0] : null;
         }
 
         public List<Staff> GetStaffByRole(string role) {

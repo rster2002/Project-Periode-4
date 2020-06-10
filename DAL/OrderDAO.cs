@@ -14,7 +14,11 @@ namespace DAL {
         private void BasicSelect() {
             Line("SELECT *");
             Line("FROM [Order]");
-            Line("JOIN [Staff] ON [Order].OrderPlacedBy = [Staff].StaffNumber");
+            Line("OUTER APPLY (");
+                Line("SELECT *");
+                Line("FROM [Staff]");
+                Line("WHERE [StaffNumber] = [OrderPlacedBy]");
+            Line(") AS StaffSelect");
             Line("JOIN [OrderItem] ON [Order].OrderId = [OrderItem].OrderId");
             Line("JOIN [MenuItem] ON [OrderItem].MenuItemId = [MenuItem].MenuItemId");
         }
@@ -402,14 +406,20 @@ namespace DAL {
         }
 
         protected override Order ProcessRecord(Record record) {
-            return new Order() {
-                Id = (int) record["OrderId"],
-                PlacedBy = new Staff() {
+            Staff staff = null;
+
+            if (record["StaffNumber"] != DBNull.Value) {
+                staff = new Staff() {
                     Id = (int) record["StaffNumber"],
                     Name = (string) record["StaffName"],
                     Salt = (int) record["StaffSalt"],
                     Role = (string) record["StaffRole"]
-                },
+                };
+            }
+
+            return new Order() {
+                Id = (int) record["OrderId"],
+                PlacedBy = staff,
                 PlacedAt = (DateTime) record["OrderPlacedDateTime"],
                 Status = (string) record["Status"],
             };
