@@ -119,6 +119,12 @@
     <Compile Include="DesktopViews\StockView.Designer.cs">
       <DependentUpon>StockView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\TableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\TableView.Designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -215,6 +221,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\StockView.resx">
       <DependentUpon>StockView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\TableView.resx">
+      <DependentUpon>TableView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MobileViews\CheckoutView.resx">
       <DependentUpon>CheckoutView.cs</DependentUpon>

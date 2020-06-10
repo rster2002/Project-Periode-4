@@ -38,6 +38,15 @@ namespace DAL {
             return Execute();
         }
 
+        public void ChangeServingStaff(int id, int tableToChangeNr) {
+            Line("UPDATE [Table] SET [ServedBy] = @id WHERE [TableNumber] = @tableNr");
+
+            Param("id", id);
+            Param("tableNr", tableToChangeNr);
+
+            ExecuteCommand();
+        }
+
         protected override Table ProcessRecord(Record record) {
             StaffDAO staffDAO = new StaffDAO();
 
