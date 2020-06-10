@@ -15,6 +15,7 @@ namespace UI {
             Application.SetCompatibleTextRenderingDefault(false);
 
             Application.Run(new ViewPicker());
+
             //try {
             //    Application.Run(new ViewPicker());
             //} catch(Exception error) {
