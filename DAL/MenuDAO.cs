@@ -34,6 +34,16 @@ namespace DAL {
             Execute();
         }
 
+        public void AddItemToMenu(int menuId, int menuItemId) {
+            Line("INSERT INTO [ItemOnMenu]");
+            Line("VALUES (@menuId, @menuItemId)");
+
+            Param("menuId", menuId);
+            Param("menuItemId", menuItemId);
+
+            Execute();
+        }
+
         public void AddItemsToMenu(int menuId, List<MenuItem> menuItems) {
             List<string> values = new List<string>();
 

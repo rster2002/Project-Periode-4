@@ -12,10 +12,15 @@ namespace Model {
 
         #region Create
         public void AddMenu(int id, string menuName, TimeSpan startTime, TimeSpan endTime) => menuDAO.Insert(id, menuName, startTime, endTime);
+        public void AddItemToMenu(int menuId, int menuItemId) => menuDAO.AddItemToMenu(menuId, menuItemId);
         #endregion Create
 
         #region Read
         public List<Menu> GetMenus() => menuDAO.GetAll();
         #endregion Read
+
+        #region Delete
+        public void DeleteMenu(int id) => menuDAO.DeleteById(id);
+        #endregion Delete
     }
 }
