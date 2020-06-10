@@ -11,9 +11,7 @@ namespace Model {
         public Staff LoggedInStaff { get; private set; }
 
         private UserSession() {
-            LoggedInStaff = new Staff() {
-                Role = "unauthorized",
-            };
+            Logout();
         }
 
         public static UserSession GetInstance() {
@@ -23,6 +21,12 @@ namespace Model {
 
         public void SetLoggedInStaff(Staff staff) {
             LoggedInStaff = staff;
+        }
+
+        public void Logout() {
+            LoggedInStaff = new Staff() {
+                Role = "unauthorized",
+            };
         }
     }
 }

@@ -14,15 +14,13 @@ using System.Security.Cryptography;
 
 namespace UI.MobileViews {
     public partial class LoginViewMobile: UserControl {
-        public MobileView mobileView;
+        public MobileView mobileView = MobileView.GetInstance();
         public UserSession userSession = UserSession.GetInstance();
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
-        private ViewPicker viewPicker;
-        public LoginViewMobile(MobileView mobileView, ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
-            this.mobileView = mobileView;
-            this.viewPicker = viewPicker;
+
+        public LoginViewMobile() {
             InitializeComponent();
             txtb_wachtwoord.UseSystemPasswordChar = true;
         }
@@ -105,7 +103,6 @@ namespace UI.MobileViews {
 
         private void Btn_changeView_Click(object sender, EventArgs e) {
             mobileView.Close();
-            viewPicker.Show();
         }
     }
 }

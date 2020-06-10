@@ -29,9 +29,9 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.tablesOverviewLayout.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -93,18 +93,18 @@
             this.panel2.Size = new System.Drawing.Size(398, 49);
             this.panel2.TabIndex = 1;
             // 
-            // label2
+            // label4
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(25, 11);
-            this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.label2.Size = new System.Drawing.Size(67, 28);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "Bezet";
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(271, 11);
+            this.label4.Name = "label4";
+            this.label4.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.label4.Size = new System.Drawing.Size(113, 28);
+            this.label4.TabIndex = 2;
+            this.label4.Text = "Beschikbaar";
             // 
             // label3
             // 
@@ -119,18 +119,18 @@
             this.label3.TabIndex = 1;
             this.label3.Text = "Gereserveerd";
             // 
-            // label4
+            // label2
             // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(271, 11);
-            this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
-            this.label4.Size = new System.Drawing.Size(113, 28);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Beschikbaar";
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(25, 11);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(8, 4, 8, 4);
+            this.label2.Size = new System.Drawing.Size(67, 28);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Bezet";
             // 
             // TableView
             // 

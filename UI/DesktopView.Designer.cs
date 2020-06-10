@@ -34,6 +34,7 @@ namespace UI {
             this.tablesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoutButton = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,11 +128,25 @@ namespace UI {
             this.menuViewToolStripMenuItem.Text = "Menu";
             this.menuViewToolStripMenuItem.Click += new System.EventHandler(this.MenuViewToolStripMenuItem_Click);
             // 
+            // logoutButton
+            // 
+            this.logoutButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.logoutButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.logoutButton.ForeColor = System.Drawing.Color.White;
+            this.logoutButton.Location = new System.Drawing.Point(1773, 12);
+            this.logoutButton.Name = "logoutButton";
+            this.logoutButton.Size = new System.Drawing.Size(105, 36);
+            this.logoutButton.TabIndex = 1;
+            this.logoutButton.Text = "Log uit";
+            this.logoutButton.UseVisualStyleBackColor = false;
+            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            // 
             // DesktopView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1904, 1041);
+            this.Controls.Add(this.logoutButton);
             this.Controls.Add(this.mainPanel);
             this.Controls.Add(this.menuStrip);
             this.Name = "DesktopView";
@@ -155,6 +170,7 @@ namespace UI {
         private System.Windows.Forms.ToolStripMenuItem salesViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem staffViewToolStripMenuItem;
+        private System.Windows.Forms.Button logoutButton;
     }
 }
 

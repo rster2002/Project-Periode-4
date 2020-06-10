@@ -49,6 +49,8 @@ namespace UI {
             mainPanel.Controls.Clear();
             userControl.Dock = DockStyle.Fill;
 
+            logoutButton.Visible = userSession.LoggedInStaff.Role != "unauthorized";
+
             mainPanel.Controls.Add(userControl);
             ShowTabs();
         }
@@ -83,6 +85,11 @@ namespace UI {
 
         private void MenuViewToolStripMenuItem_Click(object sender, EventArgs e) {
             LoadView(new MenuPickerView(this));
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e) {
+            userSession.Logout();
+            LoadView(new LoginView());
         }
     }
 }

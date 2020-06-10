@@ -17,11 +17,9 @@ namespace UI.DesktopViews {
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
-        private ViewPicker viewPicker;
 
-        public LoginView(ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
+        public LoginView() {
             InitializeComponent();
-            this.viewPicker = viewPicker;
             txtb_wachtwoord.UseSystemPasswordChar = true;
         }
 
@@ -105,7 +103,6 @@ namespace UI.DesktopViews {
 
         private void Btn_changeView_Click(object sender, EventArgs e) {
             mainView.Close();
-            viewPicker.Show();
         }
     }
 }

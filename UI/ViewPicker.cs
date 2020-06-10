@@ -18,7 +18,7 @@ namespace UI {
 
         private void MobileView_Click(object sender, EventArgs e) {
             MobileView mobileView = MobileView.GetInstance();
-            mobileView.LoadView(new LoginViewMobile(mobileView, this), "Login");
+            mobileView.LoadView(new LoginViewMobile(), "Login");
 
             Hide();
             mobileView.ShowDialog();
@@ -27,7 +27,7 @@ namespace UI {
 
         private void DesktopView_Click(object sender, EventArgs e) {
             DesktopView desktopView = DesktopView.GetInstance();
-            desktopView.LoadView(new LoginView(this));
+            desktopView.LoadView(new LoginView());
             
             Hide();
             desktopView.ShowDialog();
