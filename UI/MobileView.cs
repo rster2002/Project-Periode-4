@@ -47,7 +47,9 @@ namespace UI {
         }
 
         public void ClearHistory() {
-            history.Clear();
+            history = new List<HistoryItem>() {
+                history[0]
+            };
         }
 
         public void ResetTo(UserControl userControl, string setLabelText) {
