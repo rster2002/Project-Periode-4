@@ -10,53 +10,28 @@ namespace Model {
     public class StaffService {
         private StaffDAO staffDAO = new StaffDAO();
 
-        public List<Staff> GetAllStaff() {
+        public List<Staff> GetAllStaff() => staffDAO.GetAll();
+        public Staff GetStaffById(int staffId) => staffDAO.GetById(staffId);
+        public List<Staff> GetStaffByRole(string role) => staffDAO.GetStaffByRole(role);
+
+        public bool DeleteStaffById(int id) {
             try {
-                List<Staff> staff = staffDAO.GetAll();
-                return staff;
+                staffDAO.RemoveStaffById(id);
+                return true;
             } catch {
-                List<Staff> staff = new List<Staff>();
-                Staff staffMember = new Staff {
-                    Id = 1,
-                    Name = "Joe",
-                    Role = "Kok",
-                    Salt = 11
-                };
-                staff.Add(staffMember);
-                return staff;
+                return false;
             }
-        }
-        public Staff GetStaffById(int staffId) {
-            try {
-                Staff staff = staffDAO.GetById(staffId);
-                return staff;
-            } catch {
-                Staff staff = new Staff {
-                    Id = 1,
-                    Name = "Joe",
-                    Role = "Kok",
-                    Salt = 11
-                };
-                return staff;
-            }
-        }
-        public List<Staff> GetStaffByRole(string role) {
-            try {
-                List<Staff> staff = staffDAO.GetStaffByRole(role);
-                return staff;
-            } catch {
-                List<Staff> staff = new List<Staff>();
-                Staff staffMember = new Staff {
-                    Id = 1,
-                    Name = "Joe",
-                    Role = "Kok",
-                    Salt = 11
-                };
-                staff.Add(staffMember);
-                return staff;
-            };
+
         }
 
+        public bool AddStaffMember(string name, string role, int salt, string pass) {
+            try {
+                staffDAO.AddStaffMember(name, role, salt, pass);
+                return true;
+            } catch (Exception e) {
+                return false;
+            }
+        }
     }
 }
 

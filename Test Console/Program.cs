@@ -16,14 +16,15 @@ namespace Test_Console {
         }
 
         void Start() {
+            TableDAO tableDAO = new TableDAO();
             OrderDAO orderDAO = new OrderDAO();
+            MenuDAO menuDAO = new MenuDAO();
 
-            //orderDAO.GetByTableNumber(4).ForEach(order => {
-            //    order.MenuItems.ForEach(menuItem => {
-            //        Console.WriteLine("{0}: {1}", order.Id, menuItem.Name);
-            //    });
-            //});
+            //menuDAO.Insert(915, "Secret menu", new TimeSpan(10, 10, 10), new TimeSpan(10, 20, 20));
 
+            List<Menu> menus = menuDAO.GetAll();
+
+            Console.WriteLine(menus);
             Console.ReadKey();
         }
     }

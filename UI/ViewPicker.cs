@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UI.DesktopViews;
+using UI.MobileViews;
 
 namespace UI {
     public partial class ViewPicker: Form {
@@ -15,16 +16,22 @@ namespace UI {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void MobileView_Click(object sender, EventArgs e) {
             MobileView mobileView = MobileView.GetInstance();
+            mobileView.LoadView(new LoginViewMobile(mobileView, this), "Login");
+
+            Hide();
             mobileView.ShowDialog();
+            Show();
         }
 
-        private void button2_Click(object sender, EventArgs e) {
+        private void DesktopView_Click(object sender, EventArgs e) {
             DesktopView desktopView = DesktopView.GetInstance();
-            desktopView.LoadView(new LoginView());
-
+            desktopView.LoadView(new LoginView(this));
+            
+            Hide();
             desktopView.ShowDialog();
+            Show();
         }
     }
 }

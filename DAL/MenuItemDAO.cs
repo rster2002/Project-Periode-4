@@ -11,14 +11,15 @@ namespace DAL {
         }
 
         #region Create
-        public void Insert(string name, decimal price, int VAT, int inStock, string type, string subtype) {
+        public void Insert(int id, string menuItemName, decimal price, int VAT, int inStock, string type, string subtype) {
             Line("INSERT INTO [MenuItem]");
-            Line("VALUES (@name, @price, @VAT, @inStock, @type, @subtype)");
+            Line("VALUES (@id, @menuItemName, @price, @VAT, @inStock, @type, @subtype");
 
-            Param("name", name);
-            Param("inStock", inStock);
+            Param("id", id);
+            Param("menuItemName", menuItemName);
             Param("price", price);
             Param("VAT", VAT);
+            Param("inStock", inStock);
             Param("type", type);
             Param("subtype", subtype);
 
@@ -57,7 +58,17 @@ namespace DAL {
         }
         #endregion Read
 
-        #region Update
+        #region Delete
+        public void DeleteById(int id) {
+            Line("DELETE [MenuItem]");
+            Line("WHERE [MenuItemId] = @id");
+
+            Param("id", id);
+
+            Execute();
+        }
+        #endregion Delete
+
         public void ApplyMenuItemsToStock(List<MenuItem> menuItems) {
             Line("UPDATE [MenuItem]");
             Line("SET [InStock] = CASE");
@@ -74,9 +85,10 @@ namespace DAL {
 
             Execute();
         }
-        #endregion Update
 
         protected override MenuItem ProcessRecord(Record record) {
+            if (record["MenuItemId"] == DBNull.Value) return null;
+
             MenuItem item = new MenuItem() {
                 Id = (int) record["MenuItemId"],
                 Name = (string) record["MenuItemName"],

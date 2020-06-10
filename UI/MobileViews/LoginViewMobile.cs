@@ -7,25 +7,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.MobileViews;
 using Model;
+using System.Security.Policy;
 using System.Security.Cryptography;
 
-namespace UI.DesktopViews {
-    public partial class LoginView: UserControl {
-        private DesktopView mainView = DesktopView.GetInstance();
+namespace UI.MobileViews {
+    public partial class LoginViewMobile: UserControl {
+        public MobileView mobileView;
         public UserSession userSession = UserSession.GetInstance();
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
         private ViewPicker viewPicker;
-
-        public LoginView(ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
-            InitializeComponent();
+        public LoginViewMobile(MobileView mobileView, ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
+            this.mobileView = mobileView;
             this.viewPicker = viewPicker;
+            InitializeComponent();
             txtb_wachtwoord.UseSystemPasswordChar = true;
         }
 
-        private void button1_Click(object sender, EventArgs e) {
+        private void Btn_login_Click(object sender, EventArgs e) {
             if (txtb_gebruiker.Text == "" || txtb_wachtwoord.Text == "")
                 lbl_geengegevens.Text = "Staffnummer en wachtwoord \nmoeten ingevuld zijn!";
             else {
@@ -73,17 +75,18 @@ namespace UI.DesktopViews {
 
             switch (rol) {
                 case "waiter":
-                    lbl_geengegevens.Text = "U kunt niet inloggen in de desktop omgeving als serveerder";
+                    mobileView.LoadView(new TableView(), "Tafels");
+                    userSession = UserSession.GetInstance();
                     break;
                 case "owner":
-                    // TODO
-                    //mainView.LoadView(new T("food"));
+                    mobileView.LoadView(new TableView(), "Tafels");
+                    userSession = UserSession.GetInstance();
                     break;
                 case "bartender":
-                    mainView.LoadView(new OrderView("drink"));
+                    lbl_geengegevens.Text = "Barpersoneel kan niet hier inloggen";
                     break;
                 case "chef":
-                    mainView.LoadView(new OrderView("food"));
+                    lbl_geengegevens.Text = "Keukenpersoneel kan niet hier inloggen";
                     break;
             }
         }
@@ -92,19 +95,16 @@ namespace UI.DesktopViews {
             HashAlgorithm algorithm = SHA256.Create();
             return algorithm.ComputeHash(Encoding.UTF8.GetBytes(wachtwoord + staff.Salt));
         }
-
         public string GetHashString(Staff staff, string wachtwoord) {
             StringBuilder sb = new StringBuilder();
-
             foreach (byte b in GetHash(staff, wachtwoord)) {
                 sb.Append(b.ToString("x2"));
             }
-
             return sb.ToString();
         }
 
         private void Btn_changeView_Click(object sender, EventArgs e) {
-            mainView.Close();
+            mobileView.Close();
             viewPicker.Show();
         }
     }

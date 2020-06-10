@@ -16,12 +16,7 @@ namespace UI {
     public partial class DesktopView: Form {
         public static DesktopView instance;
         public UserControl loadedView;
-        private UserSession session = UserSession.GetInstance();
-
-        // Handiger als apparte class vanwege Seperation of Consern?
-        public Staff loggedIn = new Staff() {
-            Role = "unautherized"
-        };
+        private UserSession userSession = UserSession.GetInstance();
 
         public static DesktopView GetInstance() {
             if (instance == null) instance = new DesktopView();
@@ -37,7 +32,7 @@ namespace UI {
             for (int i = 0; i < menuStrip.Items.Count; i++) {
                 ToolStripItem item = menuStrip.Items[i];
 
-                item.Visible = ((string) item.Tag).Contains(session.LoggedInStaff.Role);
+                item.Visible = ((string) item.Tag).Contains(userSession.LoggedInStaff.Role);
 
                 // Checken op naam is een beetje, eh...
                 if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
@@ -51,15 +46,19 @@ namespace UI {
         public void LoadView(UserControl userControl) {
             loadedView = userControl;
 
-            ShowTabs();
             mainPanel.Controls.Clear();
             userControl.Dock = DockStyle.Fill;
 
             mainPanel.Controls.Add(userControl);
+            ShowTabs();
         }
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
             LoadView(new OrderView("food"));
+        }
+
+        private void StaffToolBarClick(object sender, EventArgs e) {
+            LoadView(new StaffView());
         }
 
         private void BarToolStripMenuItem_Click(object sender, EventArgs e) {
@@ -67,19 +66,19 @@ namespace UI {
         }
 
         private void VoorraadToolStripMenuItem_Click(object sender, EventArgs e) {
-            if(session.LoggedInStaff.Role == "owner") {
+            if(userSession.LoggedInStaff.Role == "owner") {
                 LoadView(new StockPickerView(this));
             }
-            else if(session.LoggedInStaff.Role == "chef") {
+            else if(userSession.LoggedInStaff.Role == "chef") {
                 LoadView(new StockView("food"));
             } 
-            else if (session.LoggedInStaff.Role == "bartender") {
+            else if (userSession.LoggedInStaff.Role == "bartender") {
                 LoadView(new StockView("drink"));
             }
         }
 
-        private void MenuToolStripMenuItem_Click(object sender, EventArgs e) {
-            LoadView(new MenuPickerView(this));
+        private void SalesViewToolStripMenuItemOnClick(object sender, EventArgs e) {
+            LoadView(new SalesView());
         }
     }
 }
