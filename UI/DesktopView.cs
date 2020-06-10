@@ -79,7 +79,7 @@ namespace UI {
         }
 
         private void MenuToolStripMenuItem_Click(object sender, EventArgs e) {
-            LoadView(new MenuPickerView());
+            LoadView(new MenuPickerView(this));
         }
     }
 }

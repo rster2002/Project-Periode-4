@@ -17,20 +17,16 @@ namespace UI.DesktopViews {
         private int nextLabelYAxis;
         public StockView(string foodType) {
             this.foodType = foodType;
-            nextLabelYAxis = 125;
 
             InitializeComponent();
             PopulateStockView();
 
             if(foodType == "drink") {
-                LblGerecht.Text = "Dranken";
+                LblDish.Text = "Dranken";
             }
 
-            PnlStock.Controls.Add(LblGerecht);
-            PnlStock.Controls.Add(LblAmount);
-
             //set interval for timer and enable timer.
-            refreshStockTimer.Interval = 5000;
+            refreshStockTimer.Interval = 20000;
             refreshStockTimer.Enabled = true;
 
             //start the timer
@@ -40,6 +36,9 @@ namespace UI.DesktopViews {
         private void PopulateStockView() {
             items = menuItemSerivce.OrderByStock();
             PnlStock.Controls.Clear();
+            PnlStock.Controls.Add(LblDish);
+            PnlStock.Controls.Add(LblAmount);
+            nextLabelYAxis = 125;
 
             items = items
                 .Where(menuItem => menuItem.Type == foodType)

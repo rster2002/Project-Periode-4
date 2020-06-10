@@ -12,29 +12,33 @@ using Model;
 namespace UI.DesktopViews {
     public partial class MenuPickerView: UserControl {
         private MenuService menuService = new MenuService();
-        private List<Model.Menu> menu;
+        private List<Model.Menu> menus;
         private int nextLabelYAxis;
-        public MenuPickerView() {
+        private DesktopView parent;
+        public MenuPickerView(DesktopView parent) {
+
+            this.parent = parent;
             InitializeComponent();
 
-            nextLabelYAxis = 100;
             PopulateMenuView();
         }
         private void PopulateMenuView() {
-            menu = menuService.GetMenus();
+            menus = menuService.GetMenus();
             PnlMenu.Controls.Clear();
 
             PnlMenu.Controls.Add(LblMenu);
             PnlMenu.Controls.Add(LblAmount);
 
+            nextLabelYAxis = 100;
+
             //set interval for timer and enable timer.
-            refreshMenuTimer.Interval = 5000;
+            refreshMenuTimer.Interval = 20000;
             refreshMenuTimer.Enabled = true;
 
             //start the timer
             refreshMenuTimer.Start();
 
-            foreach (Model.Menu menu in menu) {
+            foreach (Model.Menu menu in menus) {
                 PnlMenu.Controls.Add(GenerateAmountLabel(menu));
                 PnlMenu.Controls.Add(GenerateNameLabel(menu));
 
@@ -56,6 +60,8 @@ namespace UI.DesktopViews {
 
             lbl.Width = 1600;
             lbl.Height = 50;
+
+            lbl.Click += (sender, e) => ShowItemsOnMenu(sender, e, menu);
 
             return lbl;
         }
@@ -79,6 +85,10 @@ namespace UI.DesktopViews {
 
         private void RefreshMenuTimer_Tick(object sender, EventArgs e) {
             PopulateMenuView();
+        }
+
+        private void ShowItemsOnMenu(object sender, EventArgs e, Model.Menu selectedMenu) {
+            parent.LoadView(new ItemsOnMenuView(selectedMenu));
         }
     }
 }

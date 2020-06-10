@@ -27,7 +27,7 @@
             this.refreshStockTimer = new System.Windows.Forms.Timer(this.components);
             this.PnlStock = new System.Windows.Forms.Panel();
             this.LblAmount = new System.Windows.Forms.Label();
-            this.LblGerecht = new System.Windows.Forms.Label();
+            this.LblDish = new System.Windows.Forms.Label();
             this.PnlStock.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -39,7 +39,7 @@
             // 
             this.PnlStock.AutoScroll = true;
             this.PnlStock.Controls.Add(this.LblAmount);
-            this.PnlStock.Controls.Add(this.LblGerecht);
+            this.PnlStock.Controls.Add(this.LblDish);
             this.PnlStock.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PnlStock.Location = new System.Drawing.Point(0, 0);
             this.PnlStock.Name = "PnlStock";
@@ -58,13 +58,13 @@
             // 
             // LblGerecht
             // 
-            this.LblGerecht.AutoSize = true;
-            this.LblGerecht.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblGerecht.Location = new System.Drawing.Point(52, 70);
-            this.LblGerecht.Name = "LblGerecht";
-            this.LblGerecht.Size = new System.Drawing.Size(162, 46);
-            this.LblGerecht.TabIndex = 0;
-            this.LblGerecht.Text = "Gerecht";
+            this.LblDish.AutoSize = true;
+            this.LblDish.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblDish.Location = new System.Drawing.Point(52, 70);
+            this.LblDish.Name = "LblGerecht";
+            this.LblDish.Size = new System.Drawing.Size(162, 46);
+            this.LblDish.TabIndex = 0;
+            this.LblDish.Text = "Gerecht";
             // 
             // StockView
             // 
@@ -85,7 +85,7 @@
 
         private System.Windows.Forms.Timer refreshStockTimer;
         private System.Windows.Forms.Panel PnlStock;
-        private System.Windows.Forms.Label LblGerecht;
+        private System.Windows.Forms.Label LblDish;
         private System.Windows.Forms.Label LblAmount;
     }
 }

@@ -59,6 +59,12 @@
     <Compile Include="DesktopViews\CancelOrderForm.Designer.cs">
       <DependentUpon>CancelOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\ItemsOnMenuView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\ItemsOnMenuView.Designer.cs">
+      <DependentUpon>ItemsOnMenuView.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\MenuPickerView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -155,6 +161,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\CancelOrderForm.resx">
       <DependentUpon>CancelOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\ItemsOnMenuView.resx">
+      <DependentUpon>ItemsOnMenuView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\MenuPickerView.resx">
       <DependentUpon>MenuPickerView.cs</DependentUpon>
