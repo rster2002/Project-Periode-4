@@ -10,13 +10,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UI.DesktopViews {
-    public partial class DeleteMenuForm: Form {
-        private Model.Menu menu;
-        private MenuService menuService = new MenuService();
-        private DesktopView parent;
-        public DeleteMenuForm(Model.Menu menu, DesktopView parent) {
-            this.menu = menu;
-            this.parent = parent;
+    public partial class DeleteMenuItemForm: Form {
+        private MenuItemService menuItemService = new MenuItemService();
+        private Model.MenuItem item;
+        public DeleteMenuItemForm(Model.MenuItem item) {
+            this.item = item;
 
             InitializeComponent();
 
@@ -28,9 +26,8 @@ namespace UI.DesktopViews {
         }
 
         private void BtnYes_Click(object sender, EventArgs e) {
-            menuService.DeleteMenu(menu.Id);
+            menuItemService.DeleteMenuItem(item.Id);
             Close();
-            parent.LoadView(new MenuPickerView(parent));
         }
     }
 }

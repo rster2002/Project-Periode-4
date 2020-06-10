@@ -23,7 +23,9 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.PnlMenuItem = new System.Windows.Forms.Panel();
+            this.refreshItemsOnMenu = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // PnlMenuItem
@@ -34,6 +36,10 @@
             this.PnlMenuItem.Name = "PnlMenuItem";
             this.PnlMenuItem.Size = new System.Drawing.Size(1904, 982);
             this.PnlMenuItem.TabIndex = 0;
+            // 
+            // refreshItemsOnMenu
+            // 
+            this.refreshItemsOnMenu.Tick += new System.EventHandler(this.RefreshItemsOnMenu_Tick);
             // 
             // ItemsOnMenuView
             // 
@@ -50,5 +56,6 @@
         #endregion
 
         private System.Windows.Forms.Panel PnlMenuItem;
+        private System.Windows.Forms.Timer refreshItemsOnMenu;
     }
 }

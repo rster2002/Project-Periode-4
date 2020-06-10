@@ -53,6 +53,12 @@
     <Compile Include="DesktopView.Designer.cs">
       <DependentUpon>DesktopView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\AddMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\AddMenuForm.Designer.cs">
+      <DependentUpon>AddMenuForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\AddMenuItem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,12 @@
     </Compile>
     <Compile Include="DesktopViews\DeleteMenuForm.Designer.cs">
       <DependentUpon>DeleteMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\DeleteMenuItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\DeleteMenuItemForm.Designer.cs">
+      <DependentUpon>DeleteMenuItemForm.cs</DependentUpon>
     </Compile>
     <Compile Include="DesktopViews\extraConfirmationPopup.cs">
       <SubType>Form</SubType>
@@ -205,6 +217,9 @@
     <EmbeddedResource Include="DesktopView.resx">
       <DependentUpon>DesktopView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\AddMenuForm.resx">
+      <DependentUpon>AddMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\AddMenuItem.resx">
       <DependentUpon>AddMenuItem.cs</DependentUpon>
     </EmbeddedResource>
@@ -213,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\DeleteMenuForm.resx">
       <DependentUpon>DeleteMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\DeleteMenuItemForm.resx">
+      <DependentUpon>DeleteMenuItemForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\ExtraConfirmationPopup.resx">
       <DependentUpon>extraConfirmationPopup.cs</DependentUpon>
