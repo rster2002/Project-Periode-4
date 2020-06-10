@@ -18,10 +18,13 @@ namespace Test_Console {
         void Start() {
             TableDAO tableDAO = new TableDAO();
             OrderDAO orderDAO = new OrderDAO();
+            MenuDAO menuDAO = new MenuDAO();
 
-            List<Order> tables = orderDAO.GetAll();
+            //menuDAO.Insert(915, "Secret menu", new TimeSpan(10, 10, 10), new TimeSpan(10, 20, 20));
 
-            Console.WriteLine(tables);
+            List<Menu> menus = menuDAO.GetAll();
+
+            Console.WriteLine(menus);
             Console.ReadKey();
         }
     }
