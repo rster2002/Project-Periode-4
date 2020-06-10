@@ -30,7 +30,7 @@ namespace UI.DesktopViews {
             PnlStock.Controls.Add(LblAmount);
 
             //set interval for timer and enable timer.
-            refreshStockTimer.Interval = 5000;
+            refreshStockTimer.Interval = 1000;
             refreshStockTimer.Enabled = true;
 
             //start the timer
@@ -70,8 +70,17 @@ namespace UI.DesktopViews {
             lbl.Font = new Font("Microsoft Sans Serif", 25);
             lbl.Width = 1600;
             lbl.Height = 50;
+            if (UserSession.GetInstance().LoggedInStaff.Role == "owner") {
+                lbl.Click += new EventHandler((object sender, EventArgs e) => CreateChangePopup(item));
+            }
 
             return lbl;
+        }
+
+        private void CreateChangePopup(Model.MenuItem itemToChange) {
+            StockManagementPopup popup = new StockManagementPopup(itemToChange);
+            popup.ShowDialog();
+
         }
         private Label GenerateAmountLabel(Model.MenuItem item) {
             Label lbl = new Label();
@@ -94,6 +103,10 @@ namespace UI.DesktopViews {
             lbl.AutoSize = true;
 
             return lbl;
+        }
+
+        private void RefreshStockTimer_Tick(object sender, EventArgs e) {
+            PopulateStockView();
         }
     }
 }
