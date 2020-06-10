@@ -13,7 +13,7 @@ namespace DAL {
         #region Create
         public void Insert(int id, string menuItemName, decimal price, int VAT, int inStock, string type, string subtype) {
             Line("INSERT INTO [MenuItem]");
-            Line("VALUES (@id, @menuItemName, @price, @VAT, @inStock, @type, @subtype");
+            Line("VALUES (@id, @menuItemName, @price, @VAT, @inStock, @type, @subtype)");
 
             Param("id", id);
             Param("menuItemName", menuItemName);

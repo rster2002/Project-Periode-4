@@ -80,5 +80,9 @@ namespace UI {
         private void SalesViewToolStripMenuItemOnClick(object sender, EventArgs e) {
             LoadView(new SalesView());
         }
+
+        private void MenuViewToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new MenuPickerView(this));
+        }
     }
 }
