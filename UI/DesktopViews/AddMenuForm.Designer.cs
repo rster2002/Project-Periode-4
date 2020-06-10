@@ -63,27 +63,27 @@
             this.LblEndTime.TabIndex = 2;
             this.LblEndTime.Text = "Beschikbaar tot";
             // 
-            // textBox1
+            // TextBoxName
             // 
             this.TextBoxName.Location = new System.Drawing.Point(304, 52);
-            this.TextBoxName.Name = "textBox1";
+            this.TextBoxName.Name = "TextBoxName";
             this.TextBoxName.Size = new System.Drawing.Size(205, 20);
             this.TextBoxName.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // TimePickerStart
             // 
             this.TimePickerStart.CustomFormat = "";
             this.TimePickerStart.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.TimePickerStart.Location = new System.Drawing.Point(304, 118);
-            this.TimePickerStart.Name = "dateTimePicker1";
+            this.TimePickerStart.Name = "TimePickerStart";
             this.TimePickerStart.Size = new System.Drawing.Size(200, 20);
             this.TimePickerStart.TabIndex = 4;
             // 
-            // dateTimePicker2
+            // TimePickerEnd
             // 
             this.TimePickerEnd.Format = System.Windows.Forms.DateTimePickerFormat.Time;
             this.TimePickerEnd.Location = new System.Drawing.Point(304, 187);
-            this.TimePickerEnd.Name = "dateTimePicker2";
+            this.TimePickerEnd.Name = "TimePickerEnd";
             this.TimePickerEnd.Size = new System.Drawing.Size(200, 20);
             this.TimePickerEnd.TabIndex = 5;
             // 

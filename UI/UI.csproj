@@ -101,6 +101,12 @@
     <Compile Include="DesktopViews\MenuPickerView.Designer.cs">
       <DependentUpon>MenuPickerView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\OrderToBeServedView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\OrderToBeServedView.Designer.cs">
+      <DependentUpon>OrderToBeServedView.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\OrderView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -242,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\MenuPickerView.resx">
       <DependentUpon>MenuPickerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\OrderToBeServedView.resx">
+      <DependentUpon>OrderToBeServedView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>

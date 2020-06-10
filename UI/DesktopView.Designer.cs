@@ -28,12 +28,14 @@ namespace UI {
             this.mainPanel = new System.Windows.Forms.Panel();
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.kitchenOrderViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bestellingenGereedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barOrderViewStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.stockViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staffViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bestellingenGereedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,6 +69,8 @@ namespace UI {
             // kitchenOrderViewToolStripMenuItem
             // 
             this.kitchenOrderViewToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.kitchenOrderViewToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bestellingenGereedToolStripMenuItem});
             this.kitchenOrderViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.kitchenOrderViewToolStripMenuItem.Name = "kitchenOrderViewToolStripMenuItem";
             this.kitchenOrderViewToolStripMenuItem.Size = new System.Drawing.Size(158, 55);
@@ -74,8 +78,17 @@ namespace UI {
             this.kitchenOrderViewToolStripMenuItem.Text = "Keuken";
             this.kitchenOrderViewToolStripMenuItem.Click += new System.EventHandler(this.KitchenToolBarClick);
             // 
+            // bestellingenGereedToolStripMenuItem
+            // 
+            this.bestellingenGereedToolStripMenuItem.Name = "bestellingenGereedToolStripMenuItem";
+            this.bestellingenGereedToolStripMenuItem.Size = new System.Drawing.Size(435, 56);
+            this.bestellingenGereedToolStripMenuItem.Text = "Bestellingen gereed";
+            this.bestellingenGereedToolStripMenuItem.Click += new System.EventHandler(this.BestellingenGereedToolStripMenuItem_Click);
+            // 
             // barOrderViewStripMenuItem
             // 
+            this.barOrderViewStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.bestellingenGereedToolStripMenuItem1});
             this.barOrderViewStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.barOrderViewStripMenuItem.Name = "barOrderViewStripMenuItem";
             this.barOrderViewStripMenuItem.Size = new System.Drawing.Size(88, 55);
@@ -127,6 +140,13 @@ namespace UI {
             this.menuViewToolStripMenuItem.Text = "Menu";
             this.menuViewToolStripMenuItem.Click += new System.EventHandler(this.MenuViewToolStripMenuItem_Click);
             // 
+            // bestellingenGereedToolStripMenuItem1
+            // 
+            this.bestellingenGereedToolStripMenuItem1.Name = "bestellingenGereedToolStripMenuItem1";
+            this.bestellingenGereedToolStripMenuItem1.Size = new System.Drawing.Size(435, 56);
+            this.bestellingenGereedToolStripMenuItem1.Text = "Bestellingen gereed";
+            this.bestellingenGereedToolStripMenuItem1.Click += new System.EventHandler(this.BestellingenGereedToolStripMenuItem1_Click);
+            // 
             // DesktopView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -155,6 +175,8 @@ namespace UI {
         private System.Windows.Forms.ToolStripMenuItem salesViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem staffViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bestellingenGereedToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem bestellingenGereedToolStripMenuItem1;
     }
 }
 
