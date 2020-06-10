@@ -19,15 +19,19 @@ namespace UI {
         private void MobileView_Click(object sender, EventArgs e) {
             MobileView mobileView = MobileView.GetInstance();
             mobileView.LoadView(new LoginViewMobile(mobileView, this), "Login");
+
             Hide();
             mobileView.ShowDialog();
+            Show();
         }
 
         private void DesktopView_Click(object sender, EventArgs e) {
             DesktopView desktopView = DesktopView.GetInstance();
             desktopView.LoadView(new LoginView(this));
+            
             Hide();
             desktopView.ShowDialog();
+            Show();
         }
     }
 }
