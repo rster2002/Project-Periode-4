@@ -14,6 +14,13 @@ namespace DAL {
             Line("JOIN [MenuItem] ON [ItemOnMenu].MenuItemId = [MenuItem].MenuItemId");
         }
 
+        #region Create
+        public void Insert(int id, string menuName, TimeSpan startTime, TimeSpan endTime) {
+
+        }
+        #endregion Create
+
+        #region Read
         public override List<Menu> GetAll() {
             BasicSelect();
             return Execute();
@@ -27,6 +34,7 @@ namespace DAL {
 
             return Execute()[0];
         }
+        #endregion Read
 
         protected override Menu ProcessRecord(Record record) {
             return new Menu() {

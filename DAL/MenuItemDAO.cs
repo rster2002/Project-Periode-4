@@ -10,6 +10,23 @@ namespace DAL {
             Line("FROM [MenuItem]");
         }
 
+        #region Create
+        public void Insert(string name, decimal price, int VAT, int inStock, string type, string subtype) {
+            Line("INSERT INTO [MenuItem]");
+            Line("VALUES (@name, @price, @VAT, @inStock, @type, @subtype)");
+
+            Param("name", name);
+            Param("inStock", inStock);
+            Param("price", price);
+            Param("VAT", VAT);
+            Param("type", type);
+            Param("subtype", subtype);
+
+            Execute();
+        }
+        #endregion Create
+
+        #region Read
         public override List<MenuItem> GetAll() {
             BasicSelect();
 
@@ -31,14 +48,16 @@ namespace DAL {
 
             return Execute();
         }
+
         public List<MenuItem> OrderByStock() {
             BasicSelect();
             Line("ORDER BY InStock");
 
             return Execute();
         }
+        #endregion Read
 
-
+        #region Update
         public void ApplyMenuItemsToStock(List<MenuItem> menuItems) {
             Line("UPDATE [MenuItem]");
             Line("SET [InStock] = CASE");
@@ -55,6 +74,7 @@ namespace DAL {
 
             Execute();
         }
+        #endregion Update
 
         protected override MenuItem ProcessRecord(Record record) {
             MenuItem item = new MenuItem() {

@@ -23,13 +23,24 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.PnlMenuItem = new System.Windows.Forms.Panel();
             this.SuspendLayout();
+            // 
+            // PnlMenuItem
+            // 
+            this.PnlMenuItem.AutoScroll = true;
+            this.PnlMenuItem.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PnlMenuItem.Location = new System.Drawing.Point(0, 0);
+            this.PnlMenuItem.Name = "PnlMenuItem";
+            this.PnlMenuItem.Size = new System.Drawing.Size(1904, 982);
+            this.PnlMenuItem.TabIndex = 0;
             // 
             // ItemsOnMenuView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
+            this.Controls.Add(this.PnlMenuItem);
             this.Name = "ItemsOnMenuView";
             this.Size = new System.Drawing.Size(1904, 982);
             this.ResumeLayout(false);
@@ -37,5 +48,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Panel PnlMenuItem;
     }
 }

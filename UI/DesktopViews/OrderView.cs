@@ -98,7 +98,8 @@ namespace UI.DesktopViews {
 
             foreach (Order order in reservation.Orders) {
                 GroupBox groupBox = new GroupBox() {
-                    Text = $"Tafel {reservation.Table.Number}, {order.Tag}"
+                    Text = $"Tafel {reservation.Table.Number}, {order.Tag}",
+                    BackColor = Color.White,
                 };
 
                 groupBox.Dock = DockStyle.Fill;
