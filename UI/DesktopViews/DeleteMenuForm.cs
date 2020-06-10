@@ -26,7 +26,7 @@ namespace UI.DesktopViews {
         }
 
         private void BtnYes_Click(object sender, EventArgs e) {
-            //menuService.DeleteMenu(menu.Id);
+            menuService.DeleteMenu(menu.Id);
         }
     }
 }

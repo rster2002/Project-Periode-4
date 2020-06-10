@@ -24,16 +24,16 @@ namespace UI.DesktopViews {
         private void PopulateItemLayout() {
             PnlMenuItem.Controls.Clear();
             nextLabelYAxis = 125;
+            PnlMenuItem.Controls.Add(GenerateButtonAdd());
+            PnlMenuItem.Controls.Add(GenerateButtonDeleteMenu());
 
             foreach (Model.MenuItem item in menu.Items) {
-                PnlMenuItem.Controls.Add(GenerateButtonAdd(item));
-                PnlMenuItem.Controls.Add(GenerateButtonDeleteMenu());
                 PnlMenuItem.Controls.Add(GenerateLabelMenuItem(item));
                 nextLabelYAxis += 65;
             }
         }
 
-        private Control GenerateButtonAdd(Model.MenuItem item) {
+        private Control GenerateButtonAdd() {
             Button btn = new Button();
 
             btn.Text = "Toevoegen gerecht";

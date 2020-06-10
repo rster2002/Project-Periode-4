@@ -18,5 +18,9 @@ namespace Model {
         #region Read
         public List<Menu> GetMenus() => menuDAO.GetAll();
         #endregion Read
+
+        #region Delete
+        public void DeleteMenu(int id) => menuDAO.DeleteById(id);
+        #endregion Delete
     }
 }
