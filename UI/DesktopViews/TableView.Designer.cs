@@ -28,12 +28,12 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.listView1 = new System.Windows.Forms.ListView();
             this.panelTafel = new System.Windows.Forms.Panel();
-            this.lblNr = new System.Windows.Forms.Label();
-            this.lblPlaatsen = new System.Windows.Forms.Label();
-            this.lblBediening = new System.Windows.Forms.Label();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.btnStaffChange = new System.Windows.Forms.Button();
             this.staffSelector = new System.Windows.Forms.ComboBox();
+            this.btnStaffChange = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblBediening = new System.Windows.Forms.Label();
+            this.lblPlaatsen = new System.Windows.Forms.Label();
+            this.lblNr = new System.Windows.Forms.Label();
             this.panelTafel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,41 +71,25 @@
             this.panelTafel.Size = new System.Drawing.Size(1016, 313);
             this.panelTafel.TabIndex = 1;
             // 
-            // lblNr
+            // staffSelector
             // 
-            this.lblNr.AutoSize = true;
-            this.lblNr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.lblNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lblNr.ForeColor = System.Drawing.Color.White;
-            this.lblNr.Location = new System.Drawing.Point(43, 19);
-            this.lblNr.Name = "lblNr";
-            this.lblNr.Size = new System.Drawing.Size(275, 46);
-            this.lblNr.TabIndex = 2;
-            this.lblNr.Text = "Tafelnummer: ";
+            this.staffSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.staffSelector.FormattingEnabled = true;
+            this.staffSelector.Location = new System.Drawing.Point(755, 77);
+            this.staffSelector.Name = "staffSelector";
+            this.staffSelector.Size = new System.Drawing.Size(243, 33);
+            this.staffSelector.TabIndex = 7;
             // 
-            // lblPlaatsen
+            // btnStaffChange
             // 
-            this.lblPlaatsen.AutoSize = true;
-            this.lblPlaatsen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.lblPlaatsen.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lblPlaatsen.ForeColor = System.Drawing.Color.White;
-            this.lblPlaatsen.Location = new System.Drawing.Point(43, 236);
-            this.lblPlaatsen.Name = "lblPlaatsen";
-            this.lblPlaatsen.Size = new System.Drawing.Size(356, 46);
-            this.lblPlaatsen.TabIndex = 3;
-            this.lblPlaatsen.Text = "Aantal zitplaatsen: ";
-            // 
-            // lblBediening
-            // 
-            this.lblBediening.AutoSize = true;
-            this.lblBediening.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.lblBediening.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
-            this.lblBediening.ForeColor = System.Drawing.Color.White;
-            this.lblBediening.Location = new System.Drawing.Point(43, 163);
-            this.lblBediening.Name = "lblBediening";
-            this.lblBediening.Size = new System.Drawing.Size(201, 46);
-            this.lblBediening.TabIndex = 4;
-            this.lblBediening.Text = "Bediener: ";
+            this.btnStaffChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.btnStaffChange.Location = new System.Drawing.Point(755, 19);
+            this.btnStaffChange.Name = "btnStaffChange";
+            this.btnStaffChange.Size = new System.Drawing.Size(243, 62);
+            this.btnStaffChange.TabIndex = 6;
+            this.btnStaffChange.Text = "Toewijzen medewerker";
+            this.btnStaffChange.UseVisualStyleBackColor = true;
+            this.btnStaffChange.Click += new System.EventHandler(this.btnStaffChange_Click);
             // 
             // lblStatus
             // 
@@ -119,25 +103,41 @@
             this.lblStatus.TabIndex = 5;
             this.lblStatus.Text = "Status: ";
             // 
-            // btnStaffChange
+            // lblBediening
             // 
-            this.btnStaffChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.btnStaffChange.Location = new System.Drawing.Point(755, 19);
-            this.btnStaffChange.Name = "btnStaffChange";
-            this.btnStaffChange.Size = new System.Drawing.Size(243, 62);
-            this.btnStaffChange.TabIndex = 6;
-            this.btnStaffChange.Text = "Toewijzen medewerker";
-            this.btnStaffChange.UseVisualStyleBackColor = true;
-            this.btnStaffChange.Click += new System.EventHandler(this.btnStaffChange_Click);
+            this.lblBediening.AutoSize = true;
+            this.lblBediening.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.lblBediening.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.lblBediening.ForeColor = System.Drawing.Color.White;
+            this.lblBediening.Location = new System.Drawing.Point(43, 163);
+            this.lblBediening.Name = "lblBediening";
+            this.lblBediening.Size = new System.Drawing.Size(201, 46);
+            this.lblBediening.TabIndex = 4;
+            this.lblBediening.Text = "Bediener: ";
             // 
-            // staffSelector
+            // lblPlaatsen
             // 
-            this.staffSelector.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.staffSelector.FormattingEnabled = true;
-            this.staffSelector.Location = new System.Drawing.Point(755, 77);
-            this.staffSelector.Name = "staffSelector";
-            this.staffSelector.Size = new System.Drawing.Size(243, 33);
-            this.staffSelector.TabIndex = 7;
+            this.lblPlaatsen.AutoSize = true;
+            this.lblPlaatsen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.lblPlaatsen.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.lblPlaatsen.ForeColor = System.Drawing.Color.White;
+            this.lblPlaatsen.Location = new System.Drawing.Point(43, 236);
+            this.lblPlaatsen.Name = "lblPlaatsen";
+            this.lblPlaatsen.Size = new System.Drawing.Size(356, 46);
+            this.lblPlaatsen.TabIndex = 3;
+            this.lblPlaatsen.Text = "Aantal zitplaatsen: ";
+            // 
+            // lblNr
+            // 
+            this.lblNr.AutoSize = true;
+            this.lblNr.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.lblNr.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F);
+            this.lblNr.ForeColor = System.Drawing.Color.White;
+            this.lblNr.Location = new System.Drawing.Point(43, 19);
+            this.lblNr.Name = "lblNr";
+            this.lblNr.Size = new System.Drawing.Size(275, 46);
+            this.lblNr.TabIndex = 2;
+            this.lblNr.Text = "Tafelnummer: ";
             // 
             // TableView
             // 
