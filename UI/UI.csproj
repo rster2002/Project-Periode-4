@@ -113,7 +113,9 @@
     <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DesktopViews\SalePopup.cs" />
+    <Compile Include="DesktopViews\SalePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="DesktopViews\SalePopup.Designer.cs">
       <DependentUpon>SalePopup.cs</DependentUpon>
     </Compile>
