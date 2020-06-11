@@ -31,6 +31,7 @@
             this.btn_login = new System.Windows.Forms.Button();
             this.lbl_geengegevens = new System.Windows.Forms.Label();
             this.Btn_changeView = new System.Windows.Forms.Button();
+            this.cbox_showpassword = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbox_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -101,7 +102,7 @@
             this.lbl_geengegevens.AutoSize = true;
             this.lbl_geengegevens.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
             this.lbl_geengegevens.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lbl_geengegevens.Location = new System.Drawing.Point(23, 440);
+            this.lbl_geengegevens.Location = new System.Drawing.Point(23, 463);
             this.lbl_geengegevens.Name = "lbl_geengegevens";
             this.lbl_geengegevens.Size = new System.Drawing.Size(0, 20);
             this.lbl_geengegevens.TabIndex = 9;
@@ -116,11 +117,24 @@
             this.Btn_changeView.UseVisualStyleBackColor = true;
             this.Btn_changeView.Click += new System.EventHandler(this.Btn_changeView_Click);
             // 
+            // cbox_showpassword
+            // 
+            this.cbox_showpassword.AutoSize = true;
+            this.cbox_showpassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.25F);
+            this.cbox_showpassword.Location = new System.Drawing.Point(37, 428);
+            this.cbox_showpassword.Name = "cbox_showpassword";
+            this.cbox_showpassword.Size = new System.Drawing.Size(191, 24);
+            this.cbox_showpassword.TabIndex = 12;
+            this.cbox_showpassword.Text = "Laat wachtwoord zien";
+            this.cbox_showpassword.UseVisualStyleBackColor = true;
+            this.cbox_showpassword.CheckedChanged += new System.EventHandler(this.Cbox_showpassword_CheckedChanged);
+            // 
             // LoginViewMobile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
+            this.Controls.Add(this.cbox_showpassword);
             this.Controls.Add(this.Btn_changeView);
             this.Controls.Add(this.lbl_geengegevens);
             this.Controls.Add(this.btn_login);
@@ -147,5 +161,6 @@
         private System.Windows.Forms.Button btn_login;
         private System.Windows.Forms.Label lbl_geengegevens;
         private System.Windows.Forms.Button Btn_changeView;
+        private System.Windows.Forms.CheckBox cbox_showpassword;
     }
 }

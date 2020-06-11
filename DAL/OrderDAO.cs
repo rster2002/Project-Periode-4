@@ -186,6 +186,17 @@ namespace DAL {
 
             return Execute();
         }
+
+        public bool GetPreparedOrdersByTableId(int id) {
+            Query("SELECT * FROM[Order]  " +
+                "JOIN[Reservation] ON[Order].ReservationId = [Reservation].ReservationId    " +
+                " WHERE[Reservation].TableNumber = @id AND[Status] = 'prepared';");
+
+            Param("id", id);
+
+            List<Record> records = ExecuteUnprocessed();
+            return records.Count > 0;
+        }
         #endregion Read
 
         #region Update
@@ -330,9 +341,9 @@ namespace DAL {
             Execute();
         }
 
-        public void CloseOrder(int id) {
+        public void PrepareOrder(int id) {
             Line("UPDATE [Order]");
-            Line("SET [Status] = 'closed'");
+            Line("SET [Status] = 'prepared'");
             Line("WHERE [OrderId] = @id");
 
             Param("id", id);

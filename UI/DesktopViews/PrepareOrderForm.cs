@@ -26,7 +26,8 @@ namespace UI.DesktopViews {
             btnGereed.Click += new EventHandler(PrepareOrder);
         }
         protected void PrepareOrder(object sender, EventArgs e) {
-            orderService.CloseOrder(order.Id);
+            //prepare the order by setting reservation id on null 
+            orderService.PrepareOrder(order.Id);
             Close();
         }
     }
