@@ -109,6 +109,7 @@ namespace UI {
             this.tablesViewToolStripMenuItem.Size = new System.Drawing.Size(126, 55);
             this.tablesViewToolStripMenuItem.Tag = "owner";
             this.tablesViewToolStripMenuItem.Text = "Tafels";
+            this.tablesViewToolStripMenuItem.Click += new System.EventHandler(this.tablesViewToolStripMenuItem_Click);
             // 
             // salesViewToolStripMenuItem
             // 
@@ -126,7 +127,7 @@ namespace UI {
             this.menuViewToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
             this.menuViewToolStripMenuItem.Tag = "owner";
             this.menuViewToolStripMenuItem.Text = "Menu";
-            this.menuViewToolStripMenuItem.Click += new System.EventHandler(this.MenuViewToolStripMenuItem_Click);
+            this.menuViewToolStripMenuItem.Click += new System.EventHandler(this.MenuViewToolStripMenuItem_Click_1);
             // 
             // logoutButton
             // 
@@ -139,7 +140,7 @@ namespace UI {
             this.logoutButton.TabIndex = 1;
             this.logoutButton.Text = "Log uit";
             this.logoutButton.UseVisualStyleBackColor = false;
-            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
             // 
             // DesktopView
             // 
@@ -155,6 +156,7 @@ namespace UI {
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

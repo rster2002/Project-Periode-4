@@ -75,7 +75,6 @@ namespace UI.DesktopViews {
                     lbl_geengegevens.Text = "U kunt niet inloggen in de desktop omgeving als serveerder";
                     break;
                 case "owner":
-                    // TODO
                     mainView.LoadView(new OrderView("food"));
                     break;
                 case "bartender":

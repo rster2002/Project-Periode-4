@@ -20,7 +20,9 @@ namespace Model
         public List<MenuItem> GetMenuItems() => menuItemDAO.GetAll();
         public List<MenuItem> GetDrinks() => menuItemDAO.GetDrinks();
         public void UpdateStock(List<MenuItem> menuItems) => menuItemDAO.ApplyMenuItemsToStock(menuItems);
+        public void UpdateAmountInStock(MenuItem itemToChange) => menuItemDAO.UpdateMenuItemAmountInStock(itemToChange);
         public List<MenuItem> OrderByStock() => menuItemDAO.OrderByStock();
+        public MenuItem GetMenuItemById(int itemId) => menuItemDAO.GetById(itemId);
         #endregion Read
     }
 }
