@@ -56,6 +56,18 @@ namespace UI.MobileViews {
             buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
             buttonLayout.RowCount++;
             buttonLayout.Controls.Add(servedButton);
+
+            Button reserveButton = new Button();
+            reserveButton.Dock = DockStyle.Fill;
+            reserveButton.Text = "Reserveer tafel";
+            reserveButton.BackColor = Color.FromArgb(221, 243, 17);
+            reserveButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            reserveButton.Click += ReserveButtonOnClick;
+
+            buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
+            buttonLayout.RowCount++;
+
+            buttonLayout.Controls.Add(reserveButton);
             // Generate checkout button
             Button checkoutButton = new Button();
             checkoutButton.Dock = DockStyle.Fill;
@@ -99,6 +111,21 @@ namespace UI.MobileViews {
             foreach (Order order in orders) {
                 orderService.CloseOrder(order.Id);
             }
+            mobileView.ResetTo(new TableView(), "Tafels");
+        }
+
+        private void ReserveButtonOnClick(object sender, EventArgs args) {
+            ReservationService reservationService = new ReservationService();
+            CustomerService customerService = new CustomerService();
+            Random rnd = new Random();
+            Customer customer = new Customer() {
+                Id = rnd.Next(1, 999999),
+                Name = "Roelofs"
+            };
+
+            customerService.AddCustomer(customer.Id, customer.Name);
+            reservationService.AddReservation(rnd.Next(1, 9999999), table.Number, customer.Id);
+
             mobileView.ResetTo(new TableView(), "Tafels");
         }
     }
