@@ -117,7 +117,7 @@ namespace UI.DesktopViews {
                 listView.Dock = DockStyle.Top;
 
                 foreach (Model.MenuItem menuItem in order.MenuItems) {
-                    ListViewItem item = new ListViewItem(menuItem.Amount.ToString());
+                    ListViewItem item = new ListViewItem(menuItem.Amount.ToString()+"x");
                     item.SubItems.Add(menuItem.Name);
                     item.SubItems.Add(menuItem.Comment);
                     listView.Items.Add(item);
