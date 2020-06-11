@@ -74,16 +74,14 @@ namespace UI.MobileViews {
             //prepare wachttijd label
             waittimeLabel.BackColor = Color.FromArgb(181, 181, 181);
             waittimeLabel.Dock = DockStyle.Right;
-            //waittimeLabel.Location = new Point(0, 121); ??
-            waittimeLabel.Size = new Size(96, 20);
+            //waittimeLabel.Size = new Size(96, 20);
             waittimeLabel.TextAlign = ContentAlignment.BottomRight;
             waittimeLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
 
             // Prepare tafellabel
             tafelLabel.Text = "Tafel " + table.Number;
             tafelLabel.Dock = DockStyle.Left;
-            tafelLabel.Location = new Point(0, 121);
-            tafelLabel.Size = new Size(96, 20);
+            //tafelLabel.Size = new Size(96, 20);
             tafelLabel.TextAlign = ContentAlignment.BottomLeft;
             tafelLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
 
@@ -98,15 +96,15 @@ namespace UI.MobileViews {
                 tafelLabel.ForeColor = Color.White;
                 tafelLabel.BackColor = Color.FromArgb(152, 0, 0);
             }
-            if (orderService.GetClosedOrdersByTableId(table.Number)) {
+
+            if (orderService.GetPreparedOrdersByTableId(table.Number)) {
                 waittimeLabel.BackColor = Color.Orange;
-            }
-            if (tableService.CheckOrderPresent(table.Number)) {
+            } else if (tableService.CheckOrderPresent(table.Number)) {
                 waittimeLabel.BackColor = Color.DarkTurquoise;
+            } else {
+                waittimeLabel.BackColor = Color.FromArgb(181, 181, 181);
             }
             
-
-
             textPanel.Controls.Add(tafelLabel);
             textPanel.Controls.Add(waittimeLabel);
             panel.Controls.Add(pictureBox);
