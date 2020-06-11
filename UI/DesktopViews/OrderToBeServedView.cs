@@ -16,7 +16,12 @@ namespace UI.DesktopViews {
         private string foodType;
         public OrderToBeServedView(string foodType) {
             this.foodType = foodType;
-            InitializeComponent();
+            InitializeComponent(); 
+            if (this.foodType == "food") {
+                Tag = 1;
+            } else {
+                Tag = 2;
+            }
 
             PopulateOrderLayout();
             //set interval for timer and enable timer.

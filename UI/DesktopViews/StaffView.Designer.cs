@@ -59,7 +59,7 @@
             this.btnVoegtoe.UseVisualStyleBackColor = true;
             this.btnVoegtoe.Click += new System.EventHandler(this.btnVoegtoe_Click);
             // 
-            // PersoneelView
+            // StaffView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -69,8 +69,9 @@
             this.Controls.Add(this.labelFunctie);
             this.Controls.Add(this.labelNaam);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Name = "PersoneelView";
+            this.Name = "StaffView";
             this.Size = new System.Drawing.Size(1904, 982);
+            this.Tag = "4";
             this.ResumeLayout(false);
             this.PerformLayout();
 

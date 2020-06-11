@@ -20,7 +20,11 @@ namespace UI.DesktopViews {
         public OrderView(string foodType) {
             this.foodType = foodType;
             InitializeComponent();
-
+            if(this.foodType == "food") {
+                Tag = 1;
+            } else {
+                Tag = 2;
+            }
             PopulateOrderLayout();
             //set interval for timer and enable timer.
             refreshTimer.Interval = 5000;
@@ -132,7 +136,7 @@ namespace UI.DesktopViews {
                     Width = groupBox.Width
                 };
 
-                buttonOrderReady.Click += (sender, e) => PrepareOrder(sender, e, order);
+                buttonOrderReady.Click += (sender, e) => PrepareOrder(sender, e, order, buttonCancel);
 
                 listView.Font = new Font(listView.Font, FontStyle.Regular);
                 listView.Columns.Add("Aantal");
@@ -164,10 +168,14 @@ namespace UI.DesktopViews {
             cancel.ShowDialog();
         }
 
-        protected void PrepareOrder(object sender, EventArgs e, Order order) {
+        protected void PrepareOrder(object sender, EventArgs e, Order order, Button associateButton) {
             //make the up up and give the order with it
             PrepareOrderForm prepare = new PrepareOrderForm(order);
-            prepare.ShowDialog();
+            DialogResult resultPopup = prepare.ShowDialog();
+            if(resultPopup == DialogResult.OK) {
+                PopulateOrderLayout();
+            }
+            
         }
         //everytime the timer elapsed the interval the layout will referesh
         private void RefreshTimer_Tick(object sender, EventArgs e) {

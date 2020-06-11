@@ -30,13 +30,13 @@ namespace UI {
             this.kitchenOrderViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bestellingenGereedToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.barOrderViewStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.bestellingenGereedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.stockViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.staffViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuPickerViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutButton = new System.Windows.Forms.Button();
-            this.bestellingenGereedToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -74,10 +74,11 @@ namespace UI {
             this.bestellingenGereedToolStripMenuItem});
             this.kitchenOrderViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.kitchenOrderViewToolStripMenuItem.Name = "kitchenOrderViewToolStripMenuItem";
-            this.kitchenOrderViewToolStripMenuItem.Size = new System.Drawing.Size(158, 55);
+            this.kitchenOrderViewToolStripMenuItem.Size = new System.Drawing.Size(159, 55);
             this.kitchenOrderViewToolStripMenuItem.Tag = "chef, owner";
             this.kitchenOrderViewToolStripMenuItem.Text = "Keuken";
             this.kitchenOrderViewToolStripMenuItem.Click += new System.EventHandler(this.KitchenToolBarClick);
+            this.kitchenOrderViewToolStripMenuItem.MouseHover += new System.EventHandler(this.kitchenOrderViewToolStripMenuItem_MouseHover);
             // 
             // bestellingenGereedToolStripMenuItem
             // 
@@ -96,12 +97,20 @@ namespace UI {
             this.barOrderViewStripMenuItem.Tag = "bartender, owner";
             this.barOrderViewStripMenuItem.Text = "Bar";
             this.barOrderViewStripMenuItem.Click += new System.EventHandler(this.BarToolStripMenuItem_Click);
+            this.barOrderViewStripMenuItem.MouseHover += new System.EventHandler(this.barOrderViewStripMenuItem_MouseHover);
+            // 
+            // bestellingenGereedToolStripMenuItem1
+            // 
+            this.bestellingenGereedToolStripMenuItem1.Name = "bestellingenGereedToolStripMenuItem1";
+            this.bestellingenGereedToolStripMenuItem1.Size = new System.Drawing.Size(435, 56);
+            this.bestellingenGereedToolStripMenuItem1.Text = "Bestellingen gereed";
+            this.bestellingenGereedToolStripMenuItem1.Click += new System.EventHandler(this.BestellingenGereedToolStripMenuItem1_Click);
             // 
             // stockViewToolStripMenuItem
             // 
             this.stockViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.stockViewToolStripMenuItem.Name = "stockViewToolStripMenuItem";
-            this.stockViewToolStripMenuItem.Size = new System.Drawing.Size(186, 55);
+            this.stockViewToolStripMenuItem.Size = new System.Drawing.Size(188, 55);
             this.stockViewToolStripMenuItem.Tag = "bartender, chef, owner";
             this.stockViewToolStripMenuItem.Text = "Voorraad";
             this.stockViewToolStripMenuItem.Click += new System.EventHandler(this.VoorraadToolStripMenuItem_Click);
@@ -110,7 +119,7 @@ namespace UI {
             // 
             this.staffViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.staffViewToolStripMenuItem.Name = "staffViewToolStripMenuItem";
-            this.staffViewToolStripMenuItem.Size = new System.Drawing.Size(196, 55);
+            this.staffViewToolStripMenuItem.Size = new System.Drawing.Size(197, 55);
             this.staffViewToolStripMenuItem.Tag = "owner";
             this.staffViewToolStripMenuItem.Text = "Personeel";
             this.staffViewToolStripMenuItem.Click += new System.EventHandler(this.StaffToolBarClick);
@@ -119,7 +128,7 @@ namespace UI {
             // 
             this.tablesViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.tablesViewToolStripMenuItem.Name = "tablesViewToolStripMenuItem";
-            this.tablesViewToolStripMenuItem.Size = new System.Drawing.Size(126, 55);
+            this.tablesViewToolStripMenuItem.Size = new System.Drawing.Size(130, 55);
             this.tablesViewToolStripMenuItem.Tag = "owner";
             this.tablesViewToolStripMenuItem.Text = "Tafels";
             this.tablesViewToolStripMenuItem.Click += new System.EventHandler(this.tablesViewToolStripMenuItem_Click);
@@ -155,14 +164,6 @@ namespace UI {
             this.logoutButton.UseVisualStyleBackColor = false;
             this.logoutButton.Visible = false;
             this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
-
-            // 
-            // bestellingenGereedToolStripMenuItem1
-            // 
-            this.bestellingenGereedToolStripMenuItem1.Name = "bestellingenGereedToolStripMenuItem1";
-            this.bestellingenGereedToolStripMenuItem1.Size = new System.Drawing.Size(435, 56);
-            this.bestellingenGereedToolStripMenuItem1.Text = "Bestellingen gereed";
-            this.bestellingenGereedToolStripMenuItem1.Click += new System.EventHandler(this.BestellingenGereedToolStripMenuItem1_Click);
             // 
             // DesktopView
             // 

@@ -17,6 +17,7 @@ namespace UI {
         public static DesktopView instance;
         public UserControl loadedView;
         private UserSession userSession = UserSession.GetInstance();
+        private string itemInitialTag;
 
         public static DesktopView GetInstance() {
             if (instance == null) instance = new DesktopView();
@@ -26,20 +27,26 @@ namespace UI {
         private DesktopView() {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
+            foreach(ToolStripItem item in menuStrip.Items) {
+                itemInitialTag = item.Tag.ToString();
+            }
         }
 
         private void ShowTabs() {
             for (int i = 0; i < menuStrip.Items.Count; i++) {
                 ToolStripItem item = menuStrip.Items[i];
+                item.Tag = new ViewTag { RolePermissions = itemInitialTag, ViewId = i+1 };
+                var viewTagItem = (ViewTag) item.Tag;
 
-                item.Visible = ((string) item.Tag).Contains(userSession.LoggedInStaff.Role);
+                item.Visible = (viewTagItem.RolePermissions.Contains(userSession.LoggedInStaff.Role));
 
                 // Checken op naam is een beetje, eh...
-                if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
-                    item.BackColor = Color.FromArgb(0, 255, 238);
+                if (loadedView.Tag != null && viewTagItem.ViewId == int.Parse(loadedView.Tag.ToString())) {
+                    item.BackColor = Color.FromArgb(0, 200, 183);
                 } else {
                     item.BackColor = Color.FromArgb(33, 33, 33);
                 }
+            
             }
         }
 
@@ -56,10 +63,16 @@ namespace UI {
         }
 
         private void KitchenToolBarClick(object sender, EventArgs e) {
+            foreach (ToolStripDropDownItem item in (sender as ToolStripMenuItem).DropDownItems) {
+                    item.Visible = false;
+            }
             LoadView(new OrderView("food"));
         }
 
         private void StaffToolBarClick(object sender, EventArgs e) {
+            foreach (ToolStripDropDownItem item in (sender as ToolStripMenuItem).DropDownItems) {
+                item.Visible = false;
+            }
             LoadView(new StaffView());
         }
 
@@ -103,5 +116,18 @@ namespace UI {
         private void BestellingenGereedToolStripMenuItem1_Click(object sender, EventArgs e) {
             LoadView(new OrderToBeServedView("drink"));
         }
+
+        private void kitchenOrderViewToolStripMenuItem_MouseHover(object sender, EventArgs e) {
+            (sender as ToolStripMenuItem).ShowDropDown();
+        }
+
+        private void barOrderViewStripMenuItem_MouseHover(object sender, EventArgs e) {
+            (sender as ToolStripMenuItem).ShowDropDown();
+        }
+    }
+
+    struct ViewTag {
+        public int ViewId { get; set; }
+        public string RolePermissions { get; set; }
     }
 }

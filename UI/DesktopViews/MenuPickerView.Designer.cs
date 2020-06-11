@@ -25,9 +25,9 @@
         private void InitializeComponent() {
             this.components = new System.ComponentModel.Container();
             this.PnlMenu = new System.Windows.Forms.Panel();
-            this.refreshMenuTimer = new System.Windows.Forms.Timer(this.components);
-            this.LblMenu = new System.Windows.Forms.Label();
             this.LblAmount = new System.Windows.Forms.Label();
+            this.LblMenu = new System.Windows.Forms.Label();
+            this.refreshMenuTimer = new System.Windows.Forms.Timer(this.components);
             this.PnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,9 +41,15 @@
             this.PnlMenu.Size = new System.Drawing.Size(1904, 982);
             this.PnlMenu.TabIndex = 0;
             // 
-            // refreshMenuTimer
+            // LblAmount
             // 
-            this.refreshMenuTimer.Tick += new System.EventHandler(this.RefreshMenuTimer_Tick);
+            this.LblAmount.AutoSize = true;
+            this.LblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblAmount.Location = new System.Drawing.Point(1465, 40);
+            this.LblAmount.Name = "LblAmount";
+            this.LblAmount.Size = new System.Drawing.Size(114, 39);
+            this.LblAmount.TabIndex = 1;
+            this.LblAmount.Text = "Aantal";
             // 
             // LblMenu
             // 
@@ -55,15 +61,9 @@
             this.LblMenu.TabIndex = 0;
             this.LblMenu.Text = "Menu";
             // 
-            // LblAmount
+            // refreshMenuTimer
             // 
-            this.LblAmount.AutoSize = true;
-            this.LblAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblAmount.Location = new System.Drawing.Point(1465, 40);
-            this.LblAmount.Name = "LblAmount";
-            this.LblAmount.Size = new System.Drawing.Size(114, 39);
-            this.LblAmount.TabIndex = 1;
-            this.LblAmount.Text = "Aantal";
+            this.refreshMenuTimer.Tick += new System.EventHandler(this.RefreshMenuTimer_Tick);
             // 
             // MenuPickerView
             // 
@@ -73,6 +73,7 @@
             this.Controls.Add(this.PnlMenu);
             this.Name = "MenuPickerView";
             this.Size = new System.Drawing.Size(1904, 982);
+            this.Tag = "7";
             this.PnlMenu.ResumeLayout(false);
             this.PnlMenu.PerformLayout();
             this.ResumeLayout(false);

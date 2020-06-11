@@ -148,6 +148,7 @@
             this.Controls.Add(this.listView1);
             this.Name = "TableView";
             this.Size = new System.Drawing.Size(1904, 982);
+            this.Tag = "5";
             this.panelTafel.ResumeLayout(false);
             this.panelTafel.PerformLayout();
             this.ResumeLayout(false);
