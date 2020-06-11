@@ -446,12 +446,17 @@ namespace DAL {
                 };
             }
 
-            return new Order() {
+            Order order = new Order() {
                 Id = (int) record["OrderId"],
                 PlacedBy = staff,
                 PlacedAt = (DateTime) record["OrderPlacedDateTime"],
+                Tag = null,
                 Status = (string) record["Status"],
             };
+            if (record.ContainsKey("Tag")) {
+                order.Tag = record["Tag"] != DBNull.Value ? (string) record["Tag"] : null;
+            }
+            return order;
         }
     }
 }
