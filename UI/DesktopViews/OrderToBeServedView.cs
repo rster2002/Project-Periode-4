@@ -42,7 +42,7 @@ namespace UI.DesktopViews {
 
                             return order;
                         })
-                        .Where(order => order.MenuItems.Count > 0 && order.Status == "closed")
+                        .Where(order => order.MenuItems.Count > 0 && order.Status == "prepared")
                         .ToList();
 
                     return reservation;
