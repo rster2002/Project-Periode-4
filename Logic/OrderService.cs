@@ -113,7 +113,6 @@ namespace Model {
         public List<Order> GetListPreparedOrdersByTableId(int id) => orderDAO.GetListPreparedOrdersByTableId(id);
         #endregion Read
 
-
         #region Update
         public void Update(int id, int reservationId, DateTime placedAt, int placedBy, int receiptId, object tag) => orderDAO.UpdateById(id, reservationId, placedAt, placedBy, receiptId, tag);
         public void UpdateReservationId(int id, object reservationId) => orderDAO.UpdateReservationId(id, reservationId);

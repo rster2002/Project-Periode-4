@@ -46,8 +46,6 @@ namespace UI.MobileViews {
 
             foreach (Table table in tables) {
                 tablesOverviewLayout.Controls.Add(GenerateTablePanel(table));
-
-                
             }
         }
 
@@ -67,21 +65,18 @@ namespace UI.MobileViews {
             pictureBox.Dock = DockStyle.Top;
             pictureBox.Size = new Size(186, 83);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            //pictureBox.Location = new Point(4, 3); ??
             pictureBox.Tag = table;
             pictureBox.Click += TablePanelOnClick;
 
             //prepare wachttijd label
             waittimeLabel.BackColor = Color.FromArgb(181, 181, 181);
             waittimeLabel.Dock = DockStyle.Right;
-            //waittimeLabel.Size = new Size(96, 20);
             waittimeLabel.TextAlign = ContentAlignment.BottomRight;
             waittimeLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
 
             // Prepare tafellabel
             tafelLabel.Text = "Tafel " + table.Number;
             tafelLabel.Dock = DockStyle.Left;
-            //tafelLabel.Size = new Size(96, 20);
             tafelLabel.TextAlign = ContentAlignment.BottomLeft;
             tafelLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
 
