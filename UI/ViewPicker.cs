@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -12,6 +14,8 @@ using UI.MobileViews;
 
 namespace UI {
     public partial class ViewPicker: Form {
+        private UserSession userSession = UserSession.GetInstance();
+
         public ViewPicker() {
             InitializeComponent();
         }
@@ -22,6 +26,7 @@ namespace UI {
 
             Hide();
             mobileView.ShowDialog();
+            userSession.Logout();
             Show();
         }
 
@@ -31,6 +36,7 @@ namespace UI {
             
             Hide();
             desktopView.ShowDialog();
+            userSession.Logout();
             Show();
         }
     }

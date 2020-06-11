@@ -36,7 +36,7 @@ namespace UI {
 
                 // Checken op naam is een beetje, eh...
                 if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
-                    item.BackColor = Color.FromArgb(255, 10, 10);
+                    item.BackColor = Color.FromArgb(0, 255, 238);
                 } else {
                     item.BackColor = Color.FromArgb(33, 33, 33);
                 }

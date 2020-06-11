@@ -33,7 +33,7 @@ namespace UI {
             this.staffViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tablesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salesViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuPickerViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.logoutButton = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +58,7 @@ namespace UI {
             this.staffViewToolStripMenuItem,
             this.tablesViewToolStripMenuItem,
             this.salesViewToolStripMenuItem,
-            this.menuViewToolStripMenuItem});
+            this.menuPickerViewToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(1904, 59);
@@ -119,14 +119,14 @@ namespace UI {
             this.salesViewToolStripMenuItem.Text = "Omzet";
             this.salesViewToolStripMenuItem.Click += new System.EventHandler(this.SalesViewToolStripMenuItemOnClick);
             // 
-            // menuViewToolStripMenuItem
+            // menuPickerViewToolStripMenuItem
             // 
-            this.menuViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-            this.menuViewToolStripMenuItem.Name = "menuViewToolStripMenuItem";
-            this.menuViewToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
-            this.menuViewToolStripMenuItem.Tag = "owner";
-            this.menuViewToolStripMenuItem.Text = "Menu";
-            this.menuViewToolStripMenuItem.Click += new System.EventHandler(this.MenuViewToolStripMenuItem_Click);
+            this.menuPickerViewToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.menuPickerViewToolStripMenuItem.Name = "menuPickerViewToolStripMenuItem";
+            this.menuPickerViewToolStripMenuItem.Size = new System.Drawing.Size(132, 55);
+            this.menuPickerViewToolStripMenuItem.Tag = "owner";
+            this.menuPickerViewToolStripMenuItem.Text = "Menu";
+            this.menuPickerViewToolStripMenuItem.Click += new System.EventHandler(this.MenuViewToolStripMenuItem_Click);
             // 
             // logoutButton
             // 
@@ -169,7 +169,7 @@ namespace UI {
         private System.Windows.Forms.ToolStripMenuItem tablesViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem personeelViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem salesViewToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem menuViewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem menuPickerViewToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem staffViewToolStripMenuItem;
         private System.Windows.Forms.Button logoutButton;
     }
