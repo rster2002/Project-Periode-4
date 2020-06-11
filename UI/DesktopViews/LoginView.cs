@@ -12,17 +12,16 @@ using System.Security.Cryptography;
 
 namespace UI.DesktopViews {
     public partial class LoginView: UserControl {
-        private DesktopView mainView = DesktopView.GetInstance();
         public UserSession userSession = UserSession.GetInstance();
+        private DesktopView mainView = DesktopView.GetInstance();
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
-        private ViewPicker viewPicker;
 
-        public LoginView(ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
+        public LoginView() {
             InitializeComponent();
-            this.viewPicker = viewPicker;
             txtb_wachtwoord.UseSystemPasswordChar = true;
+            
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -76,7 +75,6 @@ namespace UI.DesktopViews {
                     lbl_geengegevens.Text = "U kunt niet inloggen in de desktop omgeving als serveerder";
                     break;
                 case "owner":
-                    // TODO
                     mainView.LoadView(new OrderView("food"));
                     break;
                 case "bartender":
@@ -105,7 +103,10 @@ namespace UI.DesktopViews {
 
         private void Btn_changeView_Click(object sender, EventArgs e) {
             mainView.Close();
-            viewPicker.Show();
+        }
+
+        private void Cbox_showpassword_CheckedChanged(object sender, EventArgs e) {
+            txtb_wachtwoord.UseSystemPasswordChar = !Cbox_showpassword.Checked;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,7 @@ using UI.MobileViews;
 namespace UI {
     public partial class MobileView: Form {
         private static MobileView instance;
+        private UserSession userSession = UserSession.GetInstance();
         private List<HistoryItem> history = new List<HistoryItem>();
 
         private MobileView() {
@@ -48,7 +50,7 @@ namespace UI {
 
         public void ClearHistory() {
             history = new List<HistoryItem>() {
-                history[0]
+                history[0],
             };
         }
 
@@ -61,23 +63,29 @@ namespace UI {
         private void ShowBackButton() {
             if (history.Count == 1) {
                 historyBackButton.Hide();
-            }
-            else {
+            } else {
                 historyBackButton.Show();
             }
+
             if (history.Count > 2) {
                 historyBackButton.Text = "Terug";
             } else {
-                historyBackButton.Text = "Logout";
+                historyBackButton.Text = "Log uit";
             }
         }
 
         private void HistoryBackButtonOnClick(object sender, EventArgs e) {
+            if (history.Count == 1) Logout();
             history.Remove(history.Last());
 
             HistoryItem lastHistoryItem = history.Last();
             currentPageLbl.Text = lastHistoryItem.LabelText;
             LoadView(lastHistoryItem.UserControl, false);
+        }
+
+        private void Logout() {
+            userSession.Logout();
+            LoadView(new LoginViewMobile());
         }
     }
 

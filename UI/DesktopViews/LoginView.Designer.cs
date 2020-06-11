@@ -31,6 +31,7 @@
             this.txtb_wachtwoord = new System.Windows.Forms.TextBox();
             this.lbl_geengegevens = new System.Windows.Forms.Label();
             this.Btn_changeView = new System.Windows.Forms.Button();
+            this.Cbox_showpassword = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pb_logo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,11 +116,24 @@
             this.Btn_changeView.UseVisualStyleBackColor = true;
             this.Btn_changeView.Click += new System.EventHandler(this.Btn_changeView_Click);
             // 
+            // Cbox_showpassword
+            // 
+            this.Cbox_showpassword.AutoSize = true;
+            this.Cbox_showpassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.25F);
+            this.Cbox_showpassword.Location = new System.Drawing.Point(1110, 452);
+            this.Cbox_showpassword.Name = "Cbox_showpassword";
+            this.Cbox_showpassword.Size = new System.Drawing.Size(202, 26);
+            this.Cbox_showpassword.TabIndex = 12;
+            this.Cbox_showpassword.Text = "Laat wachtwoord zien";
+            this.Cbox_showpassword.UseVisualStyleBackColor = true;
+            this.Cbox_showpassword.CheckedChanged += new System.EventHandler(this.Cbox_showpassword_CheckedChanged);
+            // 
             // LoginView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
+            this.Controls.Add(this.Cbox_showpassword);
             this.Controls.Add(this.Btn_changeView);
             this.Controls.Add(this.lbl_geengegevens);
             this.Controls.Add(this.txtb_wachtwoord);
@@ -146,5 +160,6 @@
         private System.Windows.Forms.TextBox txtb_wachtwoord;
         private System.Windows.Forms.Label lbl_geengegevens;
         private System.Windows.Forms.Button Btn_changeView;
+        private System.Windows.Forms.CheckBox Cbox_showpassword;
     }
 }

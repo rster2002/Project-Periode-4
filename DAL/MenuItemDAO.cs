@@ -69,6 +69,15 @@ namespace DAL {
         }
         #endregion Delete
 
+
+        public void UpdateMenuItemAmountInStock(MenuItem itemToChange) {
+            Line("UPDATE [MenuItem] SET [InStock] = @amountToSet WHERE [MenuItemId] = @id");
+
+            Param("id", itemToChange.Id);
+            Param("amountToSet", itemToChange.AmountInStock);
+
+            ExecuteCommand();
+        }
         public void ApplyMenuItemsToStock(List<MenuItem> menuItems) {
             Line("UPDATE [MenuItem]");
             Line("SET [InStock] = CASE");

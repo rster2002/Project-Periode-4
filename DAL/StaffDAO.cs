@@ -40,7 +40,7 @@ namespace DAL {
         public List<Staff> GetStaffByRole(string role) {
             Line("SELECT *");
             Line("FROM [STAFF]");
-            Line("WHERE StaffRole IS @role");
+            Line("WHERE StaffRole = @role");
 
             Param("role", role);
 

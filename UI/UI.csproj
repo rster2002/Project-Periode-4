@@ -113,14 +113,11 @@
     <Compile Include="DesktopViews\OrderView.Designer.cs">
       <DependentUpon>OrderView.cs</DependentUpon>
     </Compile>
-    <Compile Include="DesktopViews\PrepareOrderForm.cs">
+    <Compile Include="DesktopViews\SalePopup.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DesktopViews\SalePopup.cs">
-      <SubType>Form</SubType>
     </Compile>
     <Compile Include="DesktopViews\SalePopup.Designer.cs">
       <DependentUpon>SalePopup.cs</DependentUpon>
@@ -149,6 +146,15 @@
     <Compile Include="DesktopViews\StaffView.Designer.cs">
       <DependentUpon>StaffView.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockManagementPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockManagementPopup.Designer.cs">
+      <DependentUpon>StockManagementPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\StockPickerView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,6 +166,12 @@
     </Compile>
     <Compile Include="DesktopViews\StockView.Designer.cs">
       <DependentUpon>StockView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\TableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\TableView.Designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
     </Compile>
     <Compile Include="MobileViews\CheckoutView.cs">
       <SubType>UserControl</SubType>
@@ -255,9 +267,6 @@
     <EmbeddedResource Include="DesktopViews\OrderView.resx">
       <DependentUpon>OrderView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
-      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\SalePopup.resx">
       <DependentUpon>SalePopup.cs</DependentUpon>
     </EmbeddedResource>
@@ -273,11 +282,20 @@
     <EmbeddedResource Include="DesktopViews\StaffView.resx">
       <DependentUpon>StaffView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockManagementPopup.resx">
+      <DependentUpon>StockManagementPopup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\StockPickerView.resx">
       <DependentUpon>StockPickerView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\StockView.resx">
       <DependentUpon>StockView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\TableView.resx">
+      <DependentUpon>TableView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MobileViews\CheckoutView.resx">
       <DependentUpon>CheckoutView.cs</DependentUpon>
@@ -339,6 +357,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chapoo logo1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -72,7 +72,7 @@
             this.historyBackButton.Name = "historyBackButton";
             this.historyBackButton.Size = new System.Drawing.Size(104, 36);
             this.historyBackButton.TabIndex = 1;
-            this.historyBackButton.Text = "Logout";
+            this.historyBackButton.Text = "Log uit";
             this.historyBackButton.UseVisualStyleBackColor = false;
             this.historyBackButton.Click += new System.EventHandler(this.HistoryBackButtonOnClick);
             // 

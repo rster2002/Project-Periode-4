@@ -13,6 +13,7 @@ namespace UI.MobileViews {
     public partial class TableControlsView: UserControl {
         private MobileView mobileView = MobileView.GetInstance();
         private MenuService menuService = new MenuService();
+        private OrderService orderService = new OrderService();
         private List<Model.Menu> menus;
         private Table table;
 
@@ -34,7 +35,7 @@ namespace UI.MobileViews {
                 .Where(menu => timeNow > menu.StartTime && timeNow < menu.EndTime)
                 .ToList();
 
-            float percentPerButton = 100 / menus.Count + 1;
+            float percentPerButton = 100 / (menus.Count + 1);
 
             foreach (Model.Menu menu in menusAvailableNow) {
                 buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
@@ -43,12 +44,24 @@ namespace UI.MobileViews {
                 buttonLayout.Controls.Add(GenerateMenuButton(menu));
             }
 
+
+            //Generate order served button
+            Button servedButton = new Button();
+            servedButton.Dock = DockStyle.Fill;
+            servedButton.Text = "Bestelling geserveerd!";
+            servedButton.BackColor = Color.White;
+            servedButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            servedButton.Click += ServedButtonOnClick;
+
+            buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
+            buttonLayout.RowCount++;
+            buttonLayout.Controls.Add(servedButton);
             // Generate checkout button
             Button checkoutButton = new Button();
             checkoutButton.Dock = DockStyle.Fill;
             checkoutButton.Text = "Afrekenen";
             checkoutButton.BackColor = Color.FromArgb(39, 194, 65);
-            checkoutButton.Font = new Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 0);
+            checkoutButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
             checkoutButton.Click += CheckoutButtonOnClick;
 
             buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
@@ -79,6 +92,14 @@ namespace UI.MobileViews {
 
         private void CheckoutButtonOnClick(object sender, EventArgs args) {
             mobileView.LoadView(new CheckoutView(table));
+        }
+
+        private void ServedButtonOnClick(object sender, EventArgs args) {
+            List<Order> orders = orderService.GetListPreparedOrdersByTableId(table.Number);
+            foreach (Order order in orders) {
+                orderService.CloseOrder(order.Id);
+            }
+            mobileView.ResetTo(new TableView(), "Tafels");
         }
     }
 }

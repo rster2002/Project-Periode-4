@@ -35,6 +35,7 @@ namespace UI.DesktopViews {
             if (!string.IsNullOrWhiteSpace(TextBoxName.Text)) {
                 if(time1 < time2) {
                     menuService.AddMenu(rdm.Next(1, 999999),TextBoxName.Text,time1,time2);
+                    Close();
                 } else {
                     LblWarning.Text = "Kan geen menu toevoegen die latere begin tijd heeft dan eind tijd!";
                 }

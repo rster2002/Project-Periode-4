@@ -30,7 +30,7 @@
             // 
             // label1
             // 
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (33)))), ((int) (((byte) (33)))), ((int) (((byte) (33)))));
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(1, 1);
@@ -42,9 +42,9 @@
             // 
             // terugBtn
             // 
-            this.terugBtn.BackColor = System.Drawing.SystemColors.Control;
+            this.terugBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.terugBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.terugBtn.ForeColor = System.Drawing.Color.Black;
+            this.terugBtn.ForeColor = System.Drawing.Color.White;
             this.terugBtn.Location = new System.Drawing.Point(36, 114);
             this.terugBtn.Name = "terugBtn";
             this.terugBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -56,7 +56,7 @@
             // 
             // confirmBtn
             // 
-            this.confirmBtn.BackColor = System.Drawing.SystemColors.Control;
+            this.confirmBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
             this.confirmBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.confirmBtn.ForeColor = System.Drawing.Color.Black;
             this.confirmBtn.Location = new System.Drawing.Point(262, 114);
@@ -68,16 +68,16 @@
             this.confirmBtn.UseVisualStyleBackColor = false;
             this.confirmBtn.Click += new System.EventHandler(this.confirmBtn_Click);
             // 
-            // extraConfirmationPopup
+            // ExtraConfirmationPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int) (((byte) (181)))), ((int) (((byte) (181)))), ((int) (((byte) (181)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(181)))), ((int)(((byte)(181)))));
             this.ClientSize = new System.Drawing.Size(434, 161);
             this.Controls.Add(this.confirmBtn);
             this.Controls.Add(this.terugBtn);
             this.Controls.Add(this.label1);
-            this.Name = "extraConfirmationPopup";
+            this.Name = "ExtraConfirmationPopup";
             this.Text = "extraConfirmationPopup";
             this.ResumeLayout(false);
 

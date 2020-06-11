@@ -109,6 +109,8 @@ namespace Model {
         public List<Order> GetOrdersByReceiptId(int receiptId) => orderDAO.GetByReceiptId(receiptId);
         public List<Order> GetOrdersByDateTimeRange(DateTime startDateTime, DateTime endDateTime) => orderDAO.GetByDateTimeRange(startDateTime, endDateTime);
         public List<Order> GetOrderByTableId(int tableNumber) => orderDAO.GetByTableNumber(tableNumber);
+        public bool GetPreparedOrdersByTableId(int id) => orderDAO.GetPreparedOrdersByTableId(id);
+        public List<Order> GetListPreparedOrdersByTableId(int id) => orderDAO.GetListPreparedOrdersByTableId(id);
         #endregion Read
 
         #region Update
@@ -119,8 +121,9 @@ namespace Model {
         public void UpdateReceiptIdByReservationId(int reservationId, object receiptId) => orderDAO.UpdateReceiptIdByReservationId(reservationId, receiptId);
         public void UpdateReservationIdByReservationId(int reservationId, object newReservationId) => orderDAO.UpdateReservationIdByReservationId(reservationId, newReservationId);
         public void UpdateTag(int id, object tag) => orderDAO.UpdateTag(id, tag);
-        public void OpenOrder(int id) => orderDAO.OpenOrder(id);
         public void CloseOrder(int id) => orderDAO.CloseOrder(id);
+        public void OpenOrder(int id) => orderDAO.OpenOrder(id);
+        public void PrepareOrder(int id) => orderDAO.PrepareOrder(id);
         #endregion Update
 
         #region Delete

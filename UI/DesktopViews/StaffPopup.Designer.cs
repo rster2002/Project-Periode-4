@@ -81,19 +81,19 @@
             // 
             // ontslagBtn
             // 
-            this.ontslagBtn.BackColor = System.Drawing.SystemColors.Control;
+            this.ontslagBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.ontslagBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.ontslagBtn.ForeColor = System.Drawing.Color.Black;
+            this.ontslagBtn.ForeColor = System.Drawing.Color.White;
             this.ontslagBtn.Location = new System.Drawing.Point(282, 202);
             this.ontslagBtn.Name = "ontslagBtn";
             this.ontslagBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.ontslagBtn.Size = new System.Drawing.Size(135, 35);
             this.ontslagBtn.TabIndex = 4;
-            this.ontslagBtn.Text = "Ontslag";
+            this.ontslagBtn.Text = "Verwijdering";
             this.ontslagBtn.UseVisualStyleBackColor = false;
             this.ontslagBtn.Click += new System.EventHandler(this.ontslagBtn_Click);
             // 
-            // PersoneelPopup
+            // StaffPopup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -104,7 +104,7 @@
             this.Controls.Add(this.labelERole);
             this.Controls.Add(this.labelEId);
             this.Controls.Add(this.labelEName);
-            this.Name = "PersoneelPopup";
+            this.Name = "StaffPopup";
             this.Text = "PersoneelPopup";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PersoneelPopup_FormClosed);
             this.ResumeLayout(false);

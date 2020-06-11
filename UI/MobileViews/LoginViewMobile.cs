@@ -14,15 +14,13 @@ using System.Security.Cryptography;
 
 namespace UI.MobileViews {
     public partial class LoginViewMobile: UserControl {
-        public MobileView mobileView;
+        public MobileView mobileView = MobileView.GetInstance();
         public UserSession userSession = UserSession.GetInstance();
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
-        private ViewPicker viewPicker;
-        public LoginViewMobile(MobileView mobileView, ViewPicker viewPicker) { //geeft viewpicker mee voor demonstratie applicatie
-            this.mobileView = mobileView;
-            this.viewPicker = viewPicker;
+
+        public LoginViewMobile() {
             InitializeComponent();
             txtb_wachtwoord.UseSystemPasswordChar = true;
         }
@@ -32,11 +30,13 @@ namespace UI.MobileViews {
                 lbl_geengegevens.Text = "Staffnummer en wachtwoord \nmoeten ingevuld zijn!";
             else {
                 wachtwoord = txtb_wachtwoord.Text;
-                if (ParseGegevens(txtb_gebruiker.Text)) {
+                if (ParseGegevens(txtb_gebruiker.Text)) { // check of login naam cijfers zijn 
                     StaffService staffService = new StaffService();
                     loggedStaff = staffService.GetStaffById(staffId);
 
                     if (CheckGebruiker(loggedStaff, wachtwoord)) {
+                        txtb_gebruiker.Text = "";
+                        txtb_wachtwoord.Text = "";
                         userSession.SetLoggedInStaff(loggedStaff);
                         KiesScherm(loggedStaff);
                     }
@@ -105,7 +105,10 @@ namespace UI.MobileViews {
 
         private void Btn_changeView_Click(object sender, EventArgs e) {
             mobileView.Close();
-            viewPicker.Show();
+        }
+
+        private void Cbox_showpassword_CheckedChanged(object sender, EventArgs e) {
+            txtb_wachtwoord.UseSystemPasswordChar = !cbox_showpassword.Checked;
         }
     }
 }

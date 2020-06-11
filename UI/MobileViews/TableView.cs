@@ -13,13 +13,15 @@ namespace UI.MobileViews {
 
     public partial class TableView: UserControl {
         System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TableView));
-        private TableService tableSerivce = new TableService();
+        private TableService tableService = new TableService();
+        private ReservationService reservationService = new ReservationService();
+        private OrderService orderService = new OrderService();
         private List<Table> tables;
 
         public TableView() {
             InitializeComponent();
             try {
-                tables = tableSerivce.GetAllTables();
+                tables = tableService.GetAllTables();
             } catch (Exception error) {
                 ErrorView errorView = new ErrorView(error.Message);
                 errorView.ShowDialog();
@@ -44,46 +46,69 @@ namespace UI.MobileViews {
 
             foreach (Table table in tables) {
                 tablesOverviewLayout.Controls.Add(GenerateTablePanel(table));
+
+                
             }
         }
 
         private Panel GenerateTablePanel(Table table) {
             Panel panel = new Panel();
+            Panel textPanel = new Panel();
             PictureBox pictureBox = new PictureBox();
-            Label label = new Label();
+            Label tafelLabel = new Label();
+            Label waittimeLabel = new Label();
 
-            panel.Size = new Size(193, 141);
+            panel.Size = new Size(193, 115);
+            textPanel.Size = new Size(193, 27);
+            textPanel.Dock = DockStyle.Bottom;
 
             // Prepare pictureBox
-            pictureBox.Image = ((System.Drawing.Image) (resources.GetObject("pictureBox1.Image")));
+            pictureBox.Image = ((Image) (resources.GetObject("pictureBox1.Image")));
             pictureBox.Dock = DockStyle.Top;
-            pictureBox.Size = new Size(186, 90);
+            pictureBox.Size = new Size(186, 83);
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox.Location = new Point(4, 3);
+            //pictureBox.Location = new Point(4, 3); ??
             pictureBox.Tag = table;
             pictureBox.Click += TablePanelOnClick;
 
-            // Prepare label
-            label.Text = "Tafel " + table.Number;
-            label.Dock = DockStyle.Bottom;
-            label.Location = new Point(0, 121);
-            label.Size = new Size(193, 20);
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Font = new Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, (byte) 0);
+            //prepare wachttijd label
+            waittimeLabel.BackColor = Color.FromArgb(181, 181, 181);
+            waittimeLabel.Dock = DockStyle.Right;
+            //waittimeLabel.Size = new Size(96, 20);
+            waittimeLabel.TextAlign = ContentAlignment.BottomRight;
+            waittimeLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
+
+            // Prepare tafellabel
+            tafelLabel.Text = "Tafel " + table.Number;
+            tafelLabel.Dock = DockStyle.Left;
+            //tafelLabel.Size = new Size(96, 20);
+            tafelLabel.TextAlign = ContentAlignment.BottomLeft;
+            tafelLabel.Font = new Font("Microsoft Sans Serif", 12F, FontStyle.Regular, GraphicsUnit.Point, (byte) 0);
 
             if (table.Status == "Available") {
-                label.ForeColor = Color.Black;
-                label.BackColor = Color.FromArgb(132, 204, 6);
+                tafelLabel.ForeColor = Color.Black;
+                tafelLabel.BackColor = Color.FromArgb(132, 204, 6);
+                
             } else if (table.Status == "Reserved") {
-                label.ForeColor = Color.Black;
-                label.BackColor = Color.FromArgb(221, 243, 17);
+                tafelLabel.ForeColor = Color.Black;
+                tafelLabel.BackColor = Color.FromArgb(221, 243, 17);
             } else {
-                label.ForeColor = Color.White;
-                label.BackColor = Color.FromArgb(152, 0, 0);
+                tafelLabel.ForeColor = Color.White;
+                tafelLabel.BackColor = Color.FromArgb(152, 0, 0);
             }
 
+            if (orderService.GetPreparedOrdersByTableId(table.Number)) {
+                waittimeLabel.BackColor = Color.Orange;
+            } else if (tableService.CheckOrderPresent(table.Number)) {
+                waittimeLabel.BackColor = Color.DarkTurquoise;
+            } else {
+                waittimeLabel.BackColor = Color.FromArgb(181, 181, 181);
+            }
+            
+            textPanel.Controls.Add(tafelLabel);
+            textPanel.Controls.Add(waittimeLabel);
             panel.Controls.Add(pictureBox);
-            panel.Controls.Add(label);
+            panel.Controls.Add(textPanel);
 
             return panel;
         }

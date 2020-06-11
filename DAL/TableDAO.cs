@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Model;
@@ -36,6 +37,27 @@ namespace DAL {
             Param("id", id);
 
             return Execute();
+        }
+
+        public void ChangeServingStaff(int id, int tableToChangeNr) {
+            Line("UPDATE [Table] SET [ServedBy] = @id WHERE [TableNumber] = @tableNr");
+
+            Param("id", id);
+            Param("tableNr", tableToChangeNr);
+
+            ExecuteCommand();
+        }
+
+        public bool CheckOrderPresent(int tableNumber) {
+            Query(@"SELECT *
+            FROM [Order]
+            JOIN [Reservation] ON [Order].ReservationId = [Reservation].ReservationId
+            WHERE [Reservation].TableNumber = @id AND [Status] = 'open';");
+
+            Param("id", tableNumber);
+
+            List<Record> records = ExecuteUnprocessed();
+            return records.Count > 0;
         }
 
         protected override Table ProcessRecord(Record record) {

@@ -36,7 +36,7 @@ namespace UI {
 
                 // Checken op naam is een beetje, eh...
                 if (loadedView != null && item.Name.ToLower().Contains(loadedView.Name.ToLower())) {
-                    item.BackColor = Color.FromArgb(255, 10, 10);
+                    item.BackColor = Color.FromArgb(0, 255, 238);
                 } else {
                     item.BackColor = Color.FromArgb(33, 33, 33);
                 }
@@ -48,6 +48,8 @@ namespace UI {
 
             mainPanel.Controls.Clear();
             userControl.Dock = DockStyle.Fill;
+
+            logoutButton.Visible = userSession.LoggedInStaff.Role != "unauthorized";
 
             mainPanel.Controls.Add(userControl);
             ShowTabs();
@@ -77,8 +79,17 @@ namespace UI {
             }
         }
 
+        private void tablesViewToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new TableView());
+        }
+
         private void SalesViewToolStripMenuItemOnClick(object sender, EventArgs e) {
             LoadView(new SalesView());
+        }
+
+        private void LogoutButton_Click(object sender, EventArgs e) {
+            userSession.Logout();
+            LoadView(new LoginView());
         }
 
         private void MenuViewToolStripMenuItem_Click(object sender, EventArgs e) {
