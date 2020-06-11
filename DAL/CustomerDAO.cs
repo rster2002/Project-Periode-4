@@ -40,5 +40,14 @@ namespace DAL {
 
             return Execute()[0];
         }
+        public void Insert (int id, string name) {
+            Line("INSERT INTO [Customer]");
+            Line("VALUES(@id, @name);");
+
+            Param("id", id);
+            Param("name", name);
+
+            Execute();
+        }
     }
 }

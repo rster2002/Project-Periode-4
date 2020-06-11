@@ -22,6 +22,11 @@ namespace UI.MobileViews {
 
             this.table = table;
             menus = menuService.GetMenus();
+
+            reservationPopupPanel.Visible = false;
+            reservationPopupPanel.Dock = DockStyle.Fill;
+
+            Size = new Size(398, 649);
             PopulateTableContols();
         }
 
@@ -56,18 +61,32 @@ namespace UI.MobileViews {
             buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
             buttonLayout.RowCount++;
             buttonLayout.Controls.Add(servedButton);
-            // Generate checkout button
-            Button checkoutButton = new Button();
-            checkoutButton.Dock = DockStyle.Fill;
-            checkoutButton.Text = "Afrekenen";
-            checkoutButton.BackColor = Color.FromArgb(39, 194, 65);
-            checkoutButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            checkoutButton.Click += CheckoutButtonOnClick;
 
-            buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
-            buttonLayout.RowCount++;
+            if (table.Status == "Available") {
+                Button reserveButton = new Button();
+                reserveButton.Dock = DockStyle.Fill;
+                reserveButton.Text = "Reserveer tafel";
+                reserveButton.BackColor = Color.FromArgb(221, 243, 17);
+                reserveButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                reserveButton.Click += ReserveButtonOnClick;
 
-            buttonLayout.Controls.Add(checkoutButton);
+                buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
+                buttonLayout.RowCount++;
+                buttonLayout.Controls.Add(reserveButton);
+            } else {
+                // Generate checkout button
+                Button checkoutButton = new Button();
+                checkoutButton.Dock = DockStyle.Fill;
+                checkoutButton.Text = "Afrekenen";
+                checkoutButton.BackColor = Color.FromArgb(39, 194, 65);
+                checkoutButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                checkoutButton.Click += CheckoutButtonOnClick;
+
+                buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
+                buttonLayout.RowCount++;
+
+                buttonLayout.Controls.Add(checkoutButton);
+            }
         }
 
         private Button GenerateMenuButton(Model.Menu menu) {
@@ -99,6 +118,38 @@ namespace UI.MobileViews {
             foreach (Order order in orders) {
                 orderService.CloseOrder(order.Id);
             }
+            mobileView.ResetTo(new TableView(), "Tafels");
+        }
+
+        private void ShowReservationPopup() {
+            reservationPopupPanel.Visible = true;
+        }
+
+        private void HideReservationPopup() {
+            txtBoxReservationName.Text = "";
+            reservationPopupPanel.Visible = false;
+        }
+
+        private void ReserveButtonOnClick(object sender, EventArgs args) {
+            ShowReservationPopup();
+        }
+
+        private void cancelReserationButton_Click(object sender, EventArgs e) {
+            HideReservationPopup();
+        }
+
+        private void confirmReservationButton_Click(object sender, EventArgs e) {
+            ReservationService reservationService = new ReservationService();
+            CustomerService customerService = new CustomerService();
+            Random rnd = new Random();
+            Customer customer = new Customer() {
+                Id = rnd.Next(1, 999999),
+                Name = txtBoxReservationName.Text
+            };
+
+            customerService.AddCustomer(customer.Id, customer.Name);
+            reservationService.AddReservation(rnd.Next(1, 9999999), table.Number, customer.Id);
+
             mobileView.ResetTo(new TableView(), "Tafels");
         }
     }

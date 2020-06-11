@@ -102,7 +102,7 @@ namespace UI.DesktopViews {
 
             foreach (Order order in reservation.Orders) {
                 GroupBox groupBox = new GroupBox() {
-                    Text = $"Tafel {reservation.Table.Number}, {order.Tag}",
+                    Text = $"Tafel {reservation.Table.Number}, {order.Tag}, geplaats op:{order.PlacedAt.Hour}:{order.PlacedAt.Minute}",
                     BackColor = Color.White,
                 };
 
@@ -146,7 +146,7 @@ namespace UI.DesktopViews {
                 listView.Dock = DockStyle.Top;
 
                 foreach (Model.MenuItem menuItem in order.MenuItems) {
-                    ListViewItem item = new ListViewItem(menuItem.Amount.ToString());
+                    ListViewItem item = new ListViewItem(menuItem.Amount.ToString()+"x");
                     item.SubItems.Add(menuItem.Name);
                     item.SubItems.Add(menuItem.Comment);
                     listView.Items.Add(item);

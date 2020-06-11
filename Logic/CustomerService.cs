@@ -12,5 +12,6 @@ namespace Model {
 
         public List<Customer> GetAllCustomers() => customerDAO.GetAll();
         public Customer GetBySurname(string surname) => customerDAO.GetBySurname(surname);
+        public void AddCustomer(int id, string name) => customerDAO.Insert(id, name);
     }
 }
