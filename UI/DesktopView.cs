@@ -95,5 +95,13 @@ namespace UI {
         private void MenuViewToolStripMenuItem_Click(object sender, EventArgs e) {
             LoadView(new MenuPickerView(this));
         }
+
+        private void BestellingenGereedToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new OrderToBeServedView("food"));
+        }
+
+        private void BestellingenGereedToolStripMenuItem1_Click(object sender, EventArgs e) {
+            LoadView(new OrderToBeServedView("drink"));
+        }
     }
 }

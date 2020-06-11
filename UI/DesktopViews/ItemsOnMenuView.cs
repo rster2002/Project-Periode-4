@@ -8,17 +8,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Model;
+using System.Runtime.Remoting.Channels;
 
 namespace UI.DesktopViews {
     public partial class ItemsOnMenuView: UserControl {
         private Model.Menu menu;
         private MenuService menuService = new MenuService();
         private int nextLabelYAxis;
-        public ItemsOnMenuView(Model.Menu selectedMenu) {
+        private DesktopView parent;
+        public ItemsOnMenuView(Model.Menu selectedMenu,DesktopView parent) {
             menu = selectedMenu;
+            this.parent = parent;
 
             InitializeComponent();
+
             PopulateItemLayout();
+
+            //set interval for timer and enable timer.
+            refreshItemsOnMenu.Interval = 5000;
+            refreshItemsOnMenu.Enabled = true;
+            //start the timer
+            refreshItemsOnMenu.Start();
         }
 
         private void PopulateItemLayout() {
@@ -80,6 +90,8 @@ namespace UI.DesktopViews {
             lbl.Width = 1600;
             lbl.Height = 50;
 
+            lbl.Click += (sender, e) => DeleteMenuItem(sender, e, item);
+
             return lbl;
         }
 
@@ -89,8 +101,16 @@ namespace UI.DesktopViews {
         }
 
         private void DeleteMenu(object sender, EventArgs e) {
-            DeleteMenuForm deleteMenu = new DeleteMenuForm(menu);
+            DeleteMenuForm deleteMenu = new DeleteMenuForm(menu,parent);
             deleteMenu.ShowDialog();
+        }
+        private void DeleteMenuItem(object sender, EventArgs e, Model.MenuItem item) {
+            DeleteMenuItemForm deleteMenuItem = new DeleteMenuItemForm(item);
+            deleteMenuItem.ShowDialog();
+        }
+
+        private void RefreshItemsOnMenu_Tick(object sender, EventArgs e) {
+            PopulateItemLayout();
         }
     }
 }

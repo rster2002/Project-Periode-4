@@ -39,6 +39,7 @@ namespace UI.DesktopViews {
             refreshMenuTimer.Start();
 
             foreach (Model.Menu menu in menus) {
+                PnlMenu.Controls.Add(GenerateButtonAddMenu());
                 PnlMenu.Controls.Add(GenerateAmountLabel(menu));
                 PnlMenu.Controls.Add(GenerateNameLabel(menu));
 
@@ -83,12 +84,31 @@ namespace UI.DesktopViews {
             return lbl;
         }
 
+        private Control GenerateButtonAddMenu() {
+            Button btn = new Button();
+
+            btn.Text = "Menu toevoegen";
+            btn.Location = new Point(700,40);
+
+            btn.BackColor = Color.FromArgb(132, 204, 6);
+            btn.Font = new Font("Microsoft Sans Serif", 20);
+
+            btn.AutoSize = true;
+            btn.Click += new EventHandler(AddMenu);
+
+            return btn;
+        }
+
         private void RefreshMenuTimer_Tick(object sender, EventArgs e) {
             PopulateMenuView();
         }
 
         private void ShowItemsOnMenu(object sender, EventArgs e, Model.Menu selectedMenu) {
-            parent.LoadView(new ItemsOnMenuView(selectedMenu));
+            parent.LoadView(new ItemsOnMenuView(selectedMenu,parent));
+        }
+        private void AddMenu(object sender, EventArgs e) {
+            AddMenuForm menuForm = new AddMenuForm();
+            menuForm.ShowDialog();
         }
     }
 }

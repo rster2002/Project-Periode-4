@@ -24,5 +24,9 @@ namespace Model
         public List<MenuItem> OrderByStock() => menuItemDAO.OrderByStock();
         public MenuItem GetMenuItemById(int itemId) => menuItemDAO.GetById(itemId);
         #endregion Read
+
+        #region Delete
+        public void DeleteMenuItem(int id) => menuItemDAO.DeleteById(id);
+        #endregion Delete
     }
 }
