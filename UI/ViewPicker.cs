@@ -21,6 +21,7 @@ namespace UI {
             mobileView.LoadView(new LoginViewMobile(mobileView, this), "Login");
             Hide();
             mobileView.ShowDialog();
+            Show();
         }
 
         private void DesktopView_Click(object sender, EventArgs e) {
@@ -28,6 +29,7 @@ namespace UI {
             desktopView.LoadView(new LoginView(this));
             Hide();
             desktopView.ShowDialog();
+            Show();
         }
     }
 }

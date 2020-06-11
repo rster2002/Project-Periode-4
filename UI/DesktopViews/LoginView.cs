@@ -12,8 +12,8 @@ using System.Security.Cryptography;
 
 namespace UI.DesktopViews {
     public partial class LoginView: UserControl {
-        private DesktopView mainView = DesktopView.GetInstance();
         public UserSession userSession = UserSession.GetInstance();
+        private DesktopView mainView = DesktopView.GetInstance();
         private int staffId;
         private string wachtwoord;
         private Staff loggedStaff;
@@ -23,6 +23,7 @@ namespace UI.DesktopViews {
             InitializeComponent();
             this.viewPicker = viewPicker;
             txtb_wachtwoord.UseSystemPasswordChar = true;
+            
         }
 
         private void button1_Click(object sender, EventArgs e) {
@@ -77,6 +78,7 @@ namespace UI.DesktopViews {
                     break;
                 case "owner":
                     // TODO
+                    mainView.LoadView(new OrderView("food"));
                     //mainView.LoadView(new T("food"));
                     break;
                 case "bartender":
@@ -106,6 +108,10 @@ namespace UI.DesktopViews {
         private void Btn_changeView_Click(object sender, EventArgs e) {
             mainView.Close();
             viewPicker.Show();
+        }
+
+        private void Cbox_showpassword_CheckedChanged(object sender, EventArgs e) {
+            txtb_wachtwoord.UseSystemPasswordChar = !Cbox_showpassword.Checked;
         }
     }
 }

@@ -13,5 +13,6 @@ namespace Model {
         public List<Table> GetAllTables() => tableDAO.GetAll();
         public Table GetTableById(int tableId) => tableDAO.GetById(tableId);
         public List<Table> GetTablesByStaff(int staffId) => tableDAO.GetByStaff(staffId);
+        public bool CheckOrderPresent(int tableNumber) => tableDAO.CheckOrderPresent(tableNumber);
     }
 }

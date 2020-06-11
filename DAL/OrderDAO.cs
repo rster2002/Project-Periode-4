@@ -182,6 +182,17 @@ namespace DAL {
 
             return Execute();
         }
+
+        public bool GetClosedOrdersByTableId(int id) {
+            Query("SELECT * FROM[Order]  " +
+                "JOIN[Reservation] ON[Order].ReservationId = [Reservation].ReservationId    " +
+                " WHERE[Reservation].TableNumber = @id AND[Status] = 'closed';");
+
+            Param("id", id);
+
+            List<Record> records = ExecuteUnprocessed();
+            return records.Count > 0;
+        }
         #endregion Read
 
         #region Update

@@ -34,7 +34,7 @@ namespace UI.MobileViews {
                 .Where(menu => timeNow > menu.StartTime && timeNow < menu.EndTime)
                 .ToList();
 
-            float percentPerButton = 100 / menus.Count + 1;
+            float percentPerButton = 100 / (menus.Count + 1);
 
             foreach (Model.Menu menu in menusAvailableNow) {
                 buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
