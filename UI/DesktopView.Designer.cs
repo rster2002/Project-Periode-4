@@ -139,6 +139,7 @@ namespace UI {
             this.logoutButton.TabIndex = 1;
             this.logoutButton.Text = "Log uit";
             this.logoutButton.UseVisualStyleBackColor = false;
+            this.logoutButton.Visible = false;
             this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
             // 
             // DesktopView
@@ -155,6 +156,7 @@ namespace UI {
             this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

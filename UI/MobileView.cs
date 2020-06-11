@@ -50,7 +50,7 @@ namespace UI {
 
         public void ClearHistory() {
             history = new List<HistoryItem>() {
-                history[0]
+                history[0],
             };
         }
 
@@ -63,10 +63,10 @@ namespace UI {
         private void ShowBackButton() {
             if (history.Count == 1) {
                 historyBackButton.Hide();
-            }
-            else {
+            } else {
                 historyBackButton.Show();
             }
+
             if (history.Count > 2) {
                 historyBackButton.Text = "Terug";
             } else {
