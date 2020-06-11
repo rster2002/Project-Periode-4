@@ -70,7 +70,7 @@ namespace UI {
             if (history.Count > 2) {
                 historyBackButton.Text = "Terug";
             } else {
-                historyBackButton.Text = "Logout";
+                historyBackButton.Text = "Log uit";
             }
         }
 

@@ -131,6 +131,12 @@
     <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DesktopViews\StockManagementPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockManagementPopup.Designer.cs">
+      <DependentUpon>StockManagementPopup.cs</DependentUpon>
+    </Compile>
     <Compile Include="DesktopViews\StockPickerView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -251,6 +257,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
       <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockManagementPopup.resx">
+      <DependentUpon>StockManagementPopup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DesktopViews\StockPickerView.resx">
       <DependentUpon>StockPickerView.cs</DependentUpon>

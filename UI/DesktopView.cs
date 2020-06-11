@@ -87,13 +87,13 @@ namespace UI {
             LoadView(new SalesView());
         }
 
-        private void MenuViewToolStripMenuItem_Click(object sender, EventArgs e) {
-            LoadView(new MenuPickerView(this));
-        }
-
-        private void logoutButton_Click(object sender, EventArgs e) {
+        private void LogoutButton_Click(object sender, EventArgs e) {
             userSession.Logout();
             LoadView(new LoginView());
+        }
+
+        private void MenuViewToolStripMenuItem_Click(object sender, EventArgs e) {
+            LoadView(new MenuPickerView(this));
         }
     }
 }

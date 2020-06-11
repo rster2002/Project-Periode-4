@@ -109,6 +109,7 @@ namespace UI {
             this.tablesViewToolStripMenuItem.Size = new System.Drawing.Size(126, 55);
             this.tablesViewToolStripMenuItem.Tag = "owner";
             this.tablesViewToolStripMenuItem.Text = "Tafels";
+            this.tablesViewToolStripMenuItem.Click += new System.EventHandler(this.tablesViewToolStripMenuItem_Click);
             // 
             // salesViewToolStripMenuItem
             // 
@@ -140,7 +141,8 @@ namespace UI {
             this.logoutButton.Text = "Log uit";
             this.logoutButton.UseVisualStyleBackColor = false;
             this.logoutButton.Visible = false;
-            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click);
+            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click);
+
             // 
             // DesktopView
             // 
