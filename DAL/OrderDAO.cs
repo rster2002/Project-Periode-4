@@ -189,13 +189,22 @@ namespace DAL {
 
         public bool GetPreparedOrdersByTableId(int id) {
             Query("SELECT * FROM[Order]  " +
-                "JOIN[Reservation] ON[Order].ReservationId = [Reservation].ReservationId    " +
-                " WHERE[Reservation].TableNumber = @id AND[Status] = 'prepared';");
+                    "JOIN[Reservation] ON[Order].ReservationId = [Reservation].ReservationId    " +
+                    " WHERE[Reservation].TableNumber = @id AND[Status] = 'prepared';");
 
             Param("id", id);
 
             List<Record> records = ExecuteUnprocessed();
             return records.Count > 0;
+        }
+        public List<Order> GetListPreparedOrdersByTableId(int id) {
+            BasicSelect();
+            Line("JOIN[Reservation] ON[Order].ReservationId = [Reservation].ReservationId");
+            Line("WHERE[Reservation].TableNumber = @id AND[Status] = 'prepared'");
+
+            Param("id", id);
+
+            return Execute();
         }
         #endregion Read
 
@@ -330,7 +339,16 @@ namespace DAL {
 
             Execute();
         }
+        
+        public void CloseOrder(int id) {
+            Line("UPDATE [Order]");
+            Line("SET [Status] = 'closed'");
+            Line("WHERE [OrderId] = @id");
 
+            Param("id", id);
+
+            Execute();
+        }
         public void OpenOrder(int id) {
             Line("UPDATE [Order]");
             Line("SET [Status] = 'open'");
