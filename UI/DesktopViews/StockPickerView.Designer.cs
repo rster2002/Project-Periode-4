@@ -60,6 +60,7 @@
             this.Controls.Add(this.LblKitchen);
             this.Name = "StockPickerView";
             this.Size = new System.Drawing.Size(1904, 982);
+            this.Tag = "3";
             this.ResumeLayout(false);
 
         }

@@ -52,6 +52,7 @@
             // btnGereed
             // 
             this.btnGereed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(132)))), ((int)(((byte)(204)))), ((int)(((byte)(6)))));
+            this.btnGereed.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnGereed.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGereed.Location = new System.Drawing.Point(382, 248);
             this.btnGereed.Name = "btnGereed";

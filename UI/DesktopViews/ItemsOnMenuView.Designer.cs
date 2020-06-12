@@ -36,6 +36,7 @@
             this.PnlMenuItem.Name = "PnlMenuItem";
             this.PnlMenuItem.Size = new System.Drawing.Size(1904, 982);
             this.PnlMenuItem.TabIndex = 0;
+            this.PnlMenuItem.Tag = "7";
             // 
             // refreshItemsOnMenu
             // 

@@ -119,6 +119,7 @@
             this.Controls.Add(this.salesListPanel);
             this.Name = "SalesView";
             this.Size = new System.Drawing.Size(1904, 982);
+            this.Tag = "6";
             this.ResumeLayout(false);
             this.PerformLayout();
 
