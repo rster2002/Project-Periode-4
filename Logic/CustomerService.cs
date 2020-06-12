@@ -6,39 +6,12 @@ using System.Threading.Tasks;
 using Model;
 using DAL;
 
-namespace Logic {
+namespace Model {
     public class CustomerService {
-
         private CustomerDAO customerDAO = new CustomerDAO();
 
-        public List<Customer> GetAllCustomers() {
-            try {
-                List<Customer> customers = customerDAO.GetAll();
-                return customers;
-            }
-            catch {
-                List<Customer> customers = new List<Customer>();
-                Customer customer = new Customer {
-                    Id = 100,
-                    Name = "De Test"
-                };
-                customers.Add(customer);
-
-                return customers;
-            }
-        }
-        public Customer GetBySurname(string surname) {
-            try {
-                Customer customer = customerDAO.GetBySurname(surname);
-                return customer;
-            } catch {
-                Customer customer = new Customer {
-                    Id = 101,
-                    Name = "Tester"
-                };
-
-                return customer;
-            }
-        }
+        public List<Customer> GetAllCustomers() => customerDAO.GetAll();
+        public Customer GetBySurname(string surname) => customerDAO.GetBySurname(surname);
+        public void AddCustomer(int id, string name) => customerDAO.Insert(id, name);
     }
 }

@@ -6,35 +6,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Logic {
+namespace Model {
     public class MenuService {
-
         MenuDAO menuDAO = new MenuDAO();
 
-        public List<Menu> GetMenus() {
-            try {
-                List<Menu> menus = menuDAO.GetAll();
-                return menus;
-            }
+        #region Create
+        public void AddMenu(int id, string menuName, TimeSpan startTime, TimeSpan endTime) => menuDAO.Insert(id, menuName, startTime, endTime);
+        public void AddItemToMenu(int menuId, int menuItemId) => menuDAO.AddItemToMenu(menuId, menuItemId);
+        #endregion Create
 
-            catch(Exception) {
-                List<Menu> menus = new List<Menu>();
+        #region Read
+        public List<Menu> GetMenus() => menuDAO.GetAll();
+        #endregion Read
 
-                Menu menu1 = new Menu() {
-                    Id = 1,
-                    Name = "Special Menu",
-                    StartTime = new TimeSpan(12, 0, 0),
-                    EndTime = new TimeSpan(22,30,0)
-                };
-                Menu menu2 = new Menu() {
-                    Id = 2,
-                    Name = "Party Menu",
-                    StartTime = new TimeSpan(9, 30, 0),
-                    EndTime = new TimeSpan(22, 15, 0)
-                };
-                menus.AddRange(new Menu[] { menu1, menu2 });
-                return menus;
-            }
-        }
+        #region Delete
+        public void DeleteMenu(int id) => menuDAO.DeleteById(id);
+        #endregion Delete
     }
 }

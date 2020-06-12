@@ -13,7 +13,7 @@ namespace DAL {
         private Dictionary<string, object> sqlParams = new Dictionary<string, object>();
 
         protected Dictionary<string, object> Param(string key, object value) {
-            sqlParams.Add(key, value.ToString());
+            sqlParams.Add(key, value);
             return sqlParams;
         }
 
@@ -43,43 +43,47 @@ namespace DAL {
         protected void ExecuteCommand() => ExecuteCommand(queryString);
         protected void ExecuteCommand(string query) {
             using (SqlConnection sqlConnection = new SqlConnection(config)) {
-                sqlConnection.Open();
-                SqlCommand command = new SqlCommand(query, sqlConnection);
+                try {
+                    sqlConnection.Open();
+                    SqlCommand command = new SqlCommand(query, sqlConnection);
 
-                EvaluateParameters(command);
+                    EvaluateParameters(command);
 
-                command.ExecuteNonQuery();
-
-                Clear();
+                    command.ExecuteNonQuery();
+                } finally {
+                    Clear();
+                }
             }
         }
 
         protected List<Record> ExecuteSelect() => ExecuteSelect(queryString);
         protected List<Record> ExecuteSelect(string query) {
             using (SqlConnection sqlConnection = new SqlConnection(config)) {
-                sqlConnection.Open();
-                SqlCommand command = new SqlCommand(query, sqlConnection);
+                try {
+                    sqlConnection.Open();
+                    SqlCommand command = new SqlCommand(query, sqlConnection);
 
-                List<Record> records = new List<Record>();
+                    List<Record> records = new List<Record>();
 
-                EvaluateParameters(command);
+                    EvaluateParameters(command);
 
-                SqlDataReader reader = command.ExecuteReader();
+                    SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read()) {
-                    Record record = new Record();
-                    record.fieldCount = reader.FieldCount;
+                    while (reader.Read()) {
+                        Record record = new Record();
+                        record.fieldCount = reader.FieldCount;
 
-                    for (int i = 0; i < reader.FieldCount; i++) {
-                        record[reader.GetName(i)] = reader.GetValue(i);
+                        for (int i = 0; i < reader.FieldCount; i++) {
+                            record[reader.GetName(i)] = reader.GetValue(i);
+                        }
+
+                        records.Add(record);
                     }
 
-                    records.Add(record);
+                    return records;
+                } finally {
+                    Clear();
                 }
-
-                Clear();
-
-                return records;
             }
         }
 
@@ -87,7 +91,7 @@ namespace DAL {
         protected List<Record> ExecuteUnprocessed(string query) {
             List<Record> returnValue = new List<Record>();
 
-            if (queryString.Contains("SELECT") && queryString.Contains("FROM")) {
+            if (query.Contains("SELECT") && query.Contains("FROM")) {
                 returnValue = ExecuteSelect(query);
             } else {
                 ExecuteCommand(query);
@@ -97,25 +101,26 @@ namespace DAL {
         }
 
 
-        protected List<T> Execute() => Execute(queryString, ProcessRecord);
-        protected List<T> Execute(string query) => Execute(query, ProcessRecord);
-        protected List<T> Execute(Func<Record, T> processFunction) => Execute(queryString, processFunction);
-        protected List<T> Execute(string query, Func<Record, T> processFunction) {
-            return ProcessRecords(ExecuteUnprocessed(query), processFunction);
-        }
-
-        protected List<T> Execute(Func<List<Record>, List<T>> recordsProcessor) => Execute(queryString, recordsProcessor);
-        protected List<T> Execute(string query, Func<List<Record>, List<T>> recordsProcessor) {
-            return recordsProcessor(ExecuteUnprocessed(query));
-        }
-
-        protected virtual List<T> ProcessRecords (List<Record> records, Func<Record, T> processFunction) {
-            return records
+        protected List<T> Execute() => ProcessRecords(ExecuteUnprocessed(queryString));
+        protected List<T> ExecuteQuery(string query) => ProcessRecords(ExecuteUnprocessed(query));
+        protected List<T> ExecuteUsing(Func<Record, T> processFunction) {
+            return ExecuteUnprocessed(queryString)
                 .Select(processFunction)
+                .ToList();
+        }
+        protected List<T> ExecuteUsing(Func<List<Record>, List<T>> recordsFunction) {
+            return recordsFunction(ExecuteUnprocessed());
+        }
+
+        public virtual List<T> ProcessRecords(List<Record> records) {
+            return records
+                .Select(ProcessRecord)
                 .ToList();
         }
 
         protected abstract T ProcessRecord(Record record);
+        public abstract List<T> GetAll();
+        public abstract T GetById(int id);
     }
 
     public class Record:Dictionary<string, object> {

@@ -47,23 +47,288 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="DesktopView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="DesktopView.Designer.cs">
+      <DependentUpon>DesktopView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\AddMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\AddMenuForm.Designer.cs">
+      <DependentUpon>AddMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\AddMenuItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\AddMenuItem.Designer.cs">
+      <DependentUpon>AddMenuItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\CancelOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\CancelOrderForm.Designer.cs">
+      <DependentUpon>CancelOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\DeleteMenuForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\DeleteMenuForm.Designer.cs">
+      <DependentUpon>DeleteMenuForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\DeleteMenuItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\DeleteMenuItemForm.Designer.cs">
+      <DependentUpon>DeleteMenuItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\extraConfirmationPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\extraConfirmationPopup.Designer.cs">
+      <DependentUpon>extraConfirmationPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\ItemsOnMenuView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\ItemsOnMenuView.Designer.cs">
+      <DependentUpon>ItemsOnMenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\MenuPickerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\MenuPickerView.Designer.cs">
+      <DependentUpon>MenuPickerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\OrderToBeServedView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\OrderToBeServedView.Designer.cs">
+      <DependentUpon>OrderToBeServedView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\OrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\OrderView.Designer.cs">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\SalePopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.Designer.cs">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\SalePopup.Designer.cs">
+      <DependentUpon>SalePopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\SalesView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\SalesView.Designer.cs">
+      <DependentUpon>SalesView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StaffAdd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StaffAdd.Designer.cs">
+      <DependentUpon>StaffAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StaffPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StaffPopup.Designer.cs">
+      <DependentUpon>StaffPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StaffView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StaffView.Designer.cs">
+      <DependentUpon>StaffView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\PrepareOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockManagementPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockManagementPopup.Designer.cs">
+      <DependentUpon>StockManagementPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StockPickerView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockPickerView.Designer.cs">
+      <DependentUpon>StockPickerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\StockView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\StockView.Designer.cs">
+      <DependentUpon>StockView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\TableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\TableView.Designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\CheckoutView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\CheckoutView.Designer.cs">
+      <DependentUpon>CheckoutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ErrorView.Designer.cs">
+      <DependentUpon>ErrorView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DesktopViews\LoginView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="DesktopViews\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MobileView.Designer.cs">
+      <DependentUpon>MobileView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\LoginViewMobile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\LoginViewMobile.Designer.cs">
+      <DependentUpon>LoginViewMobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\TableControlsView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\TableControlsView.Designer.cs">
+      <DependentUpon>TableControlsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\TableView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\TableView.Designer.cs">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MobileViews\TakeOrderView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MobileViews\TakeOrderView.Designer.cs">
+      <DependentUpon>TakeOrderView.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewPicker.Designer.cs">
+      <DependentUpon>ViewPicker.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="DesktopView.resx">
+      <DependentUpon>DesktopView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\AddMenuForm.resx">
+      <DependentUpon>AddMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\AddMenuItem.resx">
+      <DependentUpon>AddMenuItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\CancelOrderForm.resx">
+      <DependentUpon>CancelOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\DeleteMenuForm.resx">
+      <DependentUpon>DeleteMenuForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\DeleteMenuItemForm.resx">
+      <DependentUpon>DeleteMenuItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\ExtraConfirmationPopup.resx">
+      <DependentUpon>extraConfirmationPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\ItemsOnMenuView.resx">
+      <DependentUpon>ItemsOnMenuView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\MenuPickerView.resx">
+      <DependentUpon>MenuPickerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\OrderToBeServedView.resx">
+      <DependentUpon>OrderToBeServedView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\OrderView.resx">
+      <DependentUpon>OrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\SalePopup.resx">
+      <DependentUpon>SalePopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\SalesView.resx">
+      <DependentUpon>SalesView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StaffAdd.resx">
+      <DependentUpon>StaffAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StaffPopup.resx">
+      <DependentUpon>StaffPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StaffView.resx">
+      <DependentUpon>StaffView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\PrepareOrderForm.resx">
+      <DependentUpon>PrepareOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockManagementPopup.resx">
+      <DependentUpon>StockManagementPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockPickerView.resx">
+      <DependentUpon>StockPickerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\StockView.resx">
+      <DependentUpon>StockView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\TableView.resx">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\CheckoutView.resx">
+      <DependentUpon>CheckoutView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ErrorView.resx">
+      <DependentUpon>ErrorView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DesktopViews\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileView.resx">
+      <DependentUpon>MobileView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\LoginViewMobile.resx">
+      <DependentUpon>LoginViewMobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\TableControlsView.resx">
+      <DependentUpon>TableControlsView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\TableView.resx">
+      <DependentUpon>TableView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MobileViews\TakeOrderView.resx">
+      <DependentUpon>TakeOrderView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewPicker.resx">
+      <DependentUpon>ViewPicker.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -86,6 +351,15 @@
       <Project>{73f5b8ab-3242-473f-b3ef-00ba9b66d39a}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chapoo logo1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

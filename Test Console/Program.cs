@@ -5,6 +5,8 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using Model;
+using System.Diagnostics;
 
 namespace Test_Console {
     class Program {
@@ -14,11 +16,15 @@ namespace Test_Console {
         }
 
         void Start() {
-            OrderDAO OrderDAO = new OrderDAO();
+            TableDAO tableDAO = new TableDAO();
+            OrderDAO orderDAO = new OrderDAO();
+            MenuDAO menuDAO = new MenuDAO();
 
-            Console.WriteLine("{0}", OrderDAO.GetById(3).Id);
-            
+            //menuDAO.Insert(915, "Secret menu", new TimeSpan(10, 10, 10), new TimeSpan(10, 20, 20));
 
+            List<Menu> menus = menuDAO.GetAll();
+
+            Console.WriteLine(menus);
             Console.ReadKey();
         }
     }
