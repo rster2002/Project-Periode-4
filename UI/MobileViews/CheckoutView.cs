@@ -135,6 +135,10 @@ namespace UI.MobileViews {
             paymentMethodDialog.Visible = false;
         }
 
+        private void ClosePaymentMethodPopupLabelOnClick(object sender, EventArgs e) {
+            HidePaymentMethodDialog();
+        }
+
         private void SelectPaymentMethod(object sender, string paymentMethod) {
             Button button = (Button) sender;
 

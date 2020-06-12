@@ -134,11 +134,15 @@ namespace UI.MobileViews {
             ShowReservationPopup();
         }
 
-        private void cancelReserationButton_Click(object sender, EventArgs e) {
+        private void CancelReservationButtonOnClick(object sender, EventArgs e) {
             HideReservationPopup();
         }
 
-        private void confirmReservationButton_Click(object sender, EventArgs e) {
+        private void CloseReservationPopupLabelOnClick(object sender, EventArgs e) {
+            HideReservationPopup();
+        }
+
+        private void ConfirmReservationButtonOnClick(object sender, EventArgs e) {
             ReservationService reservationService = new ReservationService();
             CustomerService customerService = new CustomerService();
             Random rnd = new Random();

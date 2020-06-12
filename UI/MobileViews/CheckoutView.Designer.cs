@@ -43,6 +43,7 @@
             this.confirmPaymentButton = new System.Windows.Forms.Button();
             this.feedbackTextbox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.closePaymentMethodPopupLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tipNumericUpDown)).BeginInit();
             this.paymentMethodDialog.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -142,18 +143,9 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Fooi";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label3.Location = new System.Drawing.Point(3, 470);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(86, 20);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Opmerking";
-            // 
             // paymentMethodDialog
             // 
+            this.paymentMethodDialog.Controls.Add(this.closePaymentMethodPopupLabel);
             this.paymentMethodDialog.Controls.Add(this.panel1);
             this.paymentMethodDialog.Location = new System.Drawing.Point(401, 3);
             this.paymentMethodDialog.Name = "paymentMethodDialog";
@@ -246,6 +238,28 @@
             this.feedbackTextbox.Size = new System.Drawing.Size(392, 60);
             this.feedbackTextbox.TabIndex = 8;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(3, 470);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(86, 20);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Opmerking";
+            // 
+            // closePaymentMethodPopupLabel
+            // 
+            this.closePaymentMethodPopupLabel.AutoSize = true;
+            this.closePaymentMethodPopupLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.closePaymentMethodPopupLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(152)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.closePaymentMethodPopupLabel.Location = new System.Drawing.Point(340, 18);
+            this.closePaymentMethodPopupLabel.Name = "closePaymentMethodPopupLabel";
+            this.closePaymentMethodPopupLabel.Size = new System.Drawing.Size(30, 29);
+            this.closePaymentMethodPopupLabel.TabIndex = 1;
+            this.closePaymentMethodPopupLabel.Text = "X";
+            this.closePaymentMethodPopupLabel.Click += new System.EventHandler(this.ClosePaymentMethodPopupLabelOnClick);
+            // 
             // CheckoutView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -263,6 +277,7 @@
             this.Size = new System.Drawing.Size(805, 649);
             ((System.ComponentModel.ISupportInitialize)(this.tipNumericUpDown)).EndInit();
             this.paymentMethodDialog.ResumeLayout(false);
+            this.paymentMethodDialog.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -292,5 +307,6 @@
         private System.Windows.Forms.Button confirmPaymentButton;
         private System.Windows.Forms.TextBox feedbackTextbox;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label closePaymentMethodPopupLabel;
     }
 }

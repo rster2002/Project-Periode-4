@@ -47,6 +47,7 @@
             this.cancelOrderButton = new System.Windows.Forms.Button();
             this.backToTablesOverviewButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuItemTypeButtons.SuspendLayout();
             this.popupDialog.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -63,9 +64,9 @@
             this.columnHeader5});
             this.orderList.FullRowSelect = true;
             this.orderList.HideSelection = false;
-            this.orderList.Location = new System.Drawing.Point(3, 3);
+            this.orderList.Location = new System.Drawing.Point(3, 32);
             this.orderList.Name = "orderList";
-            this.orderList.Size = new System.Drawing.Size(392, 182);
+            this.orderList.Size = new System.Drawing.Size(392, 153);
             this.orderList.TabIndex = 0;
             this.orderList.UseCompatibleStateImageBehavior = false;
             this.orderList.View = System.Windows.Forms.View.Details;
@@ -310,10 +311,20 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Plaats bestelling?";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(166, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Druk op een rij om aan te passen:";
+            // 
             // TakeOrderView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.confirmationDialog);
             this.Controls.Add(this.popupDialog);
             this.Controls.Add(this.buttonConfirmOrder);
@@ -363,5 +374,6 @@
         private System.Windows.Forms.Button backToTablesOverviewButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button cancelOrderButton;
+        private System.Windows.Forms.Label label3;
     }
 }
