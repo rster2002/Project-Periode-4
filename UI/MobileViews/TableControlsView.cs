@@ -51,16 +51,19 @@ namespace UI.MobileViews {
 
 
             //Generate order served button
-            Button servedButton = new Button();
-            servedButton.Dock = DockStyle.Fill;
-            servedButton.Text = "Bestelling geserveerd!";
-            servedButton.BackColor = Color.White;
-            servedButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            servedButton.Click += ServedButtonOnClick;
+            if (table.Status != "Available" && table.Status != "Reserved") {
+                Button servedButton = new Button();
+                servedButton.Dock = DockStyle.Fill;
+                servedButton.Text = "Bestelling geserveerd!";
+                servedButton.BackColor = Color.White;
+                servedButton.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+                servedButton.Click += ServedButtonOnClick;
 
-            buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
-            buttonLayout.RowCount++;
-            buttonLayout.Controls.Add(servedButton);
+                buttonLayout.RowStyles.Add(new RowStyle(SizeType.Percent, percentPerButton));
+                buttonLayout.RowCount++;
+                buttonLayout.Controls.Add(servedButton);
+            }
+            
 
             if (table.Status == "Available") {
                 Button reserveButton = new Button();
