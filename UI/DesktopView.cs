@@ -17,7 +17,7 @@ namespace UI {
         public static DesktopView instance;
         public UserControl loadedView;
         private UserSession userSession = UserSession.GetInstance();
-        private string itemInitialTag;
+        private List<string> itemInitialTag = new List<string>();
 
         public static DesktopView GetInstance() {
             if (instance == null) instance = new DesktopView();
@@ -27,15 +27,16 @@ namespace UI {
         private DesktopView() {
             InitializeComponent();
             WindowState = FormWindowState.Maximized;
+
             foreach(ToolStripItem item in menuStrip.Items) {
-                itemInitialTag = item.Tag.ToString();
+                itemInitialTag.Add(item.Tag.ToString());
             }
         }
 
         private void ShowTabs() {
             for (int i = 0; i < menuStrip.Items.Count; i++) {
                 ToolStripItem item = menuStrip.Items[i];
-                item.Tag = new ViewTag { RolePermissions = itemInitialTag, ViewId = i+1 };
+                item.Tag = new ViewTag { RolePermissions = itemInitialTag[i], ViewId = i+1 };
                 var viewTagItem = (ViewTag) item.Tag;
 
                 item.Visible = (viewTagItem.RolePermissions.Contains(userSession.LoggedInStaff.Role));
@@ -46,7 +47,6 @@ namespace UI {
                 } else {
                     item.BackColor = Color.FromArgb(33, 33, 33);
                 }
-            
             }
         }
 
